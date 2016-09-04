@@ -1,0 +1,204 @@
+ body {
+            font-family: 'Lato';
+        }
+
+        .fa-btn {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body style="background:#f7edbe;" id="app-layout">
+
+<style>
+              .oferta{
+     
+       padding: 0.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  border-style: solid;
+  border-color:transparent;
+  border-left-width:5px;
+  border-left-color: #499a07;
+  border-left-width: .75rem;
+  background-color:grey;
+  border-radius: .25rem;
+    
+  }
+  
+  .muroOferta{
+    font-size:2em; 
+    color:white;
+    
+  }
+          .a {
+            color:white;
+            height: 105px;
+            width:30%;
+            
+          
+        }
+        
+        .aaa{
+              font-size: 4em;
+              vertical-align: middle;
+              color:white;
+        }
+        
+        .labeltext{
+            color:white;
+                margin-top: 20px;
+          
+        }
+        
+        h1 {
+            font-size: 100%;
+        }
+
+        .aa {
+            background-color: black;
+            display: flex;
+            justify-content: space-around;      
+            height: 5em;
+
+        }
+    
+      .ingresos{
+    background-color:grey;
+    height: 3em;
+  }
+  .accion{
+    background-color:orange;
+    height: 3em;
+    
+
+  }
+  
+  .formingreso{
+
+        height: 121px;
+         margin-top: 1em;
+  }
+        
+#exampleInputAmount{
+      background: transparent;
+    border: none;
+text-align: center;
+font-weight:bold;
+  color:white;
+}
+
+#selectCambiameAccion{
+  -webkit-appearance: none;
+  border-radius:0;
+      width: 6em;
+    background: transparent;
+    border: none;
+text-align: center;
+font-weight:bold;
+  color:white;
+}
+
+
+#selectCambiameMone{
+  -webkit-appearance: none;
+  border-radius:0;
+      width: 6em;
+    background: transparent;
+    border: none;
+text-align: center;
+font-weight:bold;
+  color:white;
+}
+
+.moneDiv {
+  margin-right: 32%;
+    float: right;
+    
+    width: 37%;
+  
+}
+
+.accionDiv {
+
+}
+    /*
+/* Created by Filipe Pina
+ * Specific styles of signin, register, component
+ */
+/*
+ * General styles
+ */
+
+body, html{
+     height: 100%;
+    background-repeat: no-repeat;
+    background-color: #d3d3d3;
+    font-family: 'Oxygen', sans-serif;
+}
+
+.main{
+    margin-top: 70px;
+}
+
+h1.title { 
+    font-size: 50px;
+    font-family: 'Passion One', cursive; 
+    font-weight: 400; 
+}
+
+hr{
+    width: 10%;
+    color: #fff;
+}
+
+.form-group{
+    margin-bottom: 15px;
+}
+
+label{
+    margin-bottom: 15px;
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+}
+
+.main-login{
+    background-color: #fff;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+.main-center{
+    margin-top: 30px;
+    margin: 0 auto;
+    max-width: 330px;
+    padding: 40px 40px;
+
+}
+
+.login-button{
+    margin-top: 5px;
+}
+
+.login-register{
+    font-size: 11px;
+    text-align: center;
+}
+      .botonCallToAction{
+        background: orange;
+    height: 6em;
+    width: 13em;
+  }
+
+  #whatsapp{
+        margin-top: 18%;
+  }
