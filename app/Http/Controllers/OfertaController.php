@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Oferta;
+use App\Models\Oferta;
 use App\Http\Requests;
 use View;
-use App\User;
+use App\Models\User;
 use Goutte\Client;
 
 

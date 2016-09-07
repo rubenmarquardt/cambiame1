@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use View;
-use App\User;
+use App\Models\User;
 use Mail;
 use Auth;
 use Socialite;

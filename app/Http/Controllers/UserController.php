@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Oferta;
-use App\User;
+use App\Models\Oferta;
+use App\Models\User;
 use App\Http\Requests;
 
 
