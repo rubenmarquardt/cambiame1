@@ -55,12 +55,11 @@
 
   <?php
 
-
-
-  $tmp = App\User::where('id', $oferta['user_id'])->first();
+  $tmp = App\Models\User::where('id', $oferta['user_id'])->first();
 
     $estado = ($tmp->activo == 1 ? 'estaOnline' : 'noestaOnline');
 
+    
   ?>
 
   <div class="oferta 

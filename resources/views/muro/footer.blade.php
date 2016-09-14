@@ -56,14 +56,14 @@
 
           <!-- JavaScripts -->
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
           <script src="{{url('js/jquery.blockUI.js')}}" ></script>
-          <script src="{{url('js/jquery.formatCurrency-1.4.0.pack.js')}}" ></script>
-          <script src="{{url('js/i18n/jquery.formatCurrency.es-UY.js')}}" ></script>
           <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
 
 
-          <script src="js/app.js"></script>
+          <!--script src="js/app.js"></script--> que tiene este archivo que jode???
+          
           <script>
 
 
