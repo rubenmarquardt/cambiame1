@@ -5,7 +5,7 @@ ES NECESARIO registrarse.
 <form action="/salvaroferta" method="POST" id="salvadorOferta">
   <div class="row" style="height: 121px;margin-top: 1em;">
     <div class="row" style="margin-bottom: 1em;">
-      <div class="col-sm-11 col-xs-11 col-lg-11 col-md-11 ingresos text-center"><font class="labeltext" style="font-size:1.2em;color:black;display: block;margin-top: 13px;">QUIERO CAMBIAR</font></div>
+      <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 ingresos text-center"><font class="labeltext" style="font-size:1.2em;color:black;display: block;margin-top: 13px;">QUIERO CAMBIAR</font></div>
     </div>
     <div class="row" >
 
@@ -18,11 +18,11 @@ ES NECESARIO registrarse.
         </div>
       </div>
       <div class="col-sm-5 col-xs-5  col-md-5  text-center ingresos" >
-        <input name="cantidad" type="text" class="form-control" id="exampleInputAmount" placeholder="Amount" style="font-size: 2em;">
+        <input name="cantidad" type="number" class="form-control" id="exampleInputAmount" placeholder="Amount" style="font-size: 2em;">
       </div>
       <div class="col-sm-3 col-xs-3 col-md-3 text-center ingresos" style="background-color:orange;">
         <div class="row text-center" >
-          <div class="col-sm-11 col-xs-11 col-lg-11 col-md-11 ingresos text-center" style="background:orange;">
+          <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 ingresos text-center" style="background:orange;">
             <button style="background:transparent;border:transparent;margin-top:10px;" data-toggle="collapse" href="#collapseExample" aria-expanded="true" aria-controls="collapseExample" id="contenedorCalc">
               <font style="font-weight:bold;background:orange;font-size:0.8em;" >
                 CALCULAR

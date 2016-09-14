@@ -12,11 +12,11 @@ use Goutte\Client;
 
 class OfertaController extends Controller
 {
-   
+ 
     var $str = "";
     var $str2 = "";
 
-      
+    
     public function getInterbancario()
     {
 
@@ -27,7 +27,7 @@ class OfertaController extends Controller
             $pos = strpos($stn, "Bill");
             $stn = substr($stn, $pos);
             $stn = explode(" ", $stn);
-  
+            
             if($stn[76]!=""){
                 $this->str = $stn[76];    
             }
@@ -35,8 +35,8 @@ class OfertaController extends Controller
             
         });
 
-   
-	   
+        
+        
         return $this->str;
 
 
@@ -52,26 +52,25 @@ class OfertaController extends Controller
             $stn = explode(" ", $stn);
             $this->str2['compra'] = $stn[12];
             $this->str2['venta'] = $stn[24];
-         });
-           
+        });
+        
         return $this->str2;
 
     }
     
     public function index(){
         
-	
+       
         $ofertas = Oferta::all()->toArray();
 
-        $elInter = $this->getInterbancario();
+        $elInter = rtrim($this->getInterbancario());
 
         $pizarra = $this->getPizarra();
 
+        return View::make('muro.oferta')->with('elInter', $elInter)->with('ofertas', $ofertas)->with('elPiza', $pizarra);
 
- 	return View::make('muro.oferta')->with('elInter', $elInter)->with('ofertas', $ofertas)->with('elPiza', $pizarra);
 
-
-	
+        
     }
     
 

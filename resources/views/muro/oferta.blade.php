@@ -49,110 +49,113 @@
   </div>
 </div>
 <div class="row">
+  <div class="row" style="margin-bottom: 1em;">
+    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >OFERTAS NEGOCIABLES</font></div>
+  </div>
   @foreach ($ofertas as $oferta)
-@if($oferta['reserva'] == 1)
+  @if($oferta['reserva'] == 1)
 
 
   <?php
 
   $tmp = App\Models\User::where('id', $oferta['user_id'])->first();
 
-    $estado = ($tmp->activo == 1 ? 'estaOnline' : 'noestaOnline');
+  $estado = ($tmp->activo == 1 ? 'estaOnline' : 'noestaOnline');
 
-    
+  
   ?>
 
   <div class="oferta 
   @if($tmp->isOnline())
-    estaOnline
+  estaOnline
   @else
-    noestaOnline
+  noestaOnline
   @endif 
   ">
 
-    <div class="media">
-      <div class="media-left">
-        <a href="{{ $tmp['linkedinProfile']}}">
-          <img class="media-object" src="<?php echo $tmp['pictureUrl']; ?>" alt="<?php echo $tmp['name'];?>">
-        </a>
-      </div>
-      <div class="media-body">
-        <div class="row">
-          <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
-            <div class="row">
-              <h5 class="media-heading">
+  <div class="media">
+    <div class="media-left">
+      <a href="{{ $tmp['linkedinProfile']}}">
+        <img class="media-object" src="<?php echo $tmp['pictureUrl']; ?>" alt="<?php echo $tmp['name'];?>">
+      </a>
+    </div>
+    <div class="media-body">
+      <div class="row">
+        <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
+          <div class="row">
+            <h5 class="media-heading">
+              <?php
+
+              if ($oferta['moneda'] == "usd"){
+                echo "vendo";
+              }else if($oferta['moneda'] == "uyu"){
+                echo "compro ";
+              }
+
+              ?>
+            </h5>
+          </div>
+          <div class="row">
+            <h5 class="media-heading">
+              <span class="enDolares">
                 <?php
 
                 if ($oferta['moneda'] == "usd"){
-                  echo "vendo";
+                  echo "  us$ ".$oferta['cantidad'];
                 }else if($oferta['moneda'] == "uyu"){
-                  echo "compro ";
+                  echo "  us$ ".$oferta['resultado'];
                 }
 
                 ?>
-              </h5>
-            </div>
-            <div class="row">
-              <h5 class="media-heading">
-                <span class="enDolares">
+              </span>
+            </h5>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
+              <p>
+                <font class="muroOferta" style="font-size:1.2em;">
+                 <span class="currencyLabel">
                   <?php
 
-                  if ($oferta['moneda'] == "usd"){
-                    echo "  us$ ".$oferta['cantidad'];
-                  }else if($oferta['moneda'] == "uyu"){
-                    echo "  us$ ".$oferta['resultado'];
+                  switch ($oferta['moneda']) {
+                    case 'usd':
+                    echo "$ ";
+                    break;
+                    default:
+                    echo "$ ";
+                    break;
+                  }
+
+                  switch ($oferta['moneda']) {
+                    case 'usd':
+                    echo $oferta['resultado'];
+                    break;
+                    default:
+                    echo $oferta['cantidad'];
+                    break;
                   }
 
                   ?>
                 </span>
-              </h5>
-            </div>
-            <div class="row">
-              <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
-                <p>
-                  <font class="muroOferta" style="font-size:1.2em;">
-                   <span class="currencyLabel">
-                    <?php
-
-                    switch ($oferta['moneda']) {
-                      case 'usd':
-                      echo "$ ";
-                      break;
-                      default:
-                      echo "$ ";
-                      break;
-                    }
-
-                    switch ($oferta['moneda']) {
-                      case 'usd':
-                      echo $oferta['resultado'];
-                      break;
-                      default:
-                      echo $oferta['cantidad'];
-                      break;
-                    }
-
-                    ?>
-                  </span>
-                </font>
-              </p>
-            </div>
+              </font>
+            </p>
           </div>
         </div>
       </div>
+    </div>
 
 
-    </div>
-    <div class="media-right" >
-      <div class="row text-center botonCallToAction" style="background:orange;">
-       <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
-       <button type="button" name="contactar" value="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
-        <font style="font-weight:bold;background:orange;font-size:1.4em;">
-          NEGOCIAR
-        </font>
-      </button>
-    </div>
   </div>
+  <div class="media-right" >
+    <div class="row text-center botonCallToAction">
+     <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
+     <button type="button" name="contactar" value="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
+      <font class="negociar">
+        NEGOCIAR
+      </font>
+    </button>
+  </div>
+</div>
 </div>
 </div>
 @endif
