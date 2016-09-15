@@ -1,5 +1,4 @@
 <?php
-$elInter = "29.086";
 
 	$ultimoCaracter = substr($elInter, -1);
 	$elInter = substr_replace($elInter ,"",-1);

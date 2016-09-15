@@ -148,10 +148,15 @@
        	calculadora();
        });
 
+       function bloqueoUI(){
+       	$.blockUI({ message: '<img src="images/ripple.svg" />', css: { backgroundColor: 'transparent', border: 'none'} });
+       	  
+       }
+
        $('#cierroModal').on('click', function(){
        	$('#hazReserva').prop("disabled", false);
-       	$.blockUI({ message: '<img src="images/ripple.svg" />', css: { backgroundColor: 'transparent', border: 'none'} });
-       	location.reload();  
+       	bloqueoUI();
+       	location.reload();
        })
 
        $('#publicarOfer').one('click', function(e){
@@ -250,37 +255,51 @@
     		data: data,
     		success: function(result){
     			if(result == 0){
-            //todo
+		            //todo
+		            $botonRes.prop("disabled", true);
+		            $botonRes.attr("color", "white");
+		            $botonRes.text("Reservado!");
+		            $botonRes.removeClass('animate infinite pulse');
 
-            $botonRes.prop("disabled", true);
-            $botonRes.attr("color", "white");
-            $botonRes.text("Reservado!");
-            $botonRes.removeClass('animate infinite pulse');
-            
+		        }else{
 
-        }else{
-
-        	$botonRes.text("error");
-        	alert('No se pudo reservar la oferta');
-        }
-    } 
-});
+		        	$botonRes.text("error");
+		        	alert('No se pudo reservar la oferta');
+		        }
+    		} 
+		});
 
     });
 
 
+    $(".deleteProduct").click(function(){
+    	var id = $(this).data("id");
+    	var token = $(this).data("token");
+    	if(confirm('seguro que desea eliminar oferta?')){
+	    	$.ajax(
+	    	{
+	    		url: "oferta/delete/"+id,
+	    		type: 'DELETE',
+	    		dataType: "JSON",
+	    		data: {
+	    			"id": id,
+	    			"_method": 'DELETE',
+	    			"_token": token,
+	    		},
+	    		success: function ()
+	    		{
+	    			bloqueoUI();
+	    			location.reload();
+	    		}
+	    	});
+    	}
 
 
-
-
-
-
+    });
 
 });
-
-
-
 </script>
+
 <script type="text/javascript">
 	$.ajaxSetup({
 		headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }

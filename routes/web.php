@@ -41,6 +41,10 @@ Route::get('login', function(){
 	return view('auth.login');
 });
 
+
+Route::delete('/oferta/delete/{id}', 'UserController@destroy');
+
+
 Route::post('salvaroferta', 'UserController@salvaroferta');
 
 Route::get('social/linkedin', 'SocialController@getSocialAuth');

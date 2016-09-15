@@ -31,46 +31,55 @@ class UserController extends Controller
   public function __construct(){
     $this->middleware('auth');
   }
-  public function reservarOferta(Request $request){
-      if($request->ajax()){
 
-        $oferta = Oferta::where('id', $request['idoferta'])->first();
-        $oferta->reserva = 0;
-        if($oferta->save()){
-          return 0;
-        }else{
-          return 1;
-        }
+  public function reservarOferta(Request $request){
+    if($request->ajax()){
+
+      $oferta = Oferta::where('id', $request['idoferta'])->first();
+      $oferta->reserva = 0;
+      if($oferta->save()){
+        return 0;
+      }else{
+        return 1;
       }
+    }
 
   }
 
-  public function salvaroferta(Request $request)
-  {
+    public function salvaroferta(Request $request)
+    {
 
-    if($request->ajax()){
+          if($request->ajax()){
 
-     $user=Auth::user();
+           $user=Auth::user();
 
-     if (!isset($user)){
-      return redirect()->route('/');
-    }else{
-     $oferta = new Oferta;
-     $oferta->moneda = ($request['moneda'] == 1 ? 'usd' : 'uyu');
-     $oferta->dolarInter = $request['dolarInter'];
-     $oferta->dolarCambio = $request['dolarCambio'];
-     $oferta->resultado = $request['resultado'];
-     $oferta->cantidad = $request['cantidad'];
-     $oferta->user_id = $request['user_id'];
-     $oferta->reserva = 1;
-     if($oferta->save()){
-      return 1;
-     }else{
-      return 0;
-     }
+           if (!isset($user)){
+            return redirect()->route('/');
+          }else{
+           $oferta = new Oferta;
+           $oferta->moneda = ($request['moneda'] == 1 ? 'usd' : 'uyu');
+           $oferta->dolarInter = $request['dolarInter'];
+           $oferta->dolarCambio = $request['dolarCambio'];
+           $oferta->resultado = $request['resultado'];
+           $oferta->cantidad = $request['cantidad'];
+           $oferta->user_id = $request['user_id'];
+           $oferta->reserva = 1;
+           if($oferta->save()){
+            return 1;
+          }else{
+            return 0;
+          }
 
-   }
- }
+        }
+      }
 
-}
+    }
+
+    public function destroy($id){
+      Oferta::find($id)->delete();   
+      return response()->json([
+        'success' => 'Record has been deleted successfully!'
+        ]);   
+    }
+
 }

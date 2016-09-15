@@ -62,7 +62,7 @@
 
   $estado = ($tmp->activo == 1 ? 'estaOnline' : 'noestaOnline');
 
-  
+
   ?>
 
   <div class="oferta 
@@ -148,14 +148,22 @@
   </div>
   <div class="media-right" >
     <div class="row text-center botonCallToAction">
-     <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
-     <button type="button" name="contactar" value="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
-      <font class="negociar">
-        NEGOCIAR
-      </font>
-    </button>
+      @if(Auth::user()->id == $oferta['user_id'])
+      
+      <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" >
+        
+      </img>
+      @else
+      <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
+      <button type="button" name="contactar" value="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
+        <font class="negociar">
+          NEGOCIAR
+        </font>
+      </button>
+      @endif
+
+    </div>
   </div>
-</div>
 </div>
 </div>
 @endif
