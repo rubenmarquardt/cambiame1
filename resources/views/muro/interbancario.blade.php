@@ -8,8 +8,10 @@
 		$penultimoCaracter++;
 		$elInter = substr_replace($elInter ,"",-1);
 		$elInter = $elInter."".$penultimoCaracter;
-		$elInterExplode = explode(".", $elInter);
-		$elInter = $elInterExplode[0].",".$elInterExplode[1];
+			
+		//$elInterExplode = explode(",", $elInter);
+
+		//$elInter = $elInterExplode[0].",".$elInterExplode[1];
 	}	
 
 ?>

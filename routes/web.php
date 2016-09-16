@@ -16,6 +16,11 @@ Auth::routes();
 Route::get('oferta',  ['uses' => 'OfertaController@index', 'middleware'=>'auth']);
 Route::post('oferta', ['uses' => 'OfertaController@index', 'middleware'=>'auth']);
 
+Route::get('usuario/ofertas/{id}',  ['uses' => 'OfertaController@ofertasUser', 'middleware'=>'auth']);
+Route::post('usuario/ofertas/{id}', ['uses' => 'OfertaController@ofertasUser', 'middleware'=>'auth']);
+
+
+
 Route::get('/', ['middleware' => 'auth', function () {
 
     	return Redirect::action('OfertaController@index');

@@ -15,7 +15,23 @@ class OfertaController extends Controller
  
     var $str = "";
     var $str2 = "";
+    var $elInter ="";
+    var $pizarra = "";
 
+    private function dolarPizzarraInter(){
+        $this->elInter = rtrim($this->getInterbancario());
+        $this->pizarra = $this->getPizarra();
+
+
+    }
+
+    public function ofertasUser($id){
+        $ofertasUser = Oferta::where('user_id', $id)->get();
+        $this->dolarPizzarraInter();
+        $usuario = User::where('id', $id)->get();
+
+        return View::make('muro.misofertas')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario);
+    }
     
     public function getInterbancario()
     {
@@ -63,11 +79,9 @@ class OfertaController extends Controller
        
         $ofertas = Oferta::all()->toArray();
 
-        $elInter = rtrim($this->getInterbancario());
+        $this->dolarPizzarraInter();
 
-        $pizarra = $this->getPizarra();
-
-        return View::make('muro.oferta')->with('elInter', $elInter)->with('ofertas', $ofertas)->with('elPiza', $pizarra);
+        return View::make('muro.oferta')->with('elInter', $this->elInter)->with('ofertas', $ofertas)->with('elPiza', $this->pizarra);
 
 
         
