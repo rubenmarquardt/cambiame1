@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use User;
 
 class Oferta extends Model
 {
@@ -16,4 +17,5 @@ class Oferta extends Model
     {
         return $this->belongsTo('App\User');
     }
+
 }

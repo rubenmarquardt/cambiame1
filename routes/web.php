@@ -47,10 +47,10 @@ Route::get('login', function(){
 });
 
 
-Route::delete('/oferta/delete/{id}', 'UserController@destroy');
+Route::delete('/oferta/delete/{id}', 'OfertaController@destroy');
 
 
-Route::post('salvaroferta', 'UserController@salvaroferta');
+Route::post('salvaroferta', 'OfertaController@salvaroferta');
 
 Route::get('social/linkedin', 'SocialController@getSocialAuth');
 Route::get('social/linkedin/callback', 'SocialController@getSocialAuthCallback');
@@ -58,4 +58,4 @@ Route::get('social/linkedin/callback', 'SocialController@getSocialAuthCallback')
 Route::post('registraruser', 'SocialController@registrarUser');
 
 
-Route::post('reservarOferta', 'UserController@reservarOferta');
+Route::post('reservarOferta', 'OfertaController@reservarOferta');

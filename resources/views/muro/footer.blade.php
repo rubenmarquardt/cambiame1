@@ -149,7 +149,7 @@
        });
 
        function bloqueoUI(){
-       	$.blockUI({ message: '<img src="images/ripple.svg" />', css: { backgroundColor: 'transparent', border: 'none'} });
+       	$.blockUI({ message: '<img src="{{url('images/ripple.svg')}}" />', css: { backgroundColor: 'transparent', border: 'none'} });
        	  
        }
 
@@ -162,6 +162,7 @@
        $('#publicarOfer').one('click', function(e){
        	$.blockUI({ message: '<img src="images/ripple.svg" />', css: { backgroundColor: 'transparent', border: 'none'} });
        	$('#publicarOfer').attr("disable", true);
+       	$('#exampleInputAmount').attr("disable", true);
        	$form.submit();
        });
 
@@ -201,6 +202,7 @@
                 	success: function(result){
                 		$.unblockUI();
                 		$('#publicarOfer').attr("disable", false);
+                		$('#exampleInputAmount').attr("disable", false);
                 		if(result == 1){
                 			$('#contenedorCalc2').animate({height:'0px'});
                 			$('#calculador').animate({height:'0'});
@@ -278,7 +280,7 @@
     	if(confirm('seguro que desea eliminar oferta?')){
 	    	$.ajax(
 	    	{
-	    		url: "oferta/delete/"+id,
+	    		url: "{{url('oferta/delete')}}/"+id,
 	    		type: 'DELETE',
 	    		dataType: "JSON",
 	    		data: {

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Oferta;
 use App\Http\Requests;
 use View;
 use App\Models\User;
 use Goutte\Client;
-
 
 class OfertaController extends Controller
 {
@@ -28,9 +28,13 @@ class OfertaController extends Controller
     public function ofertasUser($id){
         $ofertasUser = Oferta::where('user_id', $id)->get();
         $this->dolarPizzarraInter();
-        $usuario = User::where('id', $id)->get();
 
-        return View::make('muro.misofertas')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario);
+        if(Auth::user()->id == $ofertasUser->first()->user_id){
+            $usuario = User::where('id', $id)->get();
+            return View::make('muro.misofertas')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario);
+        }
+
+        return "tu vieja";
     }
     
     public function getInterbancario()
@@ -86,6 +90,63 @@ class OfertaController extends Controller
 
         
     }
-    
+
+    public function salvaroferta(Request $request)
+    {
+
+        if($request->ajax()){
+
+             $user=Auth::user();
+
+            if (!isset($user)){
+                return redirect()->route('/');
+            }else{
+                $oferta = new Oferta;
+                $oferta->moneda = ($request['moneda'] == 1 ? 'usd' : 'uyu');
+                $oferta->dolarInter = $request['dolarInter'];
+                $oferta->dolarCambio = $request['dolarCambio'];
+                $oferta->resultado = $request['resultado'];
+                $oferta->cantidad = $request['cantidad'];
+                $oferta->user_id = $request['user_id'];
+                $oferta->reserva = 1;
+                if($oferta->save()){
+                    return 1;
+                }else{
+                    return 0;
+                }
+
+            }
+        }
+
+    }
+
+    public function reservarOferta(Request $request){
+        if($request->ajax()){
+            $oferta = Oferta::where('id', $request['idoferta'])->first();
+            $oferta->reserva = 0;
+            if($oferta->save()){
+                return 0;
+            }else{
+                return 1;
+            }
+        }   
+
+    }
+
+    public function destroy($id){
+        $oferta = Oferta::find($id);
+        if ($oferta->user_id == Auth::user()->id){
+            $oferta->delete();
+            return response()->json([
+            'success' => 'Record has been deleted successfully!'
+            ]);   
+        }else{
+           return response()->json([
+            'success' => 'you dont own this record brotha!'
+            ]);    
+        }
+    }
+
+
 
 }
