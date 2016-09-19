@@ -153,11 +153,16 @@
        	  
        }
 
-       $('#cierroModal').on('click', function(){
+       $('#myModalNegociar').find('#cierroModal').on('click', function(){
        	$('#hazReserva').prop("disabled", false);
+       	$botonRes.text("Reservar Oferta!");
+       	$botonRes.addClass('animate infinite pulse');
+       });
+
+       $('#myModal').find('#cierroModal').on('click', function(){
        	bloqueoUI();
        	location.reload();
-       })
+       });
 
        $('#publicarOfer').one('click', function(e){
        	$.blockUI({ message: '<img src="images/ripple.svg" />', css: { backgroundColor: 'transparent', border: 'none'} });

@@ -17,6 +17,8 @@ class OfertaController extends Controller
     var $str2 = "";
     var $elInter ="";
     var $pizarra = "";
+    var $userId= 0;
+    var $user = "dummy";
 
     private function dolarPizzarraInter(){
         $this->elInter = rtrim($this->getInterbancario());
@@ -27,11 +29,13 @@ class OfertaController extends Controller
 
     public function ofertasUser($id){
         $ofertasUser = Oferta::where('user_id', $id)->get();
+        $contratosNegociables = Oferta::where('reserva', $id)->get();
         $this->dolarPizzarraInter();
-
-        if(Auth::user()->id == $ofertasUser->first()->user_id){
+        $this->userId = Auth::user()->id;
+        if($this->userId == $ofertasUser->first()->user_id){
             $usuario = User::where('id', $id)->get();
-            return View::make('muro.misofertas')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario);
+            
+            return View::make('muro.misofertas')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario)->with('contratos', $contratosNegociables);
         }
 
         return "tu vieja";
@@ -122,8 +126,9 @@ class OfertaController extends Controller
 
     public function reservarOferta(Request $request){
         if($request->ajax()){
+            $this->user = Auth::user()->id;
             $oferta = Oferta::where('id', $request['idoferta'])->first();
-            $oferta->reserva = 0;
+            $oferta->reserva = $this->user;
             if($oferta->save()){
                 return 0;
             }else{

@@ -16,10 +16,12 @@ Auth::routes();
 Route::get('oferta',  ['uses' => 'OfertaController@index', 'middleware'=>'auth']);
 Route::post('oferta', ['uses' => 'OfertaController@index', 'middleware'=>'auth']);
 
+/* mis ofertas/contratos */
+
 Route::get('usuario/ofertas/{id}',  ['uses' => 'OfertaController@ofertasUser', 'middleware'=>'auth']);
 Route::post('usuario/ofertas/{id}', ['uses' => 'OfertaController@ofertasUser', 'middleware'=>'auth']);
 
-
+/* home */
 
 Route::get('/', ['middleware' => 'auth', function () {
 
@@ -59,3 +61,4 @@ Route::post('registraruser', 'SocialController@registrarUser');
 
 
 Route::post('reservarOferta', 'OfertaController@reservarOferta');
+Route::get('reservarOferta', 'OfertaController@reservarOferta');
