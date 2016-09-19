@@ -183,9 +183,17 @@ foreach($usuarios as $usuario){
       </div>
     </div>
   </div>
+
   <div class="media-right" >
-    <div class="row text-center botonCallToAction">
-      <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $contrato['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+    <div class="row text-center botonCallToAction " style="background:#ffa500;" >
+      <div class="vcenter">
+        <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-center" style="margin-right:1em;">
+          <img src="{{ url('images/negociacionconcretada.png') }}" class="concretada img-responsive" data-id="{{ $contrato['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+        </div>
+        <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-center" style="margin-right:1em;">
+          <img src="{{ url('images/liberarnegociacion.png') }}" class="liberar img-responsive" data-id="{{ $contrato['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -45,10 +45,10 @@
 
 .oferText {
   display:block;
-   font-weight: bold;
-    font-size: 1.4em;
-    color: white;
-    margin-bottom:12px;
+  font-weight: bold;
+  font-size: 1.4em;
+  color: white;
+  margin-bottom:12px;
 }
 
 .labeltext{
@@ -243,4 +243,8 @@ input::-webkit-input-placeholder {
   border-left-width: 2em;
   border-left-color: orange;
   border-left-style: solid;
+}
+
+.vcenter {
+  margin-top:9%;
 }
