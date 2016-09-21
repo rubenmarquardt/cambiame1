@@ -60,9 +60,10 @@
     			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     			<script src="{{url('js/jquery.blockUI.js')}}" ></script>
     			<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+				<script type="text/javascript" src="{{url('js/rating.js')}}"></script>
 
 
-    			<!--script src="js/app.js"></script--> que tiene este archivo que jode???
+    			<!--script src="js/app.js"></scriptque tiene este archivo que jode??? --> 
 
     			<script>
 
@@ -303,6 +304,57 @@
 
 
     });
+
+    $(".liberar").click(function(){
+    	var id = $(this).data("id");
+    	var token = $(this).data("token");
+    	if(confirm('seguro que desea liberar negociacion?')){
+	    	$.ajax(
+	    	{
+	    		url: "{{url('oferta/liberar')}}/"+id,
+	    		type: 'POST',
+	    		dataType: "JSON",
+	    		data: {
+	    			"id": id,
+	    			"_method": 'POST',
+	    			"_token": token,
+	    		},
+	    		success: function ()
+	    		{
+	    			bloqueoUI();
+	    			location.reload();
+	    		}
+	    	});
+    	}
+
+    });
+
+    $(".concretada").click(function(){
+    	var id = $(this).data("id");
+    	var token = $(this).data("token");
+    	if(confirm('luego de concretar la oferta deberas calificar la transaccion')){
+    		$.ajax(
+    		{
+    			url: "{{url('oferta/concretar')}}/"+id,
+    			type: 'POST',
+    			dataType: "JSON",
+    			data: {
+    				"id": id,
+    				"_method": 'POST',
+    				"_token": token,
+    			},
+    			success: function ()
+    			{
+    				bloqueoUI();
+    				location.reload();
+    			}
+    		});
+    	}
+
+
+    });
+
+    $('.container').rating();
 
 });
 </script>

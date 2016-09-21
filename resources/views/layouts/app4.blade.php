@@ -30,6 +30,9 @@
   <!-- Styles -->
   <link href="{{ url('css/app2.css') }}" rel="stylesheet">
 
+  <!-- Styles rating -->
+  <link rel="stylesheet" type="text/css" src="{{ url('css/rating.css') }}" />
+
 
   <nav class="navbar navbar-default navbar-static-top" style="background:#494d49;color:white;">
     <div class="container">

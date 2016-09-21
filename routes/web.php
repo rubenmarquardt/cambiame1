@@ -48,10 +48,13 @@ Route::get('login', function(){
 	return view('auth.login');
 });
 
-
+//borrar oferta
 Route::delete('/oferta/delete/{id}', 'OfertaController@destroy');
-
-
+//liberar oferta
+Route::post('/oferta/liberar/{id}', 'OfertaController@liberar');
+//concretar oferta concretada
+Route::post('/oferta/concretar/{id}', 'OfertaController@concretar');
+//salvar oferta
 Route::post('salvaroferta', 'OfertaController@salvaroferta');
 
 Route::get('social/linkedin', 'SocialController@getSocialAuth');
@@ -62,3 +65,7 @@ Route::post('registraruser', 'SocialController@registrarUser');
 
 Route::post('reservarOferta', 'OfertaController@reservarOferta');
 Route::get('reservarOferta', 'OfertaController@reservarOferta');
+
+//calificar transaccion
+Route::get('usuario/calificar/{id}',  ['uses' => 'OfertaController@calificarTrans', 'middleware'=>'auth']);
+Route::post('usuario/calificar/{id}', ['uses' => 'OfertaController@calificarTrans', 'middleware'=>'auth']);

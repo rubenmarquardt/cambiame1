@@ -138,6 +138,47 @@ class OfertaController extends Controller
 
     }
 
+    public function liberar($id){
+        $oferta = Oferta::find($id);
+        if ($oferta->reserva == Auth::user()->id){
+            $oferta->reserva = 1;
+            if($oferta->save()){
+                return response()->json([
+                    'success' => 'Oferta liberada correctamente!'
+                    ]);   
+            }else{
+             return response()->json([
+                'success' => 'error!'
+                ]);  
+            }
+        }else{
+           return response()->json([
+            'success' => 'you dont own this record brotha!'
+            ]);    
+        }
+    }
+
+    public function concretar($id){
+        $oferta = Oferta::find($id);
+        if ($oferta->reserva == Auth::user()->id){
+            $oferta->reserva = 0;
+            $oferta->concretada = Auth::user()->id;
+            if($oferta->save()){
+                return response()->json([
+                    'success' => 'Oferta concretada!'
+                    ]);   
+            }else{
+                return response()->json([
+                'success' => 'error!'
+                ]);  
+           }
+        }else{
+            return response()->json([
+            'success' => 'you dont own this record brotha!'
+            ]);    
+        }
+    }
+
     public function destroy($id){
         $oferta = Oferta::find($id);
         if ($oferta->user_id == Auth::user()->id){
@@ -150,6 +191,15 @@ class OfertaController extends Controller
             'success' => 'you dont own this record brotha!'
             ]);    
         }
+    }
+
+    public function calificarTrans($id){
+        $ofertaCon = Oferta::find($id);
+        if ($ofertaCon->concretada == Auth::user()->id){
+            $usr = Auth::user()->toArray();
+            return View::make('usuario.calificartrans')->with('usr', $usr)->with('transaccion', $ofertaCon);
+        }
+
     }
 
 
