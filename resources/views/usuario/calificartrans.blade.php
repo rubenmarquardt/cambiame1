@@ -1,5 +1,5 @@
 @extends('layouts.app4')
-
+@section('contenido del muro')
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -15,13 +15,9 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-							<div class="rate-trans">
-								<input type="radio" name="example" class="rating" value="1" />
-								<input type="radio" name="example" class="rating" value="2" />
-								<input type="radio" name="example" class="rating" value="3" />
-								<input type="radio" name="example" class="rating" value="4" />
-								<input type="radio" name="example" class="rating" value="5" />
-							</div>
+							<input id="rate" name="input-name" type="number" class="rating" min=1 max=5 step=1 data-size="lg" >
+							
+							    <input type="hidden" value="{{ $transaccion['id']}}" id="idTrans" data-token="{{ csrf_token() }}"/>
 						</div>
 					</div>
 				</div>
@@ -45,3 +41,4 @@
 		</div>
 	</div>
 </div>
+@overwrite

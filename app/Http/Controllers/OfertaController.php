@@ -196,10 +196,23 @@ class OfertaController extends Controller
     public function calificarTrans($id){
         $ofertaCon = Oferta::find($id);
         if ($ofertaCon->concretada == Auth::user()->id){
-            $usr = Auth::user()->toArray();
+            $usr = User::find($ofertaCon->user_id);
             return View::make('usuario.calificartrans')->with('usr', $usr)->with('transaccion', $ofertaCon);
         }
 
+    }
+
+    public function guardarCalif(Request $request){
+        if($request->ajax()){
+            //$this->user = Auth::user()->id;
+            $oferta = Oferta::where('id', $request['idTrans'])->first();
+            $oferta->rate = $request['value'];
+            if($oferta->save()){
+                return 0;
+            }else{
+                return 1;
+            }
+        }   
     }
 
 

@@ -60,7 +60,7 @@
     			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     			<script src="{{url('js/jquery.blockUI.js')}}" ></script>
     			<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
-				<script type="text/javascript" src="{{url('js/rating.js')}}"></script>
+    			<script src="{{url('js')}}/star-rating.min.js" type="text/javascript"></script>
 
 
     			<!--script src="js/app.js"></scriptque tiene este archivo que jode??? --> 
@@ -354,7 +354,28 @@
 
     });
 
-    $('.container').rating();
+    $('#rate').on('rating.change', function(event, value, caption) {
+      idTrans = $('#idTrans').val();
+      var token = $(this).data("token");
+      $.ajax(
+        {
+          url: "{{url('gaurdarrate')}}",
+          type: 'POST',
+          dataType: "JSON",
+          data: {
+            "value": value,
+            "idTrans":idTrans,
+            "_method": 'POST',
+            "_token": token,
+          },
+          success: function ()
+          {
+            bloqueoUI();
+            location.reload();
+          }
+        });
+
+    }); 
 
 });
 </script>

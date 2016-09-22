@@ -67,5 +67,8 @@ Route::post('reservarOferta', 'OfertaController@reservarOferta');
 Route::get('reservarOferta', 'OfertaController@reservarOferta');
 
 //calificar transaccion
-Route::get('usuario/calificar/{id}',  ['uses' => 'OfertaController@calificarTrans', 'middleware'=>'auth']);
-Route::post('usuario/calificar/{id}', ['uses' => 'OfertaController@calificarTrans', 'middleware'=>'auth']);
+Route::get('transaccion/calificar/{id}',  ['uses' => 'OfertaController@calificarTrans', 'middleware'=>'auth']);
+Route::post('transaccion/calificar/{id}', ['uses' => 'OfertaController@calificarTrans', 'middleware'=>'auth']);
+Route::get('gaurdarrate',  ['uses' => 'OfertaController@guardarCalif', 'middleware'=>'auth']);
+Route::post('gaurdarrate', ['uses' => 'OfertaController@guardarCalif', 'middleware'=>'auth']);
+

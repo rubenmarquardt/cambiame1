@@ -19,6 +19,8 @@
 
   <!-- Animate CSS framework-->
   <link rel="stylesheet" href="{{ url('css')}}/animate.css" >
+  <!-- rating bootsrap componente -->
+  <link rel="stylesheet" href="{{ url('css')}}/star-rating.min.css" >
 
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -31,7 +33,7 @@
   <link href="{{ url('css/app2.css') }}" rel="stylesheet">
 
   <!-- Styles rating -->
-  <link rel="stylesheet" type="text/css" src="{{ url('css/rating.css') }}" />
+  
 
 
   <nav class="navbar navbar-default navbar-static-top" style="background:#494d49;color:white;">
@@ -97,7 +99,8 @@
 
       @yield('cotenido de logueo')
       @yield('contenido del muro')  
-      @yield('content');            
+      @yield('content');  
+      @yield('calificar oferta')          
 
     </div>
   </div>
