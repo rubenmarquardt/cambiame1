@@ -7,6 +7,14 @@
   margin-right: 6px;
 }
 
+.foto-perfil {
+  margin: 0 auto
+}
+
+.centerBlock {
+  display: table;
+  margin: 0 auto;
+}
 
 .oferta{
 

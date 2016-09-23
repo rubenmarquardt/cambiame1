@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="{{ url('css')}}/animate.css" >
   <!-- rating bootsrap componente -->
   <link rel="stylesheet" href="{{ url('css')}}/star-rating.min.css" >
-
+  <link rel="stylesheet" href="{{ url('css')}}/theme.css" >
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
