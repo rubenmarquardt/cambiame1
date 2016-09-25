@@ -64,7 +64,10 @@
   margin-top: 20px;
 }
 
-
+#lineainfinita {
+    overflow: hidden;
+    white-space: nowrap;
+}
 
 h1 {
   font-size: 100%;

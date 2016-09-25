@@ -98,11 +98,42 @@
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<p>
-								
-							</p>
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="container-fluid">
+					<div class="centerBlock">
+						<div class="row">
+							<div class="col-md-12" id="lineainfinita">
+								<h3>
+									----------------------------------------------------------------------------------------------------
+								</h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<form role="form">
+									<div class="form-group">
+
+										<label for="dejarComment">
+											Comentario:
+										</label>
+										<textarea rows="4" class="form-control" name="comentario" form="form" id="dejarComment" placeholder="Deja un comentario de la transaccion (opcional)"></textarea>
+									</div>
+
+										<!--
+										todo: compartir comentario en facebook
+										div class="checkbox">
+
+											<label>
+												<input type="checkbox" /> Check me out
+											</label>
+										</div--> 
+
+									</form>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

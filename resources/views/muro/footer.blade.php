@@ -157,13 +157,19 @@
 
        $('#myModalNegociar').find('#cierroModal').on('click', function(){
        	$('#hazReserva').prop("disabled", false);
-       	$botonRes.text("Reservar Oferta!");
-       	$botonRes.addClass('animate infinite pulse');
+
+       	    $('#hazReserva').text("Reservar Oferta!");
+       	    $('#hazReserva').addClass('animate infinite pulse');
+       }).promise().done(function(){
+          $('#hazReserva').prop("disabled", false );
+          
        });
 
        $('#myModal').find('#cierroModal').on('click', function(){
+        
        	bloqueoUI();
        	location.reload();
+
        });
 
        $('#publicarOfer').one('click', function(e){
@@ -204,7 +210,7 @@
                 
                 $.ajax({ 
                 	method: "POST", 
-                	url: "salvaroferta", 
+                	url: "{{url('salvaroferta')}}", 
                 	data: data,
                 	success: function(result){
                 		$.unblockUI();
@@ -218,9 +224,10 @@
                 			window.scrollTo(0, 0);
                 			$('#myModal').modal();
                 		}else{
-                			alert('error');
+                			alert(result.error);
                 		}
-                	} 
+                	}
+
                 });
             });
 
@@ -306,6 +313,12 @@
 
     });
 
+    $(".calificar").click(function(){
+      var id = $(this).data("id");
+      var token = $(this).data("token");
+      location.href = "{{url('transaccion/calificar/')}}/"+id;
+    });
+
     $(".liberar").click(function(){
     	var id = $(this).data("id");
     	var token = $(this).data("token");
@@ -331,6 +344,7 @@
     });
 
     $(".concretada").click(function(){
+      bloqueoUI();
     	var id = $(this).data("id");
     	var token = $(this).data("token");
     	if(confirm('luego de concretar la oferta deberas calificar la transaccion')){
@@ -346,8 +360,7 @@
     			},
     			success: function ()
     			{
-    				bloqueoUI();
-    				location.reload();
+    				location.href = "{{url('transaccion/calificar/')}}/"+id;
     			}
     		});
     	}
@@ -360,10 +373,21 @@
         showCaption:false,
         theme: 'krajee-fa'
     });
-
+    
     $('#input-2-ltr-star-sm').on('rating.change', function(event, value, caption) {
       idTrans = $('#idTrans').val();
       var token = $(this).data("token");
+      var comentario = $('#dejarComment').val();
+      var dejar_comment = false;
+      if($('#dejarComment').val() == ""){
+        dejar_comment = confirm('Seguro que no quiere dejar un comentario?');
+        alert(dejar_comment);
+      } 
+      if($('#dejarComment').val() !== "" ){
+        dejar_comment = true;
+      }
+      if (dejar_comment){
+      
       $.ajax(
         {
           url: "{{url('gaurdarrate')}}",
@@ -371,6 +395,7 @@
           dataType: "JSON",
           data: {
             "value": value,
+            "comentario": comentario,
             "idTrans":idTrans,
             "_method": 'POST',
             "_token": token,
@@ -384,7 +409,7 @@
             location.reload();
           }
         });
-
+    }
     }); 
 
 

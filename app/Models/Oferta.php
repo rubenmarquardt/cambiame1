@@ -9,7 +9,7 @@ class Oferta extends Model
 {
 
         protected $fillable = [
-        'user_id', 'cantidad', 'moneda', 'accion', 'dolarInter', 'dolarCambio', 'resultado'
+        'user_id', 'cantidad', 'moneda', 'accion', 'dolarInter', 'dolarCambio', 'resultado', 'comentario'
     ];
     
     

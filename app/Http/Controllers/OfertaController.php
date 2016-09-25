@@ -83,11 +83,22 @@ class OfertaController extends Controller
     }
     
     public function index(){
-        
-       
+  
         $ofertas = Oferta::all()->toArray();
 
         $this->dolarPizzarraInter();
+
+        $ofertasNoCalif = Oferta::where(function ($query){
+            $query->where('concretada', '=', Auth::user()->id);
+        })->where(function ($query){
+            $query->where('rate','=', null);
+        })->get()->toArray();
+
+
+    
+            if(count($ofertasNoCalif) > 0){
+                return redirect('calificar/ofertas');
+            }
 
         return View::make('muro.oferta')->with('elInter', $this->elInter)->with('ofertas', $ofertas)->with('elPiza', $this->pizarra);
 
@@ -99,6 +110,21 @@ class OfertaController extends Controller
     {
 
         if($request->ajax()){
+
+            $ofertasNoCalif = Oferta::where(function ($query){
+                $query->where('concretada', '=', Auth::user()->id);
+            })->where(function ($query){
+                $query->where('rate','=', null);
+            })->get()->toArray();
+      
+            foreach($ofertasNoCalif as $ofertaNoCalificada){
+
+                if(isset($ofertasNoCalif) && $ofertaNoCalificada['concretada'] !== 0){
+                    return response()->json([
+                        'error' => 'Debes calificar tus trasanciones previas!'
+                    ]);  
+                }
+            }
 
              $user=Auth::user();
 
@@ -140,8 +166,10 @@ class OfertaController extends Controller
 
     public function liberar($id){
         $oferta = Oferta::find($id);
+
         if ($oferta->reserva == Auth::user()->id){
             $oferta->reserva = 1;
+            $oferta->concretada = 0;
             if($oferta->save()){
                 return response()->json([
                     'success' => 'Oferta liberada correctamente!'
@@ -165,8 +193,8 @@ class OfertaController extends Controller
             $oferta->concretada = Auth::user()->id;
             if($oferta->save()){
                 return response()->json([
-                    'success' => 'Oferta concretada!'
-                    ]);   
+                'success' => 'concretada!'
+                ]);  
             }else{
                 return response()->json([
                 'success' => 'error!'
@@ -202,13 +230,32 @@ class OfertaController extends Controller
 
     }
 
+    public function transaccionesNoCalificadas(){
+        
+        $ofertasNoCalif = Oferta::where(function ($query){
+            $query->where('concretada', '=', Auth::user()->id);
+        })->where(function ($query){
+            $query->where('rate','=', null);
+        })->get();
+        $this->dolarPizzarraInter();
+        $cantidad = $ofertasNoCalif->toArray();
+
+        if(count($cantidad) == 0){
+            return redirect('oferta');
+        }
+        return View::make('usuario.nocalificadas')->with('usr', Auth::user())->with('contratos', $ofertasNoCalif)->with("elInter", $this->elInter)->with('elPiza', $this->pizarra);
+    }
+
     public function guardarCalif(Request $request){
         if($request->ajax()){
             //$this->user = Auth::user()->id;
             $oferta = Oferta::where('id', $request['idTrans'])->first();
             $oferta->rate = $request['value'];
+            if(isset($request['comentario'])){
+                $oferta->comentario = $request['comentario'];
+            }
             if($oferta->save()){
-                return 0;
+                return redirect('oferta');
             }else{
                 return 1;
             }
