@@ -9,17 +9,26 @@
 </div>
 @include('muro.calculadora')
 <div class="row">
+  
+<div class="row">
   <div class="row" style="margin-bottom: 1em;">
-    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >Mis Contratos:</font></div>
+    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >Mis Negociaciones:</font></div>
   </div>
+</div>
+@foreach ($contratos as $contrato)
+<?php
+//busco usuario dueño de la oferta reservada
+$usuarios = App\Models\User::where('id', $contrato['user_id'])->get();
+foreach($usuarios as $usuario){
+?> 
+ <!-- todo: mostrar si el usuario esta online -->
 
-  @foreach ($contratos as $contrato)
-  @if($oferta['reserva'] == 1)
-  <div class="oferta estaOnline">
+ <div class="oferta estaOnline">
   <div class="media">
     <div class="media-left">
-      <a href="{{ $tmp[0]['linkedinProfile']}}">
-        <img class="media-object" src="<?php echo $tmp[0]['pictureUrl']; ?>" alt="<?php echo $tmp[0]['name'];?>">
+      <a href="{{ $usuario->linkedinProfile}}">
+
+        <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" alt="<?php echo $usuario->name;?>">
       </a>
     </div>
     <div class="media-body">
@@ -29,9 +38,9 @@
             <h5 class="media-heading">
               <?php
 
-              if ($oferta['moneda'] == "usd"){
+              if ($contrato['moneda'] == "usd"){
                 echo "vendo";
-              }else if($oferta['moneda'] == "uyu"){
+              }else if($contrato['moneda'] == "uyu"){
                 echo "compro ";
               }
 
@@ -43,10 +52,10 @@
               <span class="enDolares">
                 <?php
 
-                if ($oferta['moneda'] == "usd"){
-                  echo "  us$ ".$oferta['cantidad'];
-                }else if($oferta['moneda'] == "uyu"){
-                  echo "  us$ ".$oferta['resultado'];
+                if ($contrato['moneda'] == "usd"){
+                  echo "  us$ ".$contrato['cantidad'];
+                }else if($contrato['moneda'] == "uyu"){
+                  echo "  us$ ".$contrato['resultado'];
                 }
 
                 ?>
@@ -60,7 +69,7 @@
                  <span class="currencyLabel">
                   <?php
 
-                  switch ($oferta['moneda']) {
+                  switch ($contrato['moneda']) {
                     case 'usd':
                     echo "$ ";
                     break;
@@ -69,12 +78,12 @@
                     break;
                   }
 
-                  switch ($oferta['moneda']) {
+                  switch ($contrato['moneda']) {
                     case 'usd':
-                    echo $oferta['resultado'];
+                    echo $contrato['resultado'];
                     break;
                     default:
-                    echo $oferta['cantidad'];
+                    echo $contrato['cantidad'];
                     break;
                   }
 
@@ -87,14 +96,30 @@
       </div>
     </div>
   </div>
+
   <div class="media-right" >
-    <div class="row text-center botonCallToAction">
-      <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+    <div class="row text-center botonCallToAction " style="background:#ffa500;" >
+      <div class="blockCenter">
+        <div class="btn-group btn-group-lg btn-group-sm btn-group-xs btn-group-md">
+          <button type="button" class="btn btn-primary"><i class="concretada fa fa-btn glyphicon glyphicon-star" data-id="{{ $contrato['id'] }}" data-token="{{ csrf_token() }}" height="100%" ></i></button>
+          <button type="button" class="btn btn-primary"><i class="liberar fa fa-btn glyphicon glyphicon-star" data-id="{{ $contrato['id'] }}" data-token="{{ csrf_token() }}" height="100%" ></i></button>
+          <button type="button" class="btn btn-primary"><i class="whatsapp fa fa-btn glyphicon glyphicon-star"></i></button>
+        </div>
+        <!--div class="col-sm-4 col-xs-4 col-lg-4 col-md-4 text-center" style="margin-right:1em;">
+          <img src="{{ url('images/negociacionconcretada.png') }}" class="concretada img-responsive" data-id="{{ $contrato['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+        </div>
+        <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4 text-center" style="margin-right:1em;">
+          <img src="{{ url('images/liberarnegociacion.png') }}" class="liberar img-responsive" data-id="{{ $contrato['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+        </div>
+        <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4 text-center" style="margin-right:1em;">
+          <div class="whatsapp"><i class="fa fa-btn glyphicon glyphicon-star"></i>mis ofertas</div>
+        </div-->
+      </div>
     </div>
   </div>
 </div>
 </div>
-@endif
+<?php }?>
 @endforeach
 </div>
 @overwrite

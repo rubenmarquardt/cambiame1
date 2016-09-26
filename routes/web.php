@@ -21,6 +21,11 @@ Route::post('oferta', ['uses' => 'OfertaController@index', 'middleware'=>'auth']
 Route::get('usuario/ofertas/{id}',  ['uses' => 'OfertaController@ofertasUser', 'middleware'=>'auth']);
 Route::post('usuario/ofertas/{id}', ['uses' => 'OfertaController@ofertasUser', 'middleware'=>'auth']);
 
+/* mis negoaciaciones */
+
+Route::get('usuario/negociaciones/{id}',  ['uses' => 'OfertaController@negociacionesUser', 'middleware'=>'auth']);
+Route::post('usuario/negociaciones/{id}', ['uses' => 'OfertaController@negociacionesUser', 'middleware'=>'auth']);
+
 /* home */
 
 Route::get('/', ['middleware' => 'auth', function () {

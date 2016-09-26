@@ -40,6 +40,20 @@ class OfertaController extends Controller
 
         return "tu vieja";
     }
+
+    public function negociacionesUser($id){
+        $ofertasUser = Oferta::where('user_id', $id)->get();
+        $contratosNegociables = Oferta::where('reserva', $id)->get();
+        $this->dolarPizzarraInter();
+        $this->userId = Auth::user()->id;
+        if($this->userId == $ofertasUser->first()->user_id){
+            $usuario = User::where('id', $id)->get();
+            
+            return View::make('muro.misnegociaciones')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario)->with('contratos', $contratosNegociables);
+        }
+
+        return "tu vieja";
+    }
     
     public function getInterbancario()
     {
@@ -261,7 +275,5 @@ class OfertaController extends Controller
             }
         }   
     }
-
-
 
 }

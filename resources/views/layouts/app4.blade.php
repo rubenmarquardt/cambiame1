@@ -81,7 +81,8 @@
             </a>
 
             <ul class="dropdown-menu" role="menu">
-            <li><a href=" {{ url('usuario/ofertas') }}/{{ Auth::user()->id }}"><i class="fa fa-btn fa-sign-out"></i>mis ofertas</a></li>
+            <li><a href=" {{ url('usuario/ofertas') }}/{{ Auth::user()->id }}"><i class="fa fa-btn glyphicon glyphicon-star"></i>mis ofertas</a></li>
+            <li><a href=" {{ url('usuario/negociaciones') }}/{{ Auth::user()->id }}"><i class="fa fa-btn glyphicon glyphicon-star"></i>mis negociaciones</a></li>
               <li><a href=" {{ action ('SocialController@logoutActivo') }}/{{Auth::user()->id}}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
             </ul>
           </li>
@@ -94,7 +95,7 @@
 </head>
 <body style="background:#ffffff;" id="app-layout">
 
-  <div class=".container-fluid" id="elmaster">
+  <div class="container-fluid" id="elmaster">
     <div class="content" style="background: white;">
 
       @yield('cotenido de logueo')

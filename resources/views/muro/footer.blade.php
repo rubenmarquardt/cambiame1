@@ -4,6 +4,33 @@
     </button>
 
     <!-- Modal oferta publicada-->
+    <div class="modal modal-fullscreen fade" id="modal-fullscreen-ofertapublicada" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="row">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="row">
+              <div class="centerBlock">
+                <h4 class="modal-title" id="myModalLabel">Oferta Publicada</h4>
+              </div>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="centerBlock">
+              Oferta Publicada con Exito!
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="centerBlock">
+              <button id="cierroModal" type="button" class="btn btn-default" data-dismiss="modal" style="color:white;background:orange;border:transparent;text-shadow:none;font-size:2em;">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!--
     <div class="modal modal-fullscreen fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="backgroudn:#494e48;color:white;">
     	<div class="modal-dialog" role="document">
     		<div class="modal-content" style="background:#494e48;color:white;    height: 359px;">
@@ -27,8 +54,39 @@
       </div>
     </div>
   </div>
+   -->
+   <div class="modal modal-fullscreen fade" id="modal-fullscreen-negociar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="background:#494e48;color:white;">
+       <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Datos del Anunciante</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
+          <center><font style="font-size:2em" id="numeroCel"></font></center>
+        </div>
+      </div>
+      <div class="row">
+       <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12" style="background:orange">
+        <center><button id="copiarPPapeles" type="button" class="btn btn-default" data-clipboard-target="#numeroCel" style="background:transparent;border:solid 1px black;text-shadow:none;margin-top:3em;">Copiar al portapapeles!</button>
+         <h1>Continua la transaccion por whatsapp</h1></center>
+       </div>
+       <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
+         <center><button id="hazReserva" type="button" class="btn btn-default animated infinite pulse" style="margin-top:3em;margin-bottom:3em;">Reservar oferta!</button>
+          <p>Haz la reserva para que la oferta se quite del muro temporalmente hasta concretar la negociación</p></center>
+        </div>
+      </div>
+      <div class="modal-footer" style="text-align:center;">
+       <button id="cierroModal" type="button" class="btn " style="background:transparent;border:transparent;text-shadow:none;font-size:2em;" data-dismiss="modal">Cerrar</button>
 
-  <!-- Modal Negociar-->
+     </div>
+   </div>
+ </div>
+</div>
+</div>
+  <!-- Modal Negociar
   <div class="modal modal-fullscreen fade" id="myModalNegociar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="backgroudn:#494e48;color:white;">
    <div class="modal-dialog" role="document">
     <div class="modal-content" style="background:#494e48;color:white;">
@@ -59,7 +117,8 @@
  </div>
 </div>
 </div>
-
+</div>
+-->
 <!-- JavaScripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
 
@@ -161,7 +220,7 @@
 
        }
 
-       $('#myModalNegociar').find('#cierroModal').on('click', function(){
+       $('#modal-fullscreen-negociar').find('#cierroModal').on('click', function(){
        	$('#hazReserva').prop("disabled", false);
 
         $('#hazReserva').text("Reservar Oferta!");
@@ -171,7 +230,7 @@
 
       });
 
-      $('#myModal').find('#cierroModal').on('click', function(){
+      $('#modal-fullscreen-ofertapublicada').find('#cierroModal').on('click', function(){
 
         bloqueoUI();
         location.reload();
@@ -228,7 +287,7 @@
                 			$('#calculador2').animate({height:'0'});
                 			$('#mostrarCalc').fadeOut();
                 			window.scrollTo(0, 0);
-                			$('#myModal').modal();
+                			$('#modal-fullscreen-ofertapublicada').modal();
                 		}else{
                 			alert(result.error);
                 		}
@@ -260,7 +319,7 @@
     	aCelular = $(this).val();
     	$('#numeroCel').text(aCelular);
 
-    	$('#myModalNegociar').modal();
+    	$('#modal-fullscreen-negociar').modal();
 
     });
 
@@ -346,6 +405,8 @@
           location.reload();
         }
       });
+      }else{
+        $.unblockUI();
       }
 
     });
@@ -370,6 +431,8 @@
           location.href = "{{url('transaccion/calificar/')}}/"+id;
         }
       });
+      }else{
+        $.unblockUI();
       }
 
 

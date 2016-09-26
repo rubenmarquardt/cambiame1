@@ -268,10 +268,10 @@ input::-webkit-input-placeholder {
 /* .modal-transparent */
 
 .modal-transparent {
-  background: transparent;
+  background: #494e48;
 }
 .modal-transparent .modal-content {
-  background: transparent;
+  background: #494e48;
 }
 .modal-backdrop.modal-backdrop-transparent {
   background: #494e48;
@@ -284,10 +284,11 @@ input::-webkit-input-placeholder {
 /* .modal-fullscreen */
 
 .modal-fullscreen {
-  background: transparent;
+  background: #494e48;
+  color:white;
 }
 .modal-fullscreen .modal-content {
-  background: transparent;
+  background: #494e48;
   border: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
