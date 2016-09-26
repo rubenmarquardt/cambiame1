@@ -255,7 +255,7 @@ class OfertaController extends Controller
                 $oferta->comentario = $request['comentario'];
             }
             if($oferta->save()){
-                return redirect('oferta');
+                return response()->json(["succes"=>"calificacion guardada!"]);
             }else{
                 return 1;
             }
