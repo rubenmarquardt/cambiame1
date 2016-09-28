@@ -65,21 +65,23 @@
 
   ?>
 
-  <div class="oferta 
-  @if($tmp->isOnline())
-  estaOnline
-  @else
-  noestaOnline
-  @endif 
-  ">
 
-  <div class="media">
+  <div class="container-fluid" style="padding-left:0;">
+    <div class="media
+    oferta 
+    @if($tmp->isOnline())
+    estaOnline
+    @else
+    noestaOnline
+    @endif 
+    ">
     <div class="media-left">
       <a href="{{ $tmp['linkedinProfile']}}">
-        <img class="media-object" src="<?php echo $tmp['pictureUrl']; ?>" alt="<?php echo $tmp['name'];?>">
+        <img class="media-object" src="<?php echo $tmp['pictureUrl']; ?>" >
       </a>
     </div>
     <div class="media-body">
+
       <div class="row">
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
           <div class="row">
@@ -150,7 +152,7 @@
       <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
       @else
       <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
-      <button type="button" name="contactar" value="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
+      <button type="button" name="contactar" data-celular="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
         <font class="negociar">
           NEGOCIAR
         </font>
@@ -159,6 +161,7 @@
     </div>
   </div>
 </div>
+
 </div>
 @endif
 @endforeach

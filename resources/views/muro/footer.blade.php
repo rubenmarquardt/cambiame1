@@ -1,8 +1,3 @@
-    <!-- Button trigger modal -->
-    <button style="display:none;" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    	Launch demo modal
-    </button>
-
     <!-- Modal oferta publicada-->
     <div class="modal modal-fullscreen fade" id="modal-fullscreen-ofertapublicada" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -70,7 +65,7 @@
       </div>
       <div class="row">
        <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12" style="background:orange">
-        <center><button id="copiarPPapeles" type="button" class="btn btn-default" data-clipboard-target="#numeroCel" style="background:transparent;border:solid 1px black;text-shadow:none;margin-top:3em;">Copiar al portapapeles!</button>
+        <center><button id="copiarPPapeles" type="button" class="btn btn-default" data-clipboard-target="#numeroCel" style="background:transparent;border:solid 0px black;text-shadow:none;margin-top:3em;width:50%;">Copiar al portapapeles!</button>
          <h1>Continua la transaccion por whatsapp</h1></center>
        </div>
        <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
@@ -316,7 +311,7 @@
     $('.whatsapp').on('click', function(){
     	elId = $(this).prev().closest('#elId').val();
 
-    	aCelular = $(this).val();
+    	aCelular = $(this).data("celular");
     	$('#numeroCel').text(aCelular);
 
     	$('#modal-fullscreen-negociar').modal();
@@ -452,7 +447,7 @@
       var dejar_comment = false;
       if($('#dejarComment').val() == ""){
         dejar_comment = confirm('Seguro que no quiere dejar un comentario?');
-        alert(dejar_comment);
+        
       } 
       if($('#dejarComment').val() !== "" ){
         dejar_comment = true;
@@ -482,6 +477,8 @@
             location.href = "{{url('oferta')}}";
           }
         });
+      }else{
+        $.unblockUI();
       }
     }); 
 

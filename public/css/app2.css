@@ -18,7 +18,7 @@
 
 .oferta{
 
- padding: 0.25rem;
+ /*padding: 0.25rem;*/
  margin-top: 1.25rem;
  margin-bottom: 1.25rem;
  border-style: solid;
@@ -245,13 +245,13 @@ input::-webkit-input-placeholder {
 }
 
 .estaOnline {
-  border-left-width: 2em;
+  border-left-width: 4px;
   border-left-color: green;
   border-left-style: solid;
 }
 
 .noestaOnline {
-  border-left-width: 2em;
+  border-left-width: 2px;
   border-left-color: orange;
   border-left-style: solid;
 }
@@ -259,6 +259,10 @@ input::-webkit-input-placeholder {
 .modal-header {
     padding: 15px;
     border-bottom: 0px solid;
+}
+
+#elmaster{
+  padding-right:0;
 }
 
 /*.vcenter {
