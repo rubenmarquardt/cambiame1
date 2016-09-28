@@ -5,7 +5,11 @@
   @include('muro.interbancario')
 </div>
 <div class="row">
+@if(!Auth::check())
+  @include('auth.loginbutton')
+@else
   @include('muro.ingreso')
+@endif
 </div>
 <div class="row" id="contenedorCalc2" style="display:none">
   <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 ingresosCalc text-center" id="calculador2">
@@ -148,15 +152,24 @@
   </div>
   <div class="media-right" >
     <div class="row text-center botonCallToAction">
-      @if(Auth::user()->id == $oferta['user_id'])
-      <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
-      @else
-      <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
+    @if(!Auth::check())
+    <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
       <button type="button" name="contactar" data-celular="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
         <font class="negociar">
           NEGOCIAR
         </font>
       </button>
+      @else
+        @if(Auth::user()->id == $oferta['user_id'])
+          <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+        @else
+        <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
+        <button type="button" name="contactar" data-celular="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
+          <font class="negociar">
+            NEGOCIAR
+          </font>
+        </button>
+        @endif
       @endif
     </div>
   </div>

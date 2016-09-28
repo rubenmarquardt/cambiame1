@@ -12,9 +12,13 @@
 */
 
 Auth::routes();
-
+/*
 Route::get('oferta',  ['uses' => 'OfertaController@index', 'middleware'=>'auth']);
 Route::post('oferta', ['uses' => 'OfertaController@index', 'middleware'=>'auth']);
+*/
+
+Route::get('oferta',  'OfertaController@index');
+Route::post('oferta', 'OfertaController@index');
 
 /* mis ofertas/contratos */
 
@@ -45,12 +49,13 @@ Route::auth();
 Route::resource('mail', 'MailController');
 
 
-Route::get('usuario/logout/{user}', function(App\User $user) {
+Route::get('usuario/logout/{user}', function(App\Models\User $user) {
+	
 	
 	$user->activo = "0";
 	$user->save();
 	Auth::logout();
-	return Redirect::action('OfertaController@index');
+	return redirect('login');
 });
 
 Route::get('usuario/logout/{id?}', 'SocialController@logoutActivo');

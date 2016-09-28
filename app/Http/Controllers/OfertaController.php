@@ -102,22 +102,18 @@ class OfertaController extends Controller
 
         $this->dolarPizzarraInter();
 
-        $ofertasNoCalif = Oferta::where(function ($query){
-            $query->where('concretada', '=', Auth::user()->id);
-        })->where(function ($query){
-            $query->where('rate','=', null);
-        })->get()->toArray();
+        if (Auth::check()){
+            $ofertasNoCalif = Oferta::where(function ($query){
+                $query->where('concretada', '=', Auth::user()->id);
+            })->where(function ($query){
+                $query->where('rate','=', null);
+            })->get()->toArray();
 
-
-    
             if(count($ofertasNoCalif) > 0){
                 return redirect('calificar/ofertas');
             }
-
+        }
         return View::make('muro.oferta')->with('elInter', $this->elInter)->with('ofertas', $ofertas)->with('elPiza', $this->pizarra);
-
-
-        
     }
 
     public function salvaroferta(Request $request)
