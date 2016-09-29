@@ -114,13 +114,11 @@
         </div>
         <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4" style="padding-left:1px;padding-right:1px;">
           <div class="blockCenter">
-           <input type="hidden" value="{{ $contrato['id']}}" id="elId"/>
-           <img src="{{ url('images/liberarnegociacion.png') }}" class="img-responsive liberar" />
+           <img src="{{ url('images/liberarnegociacion.png') }}" class="img-responsive liberar" data-id="{{ $contrato['id'] }}"/>
          </div>
        </div>
        <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4" style="padding-left:1px;padding-right:1px;">
         <div class="blockCenter">
-
           <img src="{{ url('images/wp.png') }}" class="img-responsive whatsapp" data-celular="{{$usuario->celular}}"/>
         </div>
       </div>

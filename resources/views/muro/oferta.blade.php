@@ -52,10 +52,13 @@
     </div>
   </div>
 </div>
-<div class="row">
+
   <div class="row" style="margin-bottom: 1em;">
     <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >OFERTAS NEGOCIABLES</font></div>
   </div>
+
+<div class="row" id="page-content">
+
   @foreach ($ofertas as $oferta)
   @if($oferta['reserva'] == 1)
 
@@ -70,7 +73,7 @@
   ?>
 
 
-  <div class="container-fluid" style="padding-left:0;">
+  <div class="container-fluid" style="padding-left:0;padding-right:0;">
     <div class="media
     oferta 
     @if($tmp->isOnline())
@@ -179,4 +182,7 @@
 @endif
 @endforeach
 </div>
+
+
+
 @overwrite

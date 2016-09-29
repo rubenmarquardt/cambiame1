@@ -34,7 +34,10 @@
 
   <!-- Styles rating -->
   
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300,300italic' rel='stylesheet' type='text/css'>
 
+
+</head>
 
   <nav class="navbar navbar-default navbar-static-top" style="background:#494d49;color:white;">
     <div class="container">
@@ -91,8 +94,7 @@
       </div>
     </div>
   </nav>
-<link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300,300italic' rel='stylesheet' type='text/css'>
-</head>
+
 <body style="background:#ffffff;" id="app-layout">
 
   <div class="container-fluid" id="elmaster">
@@ -100,7 +102,7 @@
 
       @yield('cotenido de logueo')
       @yield('contenido del muro')  
-      @yield('content');  
+      @yield('content')  
       @yield('calificar oferta')          
 
     </div>
