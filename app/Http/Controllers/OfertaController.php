@@ -113,6 +113,9 @@ class OfertaController extends Controller
                 return redirect('calificar/ofertas');
             }
         }
+
+
+
         return View::make('muro.oferta')->with('elInter', $this->elInter)->with('ofertas', $ofertas)->with('elPiza', $this->pizarra);
     }
 
@@ -259,6 +262,31 @@ class OfertaController extends Controller
     public function guardarCalif(Request $request){
         if($request->ajax()){
             //$this->user = Auth::user()->id;
+            $usrId = $request['idUsr'];
+            $usrOfertas = Oferta::where('user_id', $usrId)->get();
+            $rateTotalUsr = 0;
+            $sumaRates = 0;
+            $indice = 0;
+            foreach($usrOfertas as $oferta){
+                if($oferta->rate != ''){
+                    $indice++;
+                    $sumaRates += $oferta->rate;
+                }
+            }
+
+            
+
+            if($indice != 0){
+
+                $usr = User::where('id', $usrId)->first();
+
+                $rateTotalUsr = $sumaRates / $indice;
+
+                $usr->rate = $rateTotalUsr;
+
+                $usr->save();
+            }
+     
             $oferta = Oferta::where('id', $request['idTrans'])->first();
             $oferta->rate = $request['value'];
             if(isset($request['comentario'])){

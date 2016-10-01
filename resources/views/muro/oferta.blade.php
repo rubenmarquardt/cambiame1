@@ -5,11 +5,11 @@
   @include('muro.interbancario')
 </div>
 <div class="row">
-@if(!Auth::check())
+  @if(!Auth::check())
   @include('auth.loginbutton')
-@else
+  @else
   @include('muro.ingreso')
-@endif
+  @endif
 </div>
 <div class="row" id="contenedorCalc2" style="display:none">
   <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 ingresosCalc text-center" id="calculador2">
@@ -53,9 +53,9 @@
   </div>
 </div>
 
-  <div class="row" style="margin-bottom: 1em;">
-    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >OFERTAS NEGOCIABLES</font></div>
-  </div>
+<div class="row" style="margin-bottom: 1em;">
+  <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >OFERTAS NEGOCIABLES</font></div>
+</div>
 
 <div class="row" id="page-content">
 
@@ -86,19 +86,34 @@
       <a href="{{ $tmp['linkedinProfile']}}">
         <img class="media-object" src="<?php echo $tmp['pictureUrl']; ?>" >
       </a>
+      <div class="container-fluid" style="padding:0;">
+
+        <div class="stars">
+          <?php 
+            $rate = (int)floor($tmp->rate);
+
+           
+            for($i = 1; $i <= $rate; $i++){
+             // echo '<input class="star star-'.$i.'" id="star-'.$i.'" type="radio" name="star"/>';
+              echo '<label class="star star-'.$i.'" for="star-'.$i.'" style="color: #FD4;"></label>';
+            }
+
+          ?>
+        </div>
+      </div>
     </div>
     <div class="media-body">
 
       <div class="row">
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
           <div class="row">
-            <h5 class="media-heading">
+            <h5 class="media-heading" >
               <?php
 
               if ($oferta['moneda'] == "usd"){
-                echo "vendo";
+                echo "<font style='color:orange;'>vendo</font>";
               }else if($oferta['moneda'] == "uyu"){
-                echo "compro ";
+                echo "<font style='color:white;'>vendo</font>";
               }
 
               ?>
@@ -106,7 +121,7 @@
           </div>
           <div class="row">
             <h5 class="media-heading">
-              <span class="enDolares">
+              <span class="enDolares" style="color:#aaa;">
                 <?php
 
                 if ($oferta['moneda'] == "usd"){
@@ -155,28 +170,29 @@
   </div>
   <div class="media-right" >
     <div class="row text-center botonCallToAction">
-    @if(!Auth::check())
-    <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
+      @if(!Auth::check())
+      <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
       <button type="button" name="contactar" data-celular="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
         <font class="negociar">
           NEGOCIAR
         </font>
       </button>
       @else
-        @if(Auth::user()->id == $oferta['user_id'])
-          <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
-        @else
-        <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
-        <button type="button" name="contactar" data-celular="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
-          <font class="negociar">
-            NEGOCIAR
-          </font>
-        </button>
-        @endif
+      @if(Auth::user()->id == $oferta['user_id'])
+      <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+      @else
+      <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
+      <button type="button" name="contactar" data-celular="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
+        <font class="negociar">
+          NEGOCIAR
+        </font>
+      </button>
+      @endif
       @endif
     </div>
   </div>
 </div>
+
 
 </div>
 @endif

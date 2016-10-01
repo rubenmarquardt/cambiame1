@@ -19,6 +19,7 @@
 								<!--input id="rate" name="input-name" type="number" class="rating" min=1 max=5 step=1 data-size="xs" ><br /-->
 								<input id="input-2-ltr-star-sm" name="input-2-ltr-star-sm" class="kv-ltr-theme-fa-star rating-loading" value="2" dir="ltr" data-size="sm">
 								<input type="hidden" value="{{ $transaccion['id']}}" id="idTrans" data-token="{{ csrf_token() }}"/>
+								<input type="hidden" value="{{ $usr['id']}}" id="idUsr" data-token="{{ csrf_token() }}"/>
 							</div>
 						</div>
 					</div>

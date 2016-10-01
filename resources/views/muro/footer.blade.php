@@ -452,6 +452,7 @@
      idTrans = $('#idTrans').val();
      var token = $(this).data("token");
      var comentario = $('#dejarComment').val();
+     idUsr = $('#idUsr').val();
      var dejar_comment = false;
      if($('#dejarComment').val() == ""){
       dejar_comment = confirm('Seguro que no quiere dejar un comentario?');
@@ -468,6 +469,7 @@
         type: 'POST',
         dataType: "JSON",
         data: {
+          "idUsr": idUsr,
           "value": value,
           "comentario": comentario,
           "idTrans":idTrans,

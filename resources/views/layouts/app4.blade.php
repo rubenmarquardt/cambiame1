@@ -32,6 +32,8 @@
   <!-- Styles -->
   <link href="{{ url('css/app2.css') }}" rel="stylesheet">
 
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
   <!-- Styles rating -->
   
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300,300italic' rel='stylesheet' type='text/css'>
