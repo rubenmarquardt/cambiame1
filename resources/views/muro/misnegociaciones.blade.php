@@ -46,23 +46,23 @@
                 <?php
 
                 if ($contrato['moneda'] == "usd"){
-                  echo "vendo";
+                  echo "<font style='color:orange;'>vendo</font>";
                 }else if($contrato['moneda'] == "uyu"){
-                  echo "compro ";
+                  echo "<font style='color:white;'>compro</font>";
                 }
 
                 ?>
               </h5>
             </div>
             <div class="row">
-              <h5 class="media-heading">
+              <h5 class="media-heading" font style="color:white;">
                 <span class="enDolares">
                   <?php
 
                   if ($contrato['moneda'] == "usd"){
-                    echo "  us$ ".$contrato['cantidad'];
+                    echo "us$ ".$contrato['cantidad'];
                   }else if($contrato['moneda'] == "uyu"){
-                    echo "  us$ ".$contrato['resultado'];
+                    echo "us$ ".$contrato['resultado'];
                   }
 
                   ?>

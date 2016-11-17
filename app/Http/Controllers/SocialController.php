@@ -53,11 +53,11 @@ class SocialController extends Controller {
             	$new_user->linkedinProfile = $request->linkedinProfile;
             	$new_user->pictureUrl = $request->pictureUrl;
          
-              Mail::send('auth.emails.welcome', ['user'=>$new_user], function($msg)use($new_user){
+              /*Mail::send('auth.emails.welcome', ['user'=>$new_user], function($msg)use($new_user){
                 $msg->subject('el HappyBot de Cambiame');
                 $msg->to($new_user->email);
 
-              }); 
+              }); */
 
             	$new_user->save();
             	Auth::login($new_user);

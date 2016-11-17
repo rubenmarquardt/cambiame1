@@ -14,9 +14,9 @@ class MailController extends Controller
         Mail::send('auth.emails.welcome', ['title' => "asdf", 'content' => "asdf"], function ($message)
         {
 
-            $message->from('alfonso.payra@gmail.com', 'alfonso payra');
+            $message->from('mc2mvd@gmail.com', 'MC2 Montevideo');
 
-            $message->to('alfonso.payra@gmail.com');
+            $message->to('mc2mvd@gmail.com');
 
         });
 

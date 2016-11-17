@@ -55,7 +55,7 @@ Route::get('usuario/logout/{user}', function(App\Models\User $user) {
 	$user->activo = "0";
 	$user->save();
 	Auth::logout();
-	return redirect('login');
+	return redirect('oferta');
 });
 
 Route::get('usuario/logout/{id?}', 'SocialController@logoutActivo');

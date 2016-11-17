@@ -60,7 +60,7 @@
 <div class="row" id="page-content">
 
   @foreach ($ofertas as $oferta)
-  @if($oferta['reserva'] == 1)
+  @if($oferta['reserva'] == 0)
 
 
   <?php

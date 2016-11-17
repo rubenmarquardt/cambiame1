@@ -31,9 +31,9 @@
                 <?php
 
                 if ($oferta['moneda'] == "usd"){
-                  echo "vendo";
+                  echo "<font style='color:orange;'>vendo</font>";
                 }else if($oferta['moneda'] == "uyu"){
-                  echo "compro ";
+                  echo "<font style='color:white;'>compro</font>";
                 }
 
                 ?>
@@ -41,7 +41,7 @@
             </div>
             <div class="row">
               <h5 class="media-heading">
-                <span class="enDolares">
+                <span class="enDolares" font style="color:white;">
                   <?php
 
                   if ($oferta['moneda'] == "usd"){
@@ -126,9 +126,9 @@ foreach($usuarios as $usuario){
               <?php
 
               if ($contrato['moneda'] == "usd"){
-                echo "vendo";
+                echo "<font style='color:orange;'>vendo</font>";
               }else if($contrato['moneda'] == "uyu"){
-                echo "compro ";
+                echo "<font style='color:white;'>compro</font>";
               }
 
               ?>
@@ -136,7 +136,7 @@ foreach($usuarios as $usuario){
           </div>
           <div class="row">
             <h5 class="media-heading">
-              <span class="enDolares">
+              <span class="enDolares" font style="color:white;">
                 <?php
 
                 if ($contrato['moneda'] == "usd"){

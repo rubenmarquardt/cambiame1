@@ -163,29 +163,41 @@
        	var pesoadolarinter = parseFloat(cantidad / dolarInter ).toFixed(2);
        	var pesoadolarcambios = parseFloat(cantidad / dolarCambioVenta).toFixed(2);
 
+         //07-11-2016: SE CORRIGE EL TEMA DEL FORMATEO, HAY QUE VER BIEN QUE NO IMPACTE EN LOS CALCULOS, EL TEMA DE FIXED SOBRE TODO		
        	if($amount.val() != "" && $select.val() == 0){
        		$('#selectCambiameMone').val(0);
-
 
        		var ahorras = parseFloat((pesoadolarinter - pesoadolarcambios));
        		ahorras = parseFloat(ahorras * dolarCambioVenta).toFixed(0);
 
-
        		$('#ahorras').text('$ ' + ahorras);
        		$('#uyu').hide();
        		$('#usd').show();
-       		$('#cantEnUyu').text(pesoadolarinter);
-       		$('#pizarra').text(dolarCambioVenta);
-       		$('#enCambios').text(pesoadolarcambios + "dolares");
+        	//$('#cantEnUyu').text(pesoadolarinter);
+			$pesoadolarinter2 = pesoadolarinter.replace('.',',');
+			$('#cantEnUyu').text($pesoadolarinter2);
+       //	$('#pizarra').text(dolarCambioVenta);
+	   		$('#pizarra').text('' + $dolarCambioVenta);
+
+	   // formateo los US$ que te ahorras 			
+			$pesoadolarcambios2 = pesoadolarcambios.replace('.',',');
+			$('#enCambios').text($pesoadolarcambios2 + " dolares");
+       //	$('#enCambios').text(pesoadolarcambios + " dolares");
 
        	}else if($amount.val() != "" && $select.val() == 1){
 
        		$('#selectCambiameMone').val(1);
 
-       		var dolarapesointer = parseFloat(cantidad * dolarInter ).toFixed(2);
-       		var dolarapesocambios = parseFloat(cantidad * dolarCambioCompra).toFixed(2);
+//     		var dolarapesointer = parseFloat(cantidad * dolarInter ).toFixed(2);
+//			var dolarapesocambios = parseFloat(cantidad * dolarCambioCompra).toFixed(2);
 
-       		var ahorras = parseFloat((dolarapesointer - dolarapesocambios)).toFixed(2);
+//formateo sin decimales los $ que ahorro
+       		var dolarapesointer = parseFloat(cantidad * dolarInter ).toFixed(0);
+			var dolarapesocambios = parseFloat(cantidad * dolarCambioCompra).toFixed(0);
+
+    		//var ahorras = parseFloat((dolarapesointer - dolarapesocambios)).toFixed(2);
+//formateo sin decimales los $ que ahorro
+			var ahorras = parseFloat((dolarapesointer - dolarapesocambios)).toFixed(0);
 
        		console.log(ahorras);
 
@@ -193,9 +205,13 @@
        		$('#usd').hide();
        		$('#uyu').show();
        		$('#cantEnUyu').text(dolarapesointer);
-       		$('#pizarra').text(dolarCambioCompra);
-       		$('#enCambios').text(dolarapesocambios + "pesos");
+//le formateo el "," a la pizarra
+//    		$('#pizarra').text(dolarCambioCompra);
+       		$('#pizarra').text('' + $dolarCambioCompra);
+       		$('#enCambios').text(dolarapesocambios + " pesos");
        	}
+//07-11-2016: Fin de modificaciones de formato
+
        	$('#contenedorCalc2').show();
        	$('#contenedorCalc2').animate({height:'401px'});
        	$('#calculador').animate({height:'290'});

@@ -21,8 +21,9 @@ class OfertaController extends Controller
     var $user = "dummy";
 
     private function dolarPizzarraInter(){
-        $this->elInter = rtrim($this->getInterbancario());
         $this->pizarra = $this->getPizarra();
+        $this->elInter = rtrim($this->getInterbancario());
+        
 
 
     }
@@ -151,7 +152,7 @@ class OfertaController extends Controller
                 $oferta->resultado = $request['resultado'];
                 $oferta->cantidad = $request['cantidad'];
                 $oferta->user_id = $request['user_id'];
-                $oferta->reserva = 1;
+                $oferta->reserva = 0;
                 if($oferta->save()){
                     return 1;
                 }else{
@@ -181,7 +182,7 @@ class OfertaController extends Controller
         $oferta = Oferta::find($id);
 
         if ($oferta->reserva == Auth::user()->id){
-            $oferta->reserva = 1;
+            $oferta->reserva = 0;
             $oferta->concretada = 0;
             if($oferta->save()){
                 return response()->json([
