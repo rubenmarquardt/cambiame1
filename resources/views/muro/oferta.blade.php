@@ -5,15 +5,18 @@
   @include('muro.interbancario')
 </div>
 <div class="row">
-  @if(!Auth::check())
-  @include('auth.loginbutton')
-  @else
+  
   @include('muro.ingreso')
-  @endif
+ 
 </div>
 <div class="row" id="contenedorCalc2" style="display:none">
   <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 ingresosCalc text-center" id="calculador2">
     <div class="col-md-12 col-xs-12 col-lg-12 text-center" id="mostrarCalc"  >
+    <div class="row">
+        <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6 col-xs-offset-3 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 text-center" style="background:green;margin-top:3px">
+            <h4 style="color:white;" id="cantF"> </h4>  
+        </div>
+      </div> 
       <div class="row" style="background:#494d49;margin-top:1em;">
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center" >
           <h4 style="color:white;" id="uyu">PESOS URUGUAYOS</h4>
@@ -38,22 +41,26 @@
           <input type="hidden" value="{{ $elPiza['venta'] or null }}" name="pizarra" id="valPizaVent" />
         </div>
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
-          <h4 style="font-size:1.8em;color:white;" id="pizarra">$ 123123</h4>
+          <h4 style="font-size:1.8em;color:white;" id="pizarra"> </h4>
         </div>
-        <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center" style="margin-bottom: 6px;">
+        <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center" style="margin-bottom: 3px;">
           <font style="font-size:0.8em;color:black;" > En cambios te darian <div id="enCambios"></div> </font>
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6 col-xs-offset-3 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 text-center" style="background:green;margin-top:12px">
-          <button type="button" id="publicarOfer" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:0.8em;color:white;">PUBLICAR OFERTA</font></button>
+        <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6 col-xs-offset-3 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 text-center" style="background:green;margin-top:6px">
+          @if(!Auth::check())
+            <button type="button" class="sinLogin" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:0.8em;color:white;">PUBLICAR-INVITADO</font></button> 
+         @else
+            <button type="button" id="publicarOfer" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:0.8em;color:white;">PUBLICAR OFERTA</font></button>
+         @endif
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="row" style="margin-bottom: 1em;">
+<div class="row" style="marging-top:10px; margin-bottom: 1em;">
   <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >OFERTAS NEGOCIABLES</font></div>
 </div>
 
@@ -83,9 +90,13 @@
     @endif 
     ">
     <div class="media-left">
+    @if(!Auth::check())
+        <img class="media-object" src="" >
+      @else 
       <a href="{{ $tmp['linkedinProfile']}}">
         <img class="media-object" src="<?php echo $tmp['pictureUrl']; ?>" >
       </a>
+      @endif
       <div class="container-fluid" style="padding:0;">
 
         <div class="stars">
@@ -113,7 +124,7 @@
               if ($oferta['moneda'] == "usd"){
                 echo "<font style='color:orange;'>vendo</font>";
               }else if($oferta['moneda'] == "uyu"){
-                echo "<font style='color:white;'>vendo</font>";
+                echo "<font style='color:white;'>compro</font>";
               }
 
               ?>
@@ -125,9 +136,9 @@
                 <?php
 
                 if ($oferta['moneda'] == "usd"){
-                  echo "  us$ ".$oferta['cantidad'];
+                  echo "  US$ ".$oferta['cantidad'];
                 }else if($oferta['moneda'] == "uyu"){
-                  echo "  us$ ".$oferta['resultado'];
+                  echo "  US$ ".$oferta['resultado'];
                 }
 
                 ?>
@@ -171,10 +182,17 @@
   <div class="media-right" >
     <div class="row text-center botonCallToAction">
       @if(!Auth::check())
+      <!--
       <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
       <button type="button" name="contactar" data-celular="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
         <font class="negociar">
           NEGOCIAR
+        </font>
+      </button>
+      -->
+      <button type="button" name="contactar" data-celular="" type="button" class="sinLogin" style="background:transparent;border:transparent;">
+        <font class="negociar">          
+        NEGOCIAR-INVITADO
         </font>
       </button>
       @else

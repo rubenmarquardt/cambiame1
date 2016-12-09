@@ -1,7 +1,5 @@
 
-@if (Auth::guest())
-@include('auth.login')
-@else
+<!--include('auth.login')-->
 <form action="/salvaroferta" method="POST" id="salvadorOferta">
   <div class="row" style="height: 121px;margin-top: 1em;">
     <div class="row" style="margin-bottom: 1em;">
@@ -17,7 +15,7 @@
         </div>
       </div>
       <div class="col-sm-4 col-xs-4  col-md-4  text-center ingresos" >
-        <input name="cantidad" type="number" class="form-control" id="exampleInputAmount" placeholder="Amount" style="font-size: 2em;">
+        <input name="cantidad" type="number" class="form-control" id="exampleInputAmount" placeholder="Monto" style="font-size: 2em;" onKeyPress="return soloNumeros(event)">
       </div>
       <div class="col-sm-4 col-xs-4 col-md-4 text-center ingresos" style="background-color:orange;">
         <div class="row text-center" >
@@ -32,9 +30,10 @@
       </div>
     </div>
   </div>
+  <!--El token sirve para el borrado de ofertas-->
+  @if(Auth::check())
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-
+  @endif  
 </form>  
 
-@endif

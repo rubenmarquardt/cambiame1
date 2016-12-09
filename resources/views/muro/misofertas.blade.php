@@ -41,7 +41,7 @@
             </div>
             <div class="row">
               <h5 class="media-heading">
-                <span class="enDolares" font style="color:white;">
+                <span class="enDolares" font style="color:#aaa;">
                   <?php
 
                   if ($oferta['moneda'] == "usd"){
