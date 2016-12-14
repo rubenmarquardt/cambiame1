@@ -170,19 +170,22 @@
        		var ahorras = parseFloat((pesoadolarinter - pesoadolarcambios));
        		ahorras = parseFloat(ahorras * dolarCambioVenta).toFixed(0);
 
-       		$('#ahorras').text('$ ' + ahorras);
+       		$ahorrasF = '' + parseFloat(ahorras).formatMoney(0, ',', '.'); 
+          $('#ahorras').text('$ ' + $ahorrasF);
+//     		$('#ahorras').text('$ ' + ahorras);
+
        		$('#uyu').hide();
        		$('#usd').show();
-        	//$('#cantEnUyu').text(pesoadolarinter);
-			$pesoadolarinter2 = pesoadolarinter.replace('.',',');
-			$('#cantEnUyu').text($pesoadolarinter2);
+       	//$('#cantEnUyu').text(pesoadolarinter);
+         $pesoadolarinter2 = '' + parseFloat(pesoadolarinter).formatMoney(2, ',', '.');
+			  $('#cantEnUyu').text($pesoadolarinter2);
        //	$('#pizarra').text(dolarCambioVenta);
 	   		$('#pizarra').text('' + $dolarCambioVenta);
 
 	   // formateo los US$ que te ahorras 			
-			$pesoadolarcambios2 = pesoadolarcambios.replace('.',',');
+      $pesoadolarcambios2 = '' + parseFloat(pesoadolarcambios).formatMoney(2, ',', '.');
 			$('#enCambios').text($pesoadolarcambios2 + " dolares");
-       //	$('#enCambios').text(pesoadolarcambios + " dolares");
+     //	$('#enCambios').text(pesoadolarcambios + " dolares");
 
        	}else if($amount.val() != "" && $select.val() == 1){
 
@@ -191,8 +194,8 @@
 //     		var dolarapesointer = parseFloat(cantidad * dolarInter ).toFixed(2);
 //			var dolarapesocambios = parseFloat(cantidad * dolarCambioCompra).toFixed(2);
 
-//formateo sin decimales los $ que ahorro
-       		var dolarapesointer = parseFloat(cantidad * dolarInter ).toFixed(0);
+//formateo sin decimales los $ que ahorro - Verificar la cuenta
+      var dolarapesointer = parseFloat(cantidad * dolarInter ).toFixed(0);
 			var dolarapesocambios = parseFloat(cantidad * dolarCambioCompra).toFixed(0);
 
     		//var ahorras = parseFloat((dolarapesointer - dolarapesocambios)).toFixed(2);
@@ -201,15 +204,46 @@
 
        		console.log(ahorras);
 
-       		$('#ahorras').text('$ ' + ahorras);
+          $ahorrasF = '' + parseFloat(ahorras).formatMoney(0, ',', '.'); 
+         $('#ahorras').text('$ ' + $ahorrasF);
+//        $('#ahorras').text('$ ' + ahorras);
+ 
        		$('#usd').hide();
        		$('#uyu').show();
-       		$('#cantEnUyu').text(dolarapesointer);
+
+         $dolarapesointer = '' + parseFloat(dolarapesointer).formatMoney(0, ',', '.');
+ 		      $('#cantEnUyu').text($dolarapesointer);
+    // 		$('#cantEnUyu').text(dolarapesointer);
+
 //le formateo el "," a la pizarra
 //    		$('#pizarra').text(dolarCambioCompra);
        		$('#pizarra').text('' + $dolarCambioCompra);
-       		$('#enCambios').text(dolarapesocambios + " pesos");
+
+        var dolarapesocambios2 = parseFloat(dolarapesocambios);
+            $cambiado = '' + dolarapesocambios2.formatMoney(0, ',', '.');
+
+       		  $('#enCambios').text($cambiado + " pesos");  
+  //     		$('#enCambios').text(dolarapesocambios + " pesos");
+
        	}
+//23-11-2016: esta llamndo bien a la funcion y formteando el nro
+        $amountF = '' + parseFloat(cantidad).formatMoney(0, ',', '.');
+        $('#cantF').text($amountF) ;
+//     el tema que si lo asingo como texto no hace nada y como valor no lo asigna a la textbox, 
+//     una opcion podria ser mostrarlo como label debajo 
+//        $('#exampleInputAmount').text($amountF) ; 
+//        $('#exampleInputAmount').val($amountF) ;
+
+
+
+//23-11-2016: esta llamndo bien a la funcion y formteando el nro
+        $amountF = '' + parseFloat(cantidad).formatMoney(0, ',', '.');
+        $('#cantF').text($amountF) ;
+//     el tema que si lo asingo como texto no hace nada y como valor no lo asigna a la textbox, 
+//     una opcion podria ser mostrarlo como label debajo 
+//        $('#exampleInputAmount').text($amountF) ; 
+//        $('#exampleInputAmount').val($amountF) ;
+
 //07-11-2016: Fin de modificaciones de formato
 
        	$('#contenedorCalc2').show();
@@ -281,7 +315,9 @@
                 }else{
                 	var dolarCambio = parseFloat($dolarCambioCompra.replace(',','.'));
                 }
-                data += "&moneda=" + $('#selectCambiameMone').val() + "&dolarInter=" + parseFloat($dolarInter.replace(',','.')) + "&dolarCambio=" + dolarCambio + "&resultado=" +  parseFloat($('#cantEnUyu').text());
+                // data += "&moneda=" + $('#selectCambiameMone').val() + "&dolarInter=" + parseFloat($dolarInter.replace(',','.')) + "&dolarCambio=" + dolarCambio + "&resultado=" +  parseFloat($('#cantEnUyu').text());
+    // 24/11: le grabo la cantidad ya formateada
+                data += "&moneda=" + $('#selectCambiameMone').val() + "&dolarInter=" + parseFloat($dolarInter.replace(',','.')) + "&dolarCambio=" + dolarCambio + "&resultado=" +  $('#cantEnUyu').text() + "&cantidad=" + $('#cantF').text() ;
                 
                 $.ajax({ 
                 	method: "POST", 
@@ -318,6 +354,11 @@
 
     	}
 
+      });
+
+    $('.sinLogin').on('click', function(){
+        alert('Debes Loguearte para esta Funcionalidad!');
+      //confirm('Debes loguearte !');
     });
 
     var aCeluar = "";
@@ -531,6 +572,28 @@
     });
 
   });
+
+  //esta funcion tambien tendria que hacer el formateo de la cantidad para que quede guardada ok ?
+function soloNumeros(e) 
+{ 
+var key = window.Event ? e.which : e.keyCode 
+return ((key >= 48 && key <= 57) || (key==8)) 
+}
+
+
+Number.prototype.formatMoney = function(c, d, t){  
+var n = this, 
+    c = isNaN(c = Math.abs(c)) ? 2 : c, 
+    //d = d == undefined ? "." : d, 
+    //t = t == undefined ? "," : t, 
+    d = d == undefined ? "," : d, 
+    t = t == undefined ? "." : t,
+    s = n < 0 ? "-" : "", 
+    i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))), 
+    j = (j = i.length) > 3 ? j % 3 : 0;
+   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+ };
+
   </script>
 </div>
 </body>
