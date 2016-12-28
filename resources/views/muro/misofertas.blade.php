@@ -45,9 +45,9 @@
                   <?php
 
                   if ($oferta['moneda'] == "usd"){
-                    echo "  us$ ".$oferta['cantidad'];
+                    echo "  US$ ".$oferta['cantidad'];
                   }else if($oferta['moneda'] == "uyu"){
-                    echo "  us$ ".$oferta['resultado'];
+                    echo "  US$ ".$oferta['resultado'];
                   }
 
                   ?>
@@ -140,9 +140,9 @@ foreach($usuarios as $usuario){
                 <?php
 
                 if ($contrato['moneda'] == "usd"){
-                  echo "  us$ ".$contrato['cantidad'];
+                  echo "  US$ ".$contrato['cantidad'];
                 }else if($contrato['moneda'] == "uyu"){
-                  echo "  us$ ".$contrato['resultado'];
+                  echo "  US$ ".$contrato['resultado'];
                 }
 
                 ?>
