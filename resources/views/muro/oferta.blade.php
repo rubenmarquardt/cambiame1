@@ -59,8 +59,12 @@
     </div>
   </div>
 </div>
+<!--Agrego una fila de espacios xq no me toma el margen superior -->
+<div class="row">
+    <font style="font-size:0.8em;color:white;">'</font>
+</div>
 
-<div class="row" style="marging-top:10px; margin-bottom: 1em;">
+<div class="row" style="marging-top: 10px; margin-bottom: 1em;">
   <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >OFERTAS NEGOCIABLES</font></div>
 </div>
 
@@ -90,28 +94,29 @@
     @endif 
     ">
     <div class="media-left">
-    @if(!Auth::check())
+      @if(!Auth::check())
         <img class="media-object" src="" >
       @else 
-      <a href="{{ $tmp['linkedinProfile']}}">
-        <img class="media-object" src="<?php echo $tmp['pictureUrl']; ?>" >
-      </a>
-      @endif
-      <div class="container-fluid" style="padding:0;">
+        <a href="{{ $tmp['linkedinProfile']}}">
+          <img class="media-object" src="<?php echo $tmp['pictureUrl']; ?>" >
+        </a>
+        
+        <div class="container-fluid" style="padding:0;">
 
-        <div class="stars">
-          <?php 
-            $rate = (int)floor($tmp->rate);
+          <div class="stars">
+            <?php 
+              $rate = (int)floor($tmp->rate);
 
-           
-            for($i = 1; $i <= $rate; $i++){
-             // echo '<input class="star star-'.$i.'" id="star-'.$i.'" type="radio" name="star"/>';
-              echo '<label class="star star-'.$i.'" for="star-'.$i.'" style="color: #FD4;"></label>';
-            }
+            
+              for($i = 1; $i <= $rate; $i++){
+              // echo '<input class="star star-'.$i.'" id="star-'.$i.'" type="radio" name="star"/>';
+                echo '<label class="star star-'.$i.'" for="star-'.$i.'" style="color: #FD4;"></label>';
+              }
 
-          ?>
+            ?>
+          </div>
         </div>
-      </div>
+      @endif
     </div>
     <div class="media-body">
 
