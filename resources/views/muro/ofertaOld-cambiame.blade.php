@@ -5,18 +5,19 @@
   @include('muro.interbancario')
 </div>
 <div class="row">
-  
+  <!-- aqui esta la logica del include  -->
   @include('muro.ingreso')
- 
 </div>
 <div class="row" id="contenedorCalc2" style="display:none">
   <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 ingresosCalc text-center" id="calculador2">
     <div class="col-md-12 col-xs-12 col-lg-12 text-center" id="mostrarCalc"  >
-    <div class="row">
+
+      <div class="row">
         <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6 col-xs-offset-3 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 text-center" style="background:green;margin-top:3px">
             <h4 style="color:white;" id="cantF"> </h4>  
         </div>
-      </div> 
+      </div>    
+
       <div class="row" style="background:#494d49;margin-top:1em;">
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center" >
           <h4 style="color:white;" id="uyu">PESOS URUGUAYOS</h4>
@@ -49,7 +50,7 @@
       </div>
       <div class="row">
         <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6 col-xs-offset-3 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 text-center" style="background:green;margin-top:6px">
-          @if(!Auth::check())
+         @if(!Auth::check())
             <button type="button" class="sinLogin" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:0.8em;color:white;">PUBLICAR-INVITADO</font></button> 
          @else
             <button type="button" id="publicarOfer" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:0.8em;color:white;">PUBLICAR OFERTA</font></button>
@@ -59,19 +60,15 @@
     </div>
   </div>
 </div>
-<!--Agrego una fila de espacios xq no me toma el margen superior -->
-<div class="row">
-    <font style="font-size:0.8em;color:white;">'</font>
-</div>
 
-<div class="row" style="marging-top: 10px; margin-bottom: 1em;">
+<div class="row" style="margin-top: 10px; margin-bottom: 1em;">
   <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >OFERTAS NEGOCIABLES</font></div>
 </div>
 
 <div class="row" id="page-content">
 
   @foreach ($ofertas as $oferta)
-  @if($oferta['reserva'] == 0)
+  @if($oferta['reserva'] == 1)
 
 
   <?php
@@ -97,26 +94,26 @@
       @if(!Auth::check())
         <img class="media-object" src="" >
       @else 
-        <a href="{{ $tmp['linkedinProfile']}}">
-          <img class="media-object" src="<?php echo $tmp['pictureUrl']; ?>" >
-        </a>
-        
-        <div class="container-fluid" style="padding:0;">
-
-          <div class="stars">
-            <?php 
-              $rate = (int)floor($tmp->rate);
-
-            
-              for($i = 1; $i <= $rate; $i++){
-              // echo '<input class="star star-'.$i.'" id="star-'.$i.'" type="radio" name="star"/>';
-                echo '<label class="star star-'.$i.'" for="star-'.$i.'" style="color: #FD4;"></label>';
-              }
-
-            ?>
-          </div>
-        </div>
+      <a href="{{ $tmp['linkedinProfile']}}">
+        <img class="media-object" src="<?php echo $tmp['pictureUrl']; ?>" >
+      </a>
       @endif
+
+      <div class="container-fluid" style="padding:0;">
+
+        <div class="stars">
+          <?php 
+            $rate = (int)floor($tmp->rate);
+
+           
+            for($i = 1; $i <= $rate; $i++){
+             // echo '<input class="star star-'.$i.'" id="star-'.$i.'" type="radio" name="star"/>';
+              echo '<label class="star star-'.$i.'" for="star-'.$i.'" style="color: #FD4;"></label>';
+            }
+
+          ?>
+        </div>
+      </div>
     </div>
     <div class="media-body">
 
@@ -196,21 +193,21 @@
       </button>
       -->
       <button type="button" name="contactar" data-celular="" type="button" class="sinLogin" style="background:transparent;border:transparent;">
-        <font class="negociar">          
-        NEGOCIAR-INVITADO
-        </font>
-      </button>
-      @else
-      @if(Auth::user()->id == $oferta['user_id'])
-      <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
-      @else
-      <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
-      <button type="button" name="contactar" data-celular="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
         <font class="negociar">
-          NEGOCIAR
+          NEGOCIAR-INVITADO
         </font>
       </button>
-      @endif
+      @else
+          @if(Auth::user()->id == $oferta['user_id'])
+              <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+          @else
+              <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
+              <button type="button" name="contactar" data-celular="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
+                <font class="negociar">
+                  NEGOCIAR
+                </font>
+              </button>
+          @endif
       @endif
     </div>
   </div>
