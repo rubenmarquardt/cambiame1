@@ -357,7 +357,7 @@
       });
 
     $('.sinLogin').on('click', function(){
-        alert('Debes Loguearte para esta Funcionalidad!');
+        alert('!Debes Loguearte para poder negociar!');
       //confirm('Debes loguearte !');
     });
 
