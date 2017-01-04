@@ -192,7 +192,7 @@
       -->
       <button type="button" name="contactar" data-celular="" type="button" class="sinLogin" style="background:transparent;border:transparent;">
         <font class="negociar">          
-        NEGOCIAR-INVITADO
+        NEGOCIAR
         </font>
       </button>
       @else

@@ -8,6 +8,7 @@ use App\Models\User;
 use Mail;
 use Auth;
 use Socialite;
+use App\Notifications\UserNotify;
 
 class SocialController extends Controller {
 
@@ -51,8 +52,8 @@ class SocialController extends Controller {
             	$new_user->email = $request->email;
             	$new_user->celular = $request->celular;
             	$new_user->linkedinProfile = $request->linkedinProfile;
-            	$new_user->pictureUrl = $request->pictureUrl;
-         
+            	$new_user->pictureUrl = $request->pictureUrl;              
+              
               /*Mail::send('auth.emails.welcome', ['user'=>$new_user], function($msg)use($new_user){
                 $msg->subject('el HappyBot de Cambiame');
                 $msg->to($new_user->email);
@@ -60,6 +61,10 @@ class SocialController extends Controller {
               }); */
 
             	$new_user->save();
+
+              //Notificacion a mail
+              $new_user->notify(new UserNotify($new_user));
+
             	Auth::login($new_user);
 
               //onlineUser($new_user->id);
