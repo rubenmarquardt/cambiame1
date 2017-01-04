@@ -257,8 +257,18 @@
        	calculadora();
        });
 
+      /*
        $('#selectCambiameMone').on('change', function(){
        	calculadora();
+      */ 
+
+       $('#selectCambiameMone').on('change', function(){
+         //corrijo el error del vacio
+         $amountVacio = $('#exampleInputAmount');
+         if ($amountVacio.val() != "") {
+           calculadora();
+         }
+
        });
 
        function bloqueoUI(){
@@ -417,6 +427,7 @@
     	var id = $(this).data("id");
     	var token = $(this).data("token");
     	if(confirm('seguro que desea eliminar oferta?')){
+        confirm('Antes de Ejecutar el Ajax');
         $.ajax(
         {
          url: "{{url('oferta/delete')}}/"+id,
@@ -429,10 +440,14 @@
         },
         success: function ()
         {
+confirm('Antes de BloqueoUI');
           bloqueoUI();
+confirm('Despues de BloqueoUI');
           location.reload();
+confirm('Despues de Reload');
         }
       });
+confirm(' Despues de Ejecutar el Ajax');
       }
 
 
