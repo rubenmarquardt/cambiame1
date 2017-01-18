@@ -65,12 +65,21 @@
     </div>
     <div class="row">
      <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12" style="background:orange">
-      <center><button id="copiarPPapeles" type="button" class="btn btn-default" data-clipboard-target="#numeroCel" style="background:transparent;border:solid 0px black;text-shadow:none;margin-top:3em;width:50%;">Copiar al portapapeles!</button>
-       <h1>Continua la transaccion por whatsapp</h1></center>
+      <center>
+      <p><font style="h1" id="mensaje1"></font></p> </center>
+      <!--
+        <h1>Continua la transaccion presionado Reservar oferta. Recbiras un e-mail con los datos de la misma</h1>
+
+      <button id="copiarPPapeles" type="button" class="btn btn-default" data-clipboard-target="#numeroCel" style="background:transparent;border:solid 0px black;text-shadow:none;margin-top:3em;width:50%;">Copiar al portapapeles!</button>
+      -->
      </div>
      <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
        <center><button id="hazReserva" type="button" class="btn btn-default animated infinite pulse" style="margin-top:3em;margin-bottom:3em;">Reservar oferta!</button>
-        <p>Haz la reserva para que la oferta se quite del muro temporalmente hasta concretar la negociación</p></center>
+          <p><font style="h1" id="mensaje2"></font></p>
+        </center>
+        <!--
+        <p>Presionando Reservar Oferta, la misma se quita del muro temporalmente hasta concretar la negociación</p>
+        -->
       </div>
     </div>
     <div class="modal-footer" style="text-align:center;">
@@ -367,7 +376,7 @@
       });
 
     $('.sinLogin').on('click', function(){
-        alert('!Debes Loguearte para poder negociar!');
+        alert('Debes Loguearte para poder negociar!');
       //confirm('Debes loguearte !');
     });
 
@@ -375,10 +384,28 @@
     var elId = "";
 
     $('.whatsapp').on('click', function(){
-      
-      $('#hazReserva').prop("disabled", false);
-      $('#hazReserva').text("Reservar Oferta!");
-      $('#hazReserva').addClass('animate infinite pulse');
+      aVengo  = $(this).data("prueba");
+      //Vengo desde oferta 
+      if (aVengo=="O")
+      {     
+        $('#mensaje1').text('Continua la transaccion presionado Reservar oferta. Recbiras un e-mail con los datos de la misma');
+        $('#mensaje2').text('Presionando Reservar Oferta, la misma se quita del muro temporalmente hasta concretar la negociación');
+
+        $('#hazReserva').prop("disabled", false);
+        $('#hazReserva').text("Reservar Oferta!");
+        $('#hazReserva').addClass('animate infinite pulse');
+     }else
+      {     
+        //Vengo desde negociaciones 
+        //aVengo=="N"
+        $('#mensaje1').text('Chequea tu e-mail con los datos del Anunciante');
+        $('#mensaje2').text('La Oferta fue reservada temporalmente hasta concretar la negociación');
+
+        $('#hazReserva').prop("disabled", true);
+        $('#hazReserva').attr("color", "white");
+        $('#hazReserva').text("Reservado!");
+        $('#hazReserva').removeClass('animate infinite pulse');
+      }  
 
       elId = $(this).prev().closest('#elId').val();
 
@@ -394,6 +421,7 @@
     });
 
     $('#hazReserva').on('click', function(){
+//alert('entro a reservar...');      
       bloqueoUI();
       $botonRes = $(this);
       data = "idoferta=" + elId;
@@ -427,7 +455,7 @@
     	var id = $(this).data("id");
     	var token = $(this).data("token");
     	if(confirm('seguro que desea eliminar oferta?')){
-        confirm('Antes de Ejecutar el Ajax');
+//confirm('Antes de Ejecutar el Ajax');
         $.ajax(
         {
          url: "{{url('oferta/delete')}}/"+id,
@@ -440,14 +468,15 @@
         },
         success: function ()
         {
-confirm('Antes de BloqueoUI');
+//confirm('Antes de BloqueoUI');
           bloqueoUI();
-confirm('Despues de BloqueoUI');
+//confirm('Despues de BloqueoUI');
           location.reload();
-confirm('Despues de Reload');
+//confirm('Despues de Reload');
         }
       });
-confirm(' Despues de Ejecutar el Ajax');
+//llega hasta este mensaje, no se ven los mensajes intermedios o sea no entra a "success"      
+//confirm(' Despues de Ejecutar el Ajax');
       }
 
 

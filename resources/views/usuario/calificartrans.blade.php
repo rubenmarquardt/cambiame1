@@ -3,14 +3,18 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<h3 class="text-center">
-				Califica la transaccion.
-			</h3>
+			<h2 class="text-center">
+				Califica la transacción.
+			</h2>
 			<div class="row">
 				<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
 					<div class="row">
 						<div class="col-md-12">
-							<img class="img-circle foto-perfil img-responsive" src="<?php echo $usr['pictureUrl']; ?>" alt="<?php echo $usr['name'];?>">
+							<div class="centerBlock">
+								<h3> <?php echo $usr['name'];?> 
+    							<img class="img-circle foto-perfil img-responsive" src="<?php echo $usr['pictureUrl']; ?>" alt="<?php echo $usr['name'];?>">								
+								</h3>
+							</div>
 						</div>
 					</div>
 					<div class="row">
