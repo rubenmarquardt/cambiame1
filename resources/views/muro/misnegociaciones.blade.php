@@ -33,10 +33,7 @@
       @endif 
       ">
       <div class="media-left">
-        <a href="{{ $usuario->linkedinProfile}}">
-
           <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" alt="<?php echo $usuario->name;?>">
-        </a>
       </div>
       <div class="media-body">
         <div class="row">
@@ -104,7 +101,7 @@
       </div>
     </div>
 
-    <div class="media-right" style="padding-right:14px;">
+    <div class="media-right" style="padding-right:10px;">
       <div class="row text-center botonCallToAction " style="background:#ffa500;padding:0px;">
 
         <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4" style="padding-left:1px;padding-right:1px;">
@@ -117,11 +114,15 @@
            <img src="{{ url('images/liberarnegociacion.png') }}" class="img-responsive liberar" data-id="{{ $contrato['id'] }}"/>
          </div>
        </div>
+  <!-- comento el boton de wp-->     
+  <!-- emprolijar para que el campo no se llame data-celular -->
        <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4" style="padding-left:1px;padding-right:1px;">
         <div class="blockCenter">
-          <img src="{{ url('images/wp.png') }}" class="img-responsive whatsapp" data-celular="{{$usuario->celular}}"/>
+             <img src="{{ url('images/email.png') }}" class="img-responsive whatsapp" data-celular="{{$usuario->name}}" data-prueba="N" />
         </div>
       </div>
+
+  <!-- fin del boton de wp-->         
     </div>
   </div>
 </div>

@@ -50,7 +50,7 @@
       <div class="row">
         <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6 col-xs-offset-3 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 text-center" style="background:green;margin-top:6px">
           @if(!Auth::check())
-            <button type="button" class="sinLogin" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:0.8em;color:white;">PUBLICAR-INVITADO</font></button> 
+            <button type="button" class="sinLogin" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:0.8em;color:white;">PUBLICAR  OFERTA</font></button> 
          @else
             <button type="button" id="publicarOfer" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:0.8em;color:white;">PUBLICAR OFERTA</font></button>
          @endif
@@ -97,11 +97,9 @@
       @if(!Auth::check())
         <img class="media-object" src="" >
       @else 
-        <a href="{{ $tmp['linkedinProfile']}}">
-          <img class="media-object" src="<?php echo $tmp['pictureUrl']; ?>" >
-        </a>
         
         <div class="container-fluid" style="padding:0;">
+        <img class="media-object" src="<?php echo $tmp['pictureUrl']; ?>" >
 
           <div class="stars">
             <?php 
@@ -152,7 +150,7 @@
           </div>
           <div class="row">
             <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
-              <p>
+              
                 <font class="muroOferta" style="font-size:1.2em;">
                  <span class="currencyLabel">
                   <?php
@@ -178,7 +176,7 @@
                   ?>
                 </span>
               </font>
-            </p>
+            
           </div>
         </div>
       </div>
@@ -205,7 +203,7 @@
       <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
       @else
       <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
-      <button type="button" name="contactar" data-celular="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
+      <button type="button" name="contactar" data-celular="{{$tmp['name']}}" data-prueba="O" type="button" class="whatsapp" style="background:transparent;border:transparent;">
         <font class="negociar">
           NEGOCIAR
         </font>
