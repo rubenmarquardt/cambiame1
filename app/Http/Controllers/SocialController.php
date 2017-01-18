@@ -55,7 +55,7 @@ class SocialController extends Controller {
             	$new_user->pictureUrl = $request->pictureUrl;              
               
               /*Mail::send('auth.emails.welcome', ['user'=>$new_user], function($msg)use($new_user){
-                $msg->subject('el HappyBot de Cambiame');
+                $msg->subject('Bot de Cambiame');
                 $msg->to($new_user->email);
 
               }); */
