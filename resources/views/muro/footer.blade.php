@@ -361,22 +361,29 @@
                 });
               });
 
-    $('#registro').on('click', function(e){
-    	if($('#celular').val()!=""){
-    		$('#formRegistro').submit();
-    	}else{
+   // validando registro       
+    $('#registro').on('click', function(e){   
+      var condicion=$("#terms").is(':checked');
+      //controla ingreso de celular en el registro    
+    	if($('#celular').val()!=""&& condicion){
+        $('#formRegistro').submit();
+    		
+    	}else if ($('#celular').val()!=""&& !condicion){
+        e.preventDefault();
+        alert('Debes aceptar los Términos y Condiciones');
+      }      
+      else{
     		e.preventDefault();
+        alert('Debes ingresar celular');
     		$('#celular').addClass('shake animated');
     		$('#celular').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
     			$('#celular').removeClass('shake animated')
-    		});
-
-    	}
-
-      });
-
+    		    });
+    	    }              
+      });            
+    
     $('.sinLogin').on('click', function(){
-        alert('Debes Loguearte para poder negociar!');
+        alert('Debes loguearte en la app para poder negociar!');
       //confirm('Debes loguearte !');
     });
 
