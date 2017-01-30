@@ -9,6 +9,8 @@ use App\Http\Requests;
 use View;
 use App\Models\User;
 use Goutte\Client;
+use App\Notifications\CompraNotify;
+use App\Notifications\VentaNotify;
 
 class OfertaController extends Controller
 {
@@ -58,7 +60,6 @@ class OfertaController extends Controller
     
     public function getInterbancario()
     {
-
         $client = new Client();
         $crawler = $client->request('GET', 'http://www.bcu.gub.uy/');
         $crawler->filter('.Cotizaciones')->each(function($node){
@@ -69,16 +70,10 @@ class OfertaController extends Controller
             
             if($stn[76]!=""){
                 $this->str = $stn[76];    
-            }
-            
+            }           
             
         });
-
-        
-        
         return $this->str;
-
-
     }
 
     public function getPizarra(){
@@ -135,7 +130,7 @@ class OfertaController extends Controller
 
                 if(isset($ofertasNoCalif) && $ofertaNoCalificada['concretada'] !== 0){
                     return response()->json([
-                        'error' => 'Debes calificar tus trasanciones previas!'
+                        'error' => 'Debes calificar tus transacciones previas!'
                     ]);  
                 }
             }
@@ -166,11 +161,28 @@ class OfertaController extends Controller
 
     public function reservarOferta(Request $request){
         if($request->ajax()){
+            
             $this->user = Auth::user()->id;
             $oferta = Oferta::where('id', $request['idoferta'])->first();
             $oferta->reserva = $this->user;
-            if($oferta->save()){
+            
+            $usrId=$this->user;
+            $usr = User::where('id', $usrId)->first();
+            
+            //vendedor
+            $idVendedor=$oferta->user_id;
+            $usrVendedor=User::where('id', $idVendedor)->first();
+           
+                               
+            if($oferta->save()){       
+
+                 //Notificacion a mail
+                $usr->notify(new CompraNotify($usr));
+                $usrVendedor->notify(new VentaNotify($usrVendedor));                   
+
                 return 0;
+                
+
             }else{
                 return 1;
             }

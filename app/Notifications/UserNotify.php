@@ -49,34 +49,5 @@ class UserNotify extends Notification
                     ->action('Ir a la app', 'http://app.cambiame.uy')
                     ->line('Gracias por usar nuestra plataforma');
     }
-
-     public function toMailVendedor($notifiable)
-    {
-        return (new MailMessage)
-                    ->subject('Te están negociando en Cambiame')
-                    ->greeting('Hola ' . $this->user->name . ' te quieren comprar')
-                    ->line('Te quieren comprar tu oferta de:')
-                    /*montoOfertado*/
-                    ->line('Contactate con el usuario:')
-                    /*datos: nombre, email y celular*/
-                    ->line('Una vez realizado la transacción no te olvides de cerrar y calificar:')
-                    ->action('Ir a la app', 'http://app.cambiame.uy')
-                    ->line('Gracias por usar nuestra plataforma');
-    }
-
-    public function toMailComprador($notifiable)
-    {
-        return (new MailMessage)
-                    ->subject('Estás negociando en Cambiame')
-                    ->greeting('Hola ' . $this->user->name . ' ya estás negociando')
-                    ->line('Te quieren comprar tu oferta de:')
-                    /*montoOfertado*/
-                    ->line('Contactate con el usuario:')
-                    /*datos: nombre, email y celular*/
-                    ->line('Una vez realizado la transacción no te olvides de cerrar y calificar:')
-                    ->action('Ir a la app', 'http://app.cambiame.uy')
-                    ->line('Gracias por usar nuestra plataforma');
-    }
-
-    
+            
 }
