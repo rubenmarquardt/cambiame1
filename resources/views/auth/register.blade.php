@@ -44,7 +44,7 @@
                 
 
                 <div class="form-group{{ $errors->has('celular') ? ' has-error' : '' }}">
-                    <label for="celular" class="col-md-4 control-label">celular</label>
+                    <label for="celular" class="col-md-4 control-label">Celular</label>
 
                     <div class="col-md-6">
                         <input id="celular" type="text" class="form-control" name="celular" value="{{ old('celular') }}">
@@ -54,7 +54,29 @@
                             <strong>{{ $errors->first('celular') }}</strong>
                         </span>
                         @endif
-                    </div>
+                        
+
+                        <!--
+                        <div class="checkbox">
+                                <label><input name="terms" type="checkbox" id="terms" value="true"> ¿Aceptas los</label>
+                                <a href="http://cambiame.uy/terminos.html" target=_blank >Términos y Condiciones</a>?
+                    </div>-->
+                    </div>    
+                    <div class="form-group{{ $errors->has('terms') ? ' has-error' : '' }}">
+                    <label class="col-md-4 control-label">
+                                ¿Aceptas los Términos y condiciones?
+                            </label>
+                    <div class="col-md-6">
+                    <input type="checkbox" class="form-control" name="terms" id="terms" value="{{ old('terms') ?: 'checked' }}" />
+                    </div>                           
+                            
+                                @if ($errors->has('terms'))
+                                <span class="help-block">
+                                <strong>{{ $errors->first('terms') }}</strong>
+                                </span>
+                                @endif
+                            
+                        </div>
                 </div>
 
                 <div class="form-group">
