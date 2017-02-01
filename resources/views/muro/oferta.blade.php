@@ -125,9 +125,9 @@
               <?php
 
               if ($oferta['moneda'] == "usd"){
-                echo "<font style='color:orange;'>vendo</font>";
+                echo "<font style='color:orange;font-size:1.2em;'>VENDO</font>";      
               }else if($oferta['moneda'] == "uyu"){
-                echo "<font style='color:white;'>compro</font>";
+                echo "<font style='color:white;font-size:1.2em;'>COMPRO</font>";
               }
 
               ?>
@@ -135,7 +135,7 @@
           </div>
           <div class="row">
             <h5 class="media-heading">
-              <span class="enDolares" style="color:#aaa;">
+              <span class="enDolares" style="color:#aaa;font-size:1.2em;">				
                 <?php
 
                 if ($oferta['moneda'] == "usd"){
@@ -150,8 +150,7 @@
           </div>
           <div class="row">
             <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
-              
-                <font class="muroOferta" style="font-size:1.2em;">
+                <font class="muroOferta" style="font-size:1.3em;">
                  <span class="currencyLabel">
                   <?php
 
@@ -200,7 +199,14 @@
       </button>
       @else
       @if(Auth::user()->id == $oferta['user_id'])
-      <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+          <!--
+          <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+          -->
+          <button type="button" style="background:transparent;border:transparent;">
+            <div class="media-right" >
+                <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="70%" />
+             </div> 
+          </button>
       @else
       <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
       <button type="button" name="contactar" data-celular="{{$tmp['name']}}" data-prueba="O" type="button" class="whatsapp" style="background:transparent;border:transparent;">

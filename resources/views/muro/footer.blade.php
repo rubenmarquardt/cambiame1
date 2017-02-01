@@ -262,10 +262,19 @@
        	$('#mostrarCalc').fadeIn('fast');
        }
 
+
+	//no dejo ingresar 0
+       $('#contenedorCalc').click(function(){
+          $amount0 = $('#exampleInputAmount');
+          var cant0 = parseFloat($amount0.val());
+          if (cant0 >0)
+       	     calculadora();
+       });
+/*
        $('#contenedorCalc').click(function(){
        	calculadora();
        });
-
+*/
       /*
        $('#selectCambiameMone').on('change', function(){
        	calculadora();
@@ -274,7 +283,7 @@
        $('#selectCambiameMone').on('change', function(){
          //corrijo el error del vacio
          $amountVacio = $('#exampleInputAmount');
-         if ($amountVacio.val() != "") {
+         if ($amountVacio.val() != "" && $amountVacio.val() != 0) {
            calculadora();
          }
 
@@ -410,7 +419,7 @@
 
         $('#hazReserva').prop("disabled", true);
         $('#hazReserva').attr("color", "white");
-        $('#hazReserva').text("Reservado!");
+        $('#hazReserva').text("Oferta Reservada!");
         $('#hazReserva').removeClass('animate infinite pulse');
       }  
 
@@ -428,7 +437,7 @@
     });
 
     $('#hazReserva').on('click', function(){
-//alert('entro a reservar...');      
+//alert('entro a reservar...' + parseFloat(elId));      
       bloqueoUI();
       $botonRes = $(this);
       data = "idoferta=" + elId;
@@ -446,6 +455,11 @@
                 $.unblockUI();
                 $('#elId').val(elId).closest('.container-fluid').fadeOut('slow');
                 elId = '';
+//ver si va aca esto
+/*
+                bloqueoUI();
+                location.reload();
+*/                
               }else{
                $botonRes.text("error");
                if(confirm('No se pudo reservar la oferta')){
@@ -454,6 +468,19 @@
             }
           } 
         });
+
+//alert ('llegue fuera de la funcion...:')
+//La funcion del ajax da error, sin embargo si esta grabando en la BD, como workAround quito el ctrl de errores
+//Da un error en el POST pero sigue de largo
+        $botonRes.prop("disabled", true);
+        $botonRes.attr("color", "white");
+        $botonRes.text("Reservado!");
+        $botonRes.removeClass('animate infinite pulse');
+        $.unblockUI();
+        $('#elId').val(elId).closest('.container-fluid').fadeOut('slow');
+        elId = '';
+
+        location.reload();
 
     });
 

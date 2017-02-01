@@ -4,12 +4,21 @@
 <div class="row">
   @include('muro.interbancario')
 </div>
-<div class="row">
-  @include('muro.ingreso')
-</div>
-@include('muro.calculadora')
-<div class="row">
 
+
+<!-- saco la calculadora de negociaciones
+<div class="row">
+  // include('muro.ingreso')
+</div>
+-->
+ <!-- saco la calculadora de negociaciones
+ //include('muro.calculadora')
+ -->
+ <!--Agrego una fila de espacios xq no me toma el margen superior -->
+<div class="row">
+    <font style="font-size:0.8em;color:white;">'</font>
+</div>
+<div class="row">
   <div class="row">
     <div class="row" style="margin-bottom: 1em;">
       <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >Mis Negociaciones:</font></div>
@@ -43,17 +52,18 @@
                 <?php
 
                 if ($contrato['moneda'] == "usd"){
-                  echo "<font style='color:orange;'>vendo</font>";
+                  echo "<font style='color:orange;font-size:1.2em;'>VENDO</font>";
                 }else if($contrato['moneda'] == "uyu"){
-                  echo "<font style='color:white;'>compro</font>";
+                  echo "<font style='color:white;font-size:1.2em;'>COMPRO</font>";
                 }
 
                 ?>
               </h5>
             </div>
             <div class="row">
-              <h5 class="media-heading" font style="color:white;">
-                <span class="enDolares">
+              <h5 class="media-heading">
+                 <span class="enDolares" font style="color:#aaa;font-size:1.2em;">    
+
                   <?php
 
                   if ($contrato['moneda'] == "usd"){
@@ -69,7 +79,7 @@
             <div class="row">
               <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
                 <p>
-                  <font class="muroOferta" style="font-size:1.2em;">
+                  <font class="muroOferta" style="font-size:1.3em;">
                    <span class="currencyLabel">
                     <?php
 
