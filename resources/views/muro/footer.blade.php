@@ -484,36 +484,34 @@
 
     });
 
-
+//Borrar oferta
     $(".deleteProduct").click(function(){
     	var id = $(this).data("id");
     	var token = $(this).data("token");
     	if(confirm('seguro que desea eliminar oferta?')){
 //confirm('Antes de Ejecutar el Ajax');
-        $.ajax(
-        {
+        $.ajax({
          url: "{{url('oferta/delete')}}/"+id,
-         type: 'DELETE',
+         type: "post",
          dataType: "JSON",
          data: {
           "id": id,
-          "_method": 'DELETE',
+          _method:"DELETE",         
           "_token": token,
         },
-        success: function ()
-        {
+        success: function (data){
 //confirm('Antes de BloqueoUI');
           bloqueoUI();
 //confirm('Despues de BloqueoUI');
           location.reload();
 //confirm('Despues de Reload');
+        },
+        error: function(data){
+          alert("Error al borrar");
+          console.log(data);
         }
       });
-//llega hasta este mensaje, no se ven los mensajes intermedios o sea no entra a "success"      
-//confirm(' Despues de Ejecutar el Ajax');
       }
-
-
     });
 
     $(".calificar").click(function(){
