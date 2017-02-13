@@ -35,10 +35,14 @@ class OfertaController extends Controller
         $contratosNegociables = Oferta::where('reserva', $id)->get();
         $this->dolarPizzarraInter();
         $this->userId = Auth::user()->id;
-        if($this->userId == $ofertasUser->first()->user_id){
+
+        // $contratosConcretados = Oferta::where('concretada', '!==', $id)->get();
+        //tendria qque hacer un and para evitar las que tienen 0
+         $contratosConcretados = Oferta::where('concretada', '<>', $id)->get();    
+
+        if($this->userId == @$ofertasUser->first()->user_id){
             $usuario = User::where('id', $id)->get();
-            
-            return View::make('muro.misofertas')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario)->with('contratos', $contratosNegociables);
+            return View::make('muro.misofertas')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario)->with('contratos', $contratosNegociables)->with('contratosC', $contratosConcretados);
         }
 
         return "tu vieja";
@@ -49,10 +53,19 @@ class OfertaController extends Controller
         $contratosNegociables = Oferta::where('reserva', $id)->get();
         $this->dolarPizzarraInter();
         $this->userId = Auth::user()->id;
-        if($this->userId == $ofertasUser->first()->user_id){
+    
+    //aqui deberia cargar las trns ya conretadas
+    //pero no todas sino las del usuario que estoy leyendo, o sea de quien esta mirando sus negociaciones
+    //ver donde me conviene si aca o en el for each de misnegociaciones
+        $contratosConcretados = Oferta::where('concretada', $id)->get();
+
+    //ahora como cargo las del usuario que necesito     ?
+    //en realidad creo que ese filtro se esta hacciendo abajo
+    //hay que pensarlo al reves en el caso de mis compras
+        if($this->userId == @$ofertasUser->first()->user_id){
             $usuario = User::where('id', $id)->get();
             
-            return View::make('muro.misnegociaciones')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario)->with('contratos', $contratosNegociables);
+            return View::make('muro.misnegociaciones')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario)->with('contratos', $contratosNegociables)->with('contratosC', $contratosConcretados) ;
         }
 
         return "tu vieja";
@@ -109,7 +122,6 @@ class OfertaController extends Controller
                 return redirect('calificar/ofertas');
             }
         }
-
 
 
         return View::make('muro.oferta')->with('elInter', $this->elInter)->with('ofertas', $ofertas)->with('elPiza', $this->pizarra);
@@ -176,10 +188,11 @@ class OfertaController extends Controller
                                
             if($oferta->save()){       
 
-                 //Notificacion a mail
+             //Notificacion a mail
+  //aqui da error en el local               
                 $usr->notify(new CompraNotify($usr));
                 $usrVendedor->notify(new VentaNotify($usrVendedor));                   
-
+                
                 return 0;
                 
 
@@ -216,6 +229,7 @@ class OfertaController extends Controller
         $oferta = Oferta::find($id);
         if ($oferta->reserva == Auth::user()->id){
             $oferta->reserva = 0;
+            //en el campo concretada esta grabando el id del usuario
             $oferta->concretada = Auth::user()->id;
             if($oferta->save()){
                 return response()->json([
@@ -253,6 +267,15 @@ class OfertaController extends Controller
             $usr = User::find($ofertaCon->user_id);
             return View::make('usuario.calificartrans')->with('usr', $usr)->with('transaccion', $ofertaCon);
         }
+
+    }
+
+    public function historicoTrans($id){
+        $ofertaCon = Oferta::find($id);
+        //if ($ofertaCon->concretada == Auth::user()->id){
+        $usr = User::find($ofertaCon->user_id);
+        return View::make('usuario.calificartrans')->with('usr', $usr)->with('transaccion', $ofertaCon);
+        //}
 
     }
 
@@ -306,6 +329,7 @@ class OfertaController extends Controller
                 $oferta->comentario = $request['comentario'];
             }
             if($oferta->save()){
+//aqui pone el campo concretada en 1, ya sea positiva o negativamente (como esta hoy en dia)
                 return response()->json(["succes"=>"calificacion guardada!"]);
             }else{
                 return 1;

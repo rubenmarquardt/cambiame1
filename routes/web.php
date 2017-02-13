@@ -91,5 +91,7 @@ Route::post('guardarate', ['uses' => 'OfertaController@guardarCalif', 'middlewar
 Route::get('calificar/ofertas',  ['uses' => 'OfertaController@transaccionesNoCalificadas', 'middleware'=>'auth'])->name('nocalificadas');
 Route::post('calificar/ofertas', ['uses' => 'OfertaController@transaccionesNoCalificadas', 'middleware'=>'auth'])->name('nocalificadas');
 
+//historicoTransaccion
+Route::get('transaccion/calificarh/{id}',  ['uses' => 'OfertaController@historicoTrans', 'middleware'=>'auth'])->name('calificarh');
 
 

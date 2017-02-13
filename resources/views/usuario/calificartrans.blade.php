@@ -1,10 +1,11 @@
 @extends('layouts.app4')
 @section('contenido del muro')
-<div class="container-fluid">
+
+<div class="container-fluid" id="contenedorCalif">
 	<div class="row">
 		<div class="col-md-12">
 			<h2 class="text-center">
-				Califica la transacción.
+				Calificación de la transacción.
 			</h2>
 			<div class="row">
 				<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
@@ -21,9 +22,19 @@
 						<div class="col-md-12">
 							<div class="centerBlock">
 								<!--input id="rate" name="input-name" type="number" class="rating" min=1 max=5 step=1 data-size="xs" ><br /-->
-								<input id="input-2-ltr-star-sm" name="input-2-ltr-star-sm" class="kv-ltr-theme-fa-star rating-loading" value="2" dir="ltr" data-size="sm">
+				
+								<?php 
+								 if (trim($transaccion['comentario']) =="") 
+								 {
+								?>	 
+								 <input id="input-2-ltr-star-sm" name="input-2-ltr-star-sm" class="kv-ltr-theme-fa-star rating-loading" value="2" dir="ltr" data-size="sm">
+								<?php 
+								 }
+								 ?>
 								<input type="hidden" value="{{ $transaccion['id']}}" id="idTrans" data-token="{{ csrf_token() }}"/>
 								<input type="hidden" value="{{ $usr['id']}}" id="idUsr" data-token="{{ csrf_token() }}"/>
+								<input type="hidden" value="{{ $transaccion['reserva']}}" id="idUsrRes" data-token="{{ csrf_token() }}"/>
+								<input type="hidden" value="{{ $transaccion['concretada']}}" id="idUsrCon" data-token="{{ csrf_token() }}"/>
 							</div>
 						</div>
 					</div>
@@ -120,11 +131,33 @@
 							<div class="col-md-12">
 								<form role="form">
 									<div class="form-group">
+										<!--ocultar si tiene comentarios 
+										to do: pasar l calificacion a estrellas, usando el control de las pag de inicio-->
 
 										<label for="dejarComment">
 											Comentario:
 										</label>
-										<textarea rows="4" class="form-control" name="comentario" form="form" id="dejarComment" placeholder="Deja un comentario de la transaccion (opcional)"></textarea>
+										<?php 
+										  if (trim($transaccion['comentario']) !="") 
+										  {
+										 ?> 					
+											{{$transaccion['comentario']}}
+										 	&nbsp;
+										   	Calificación Otorgada:
+											{{$transaccion['rate']}}
+											<input id="rate" name="input-name" type="number" class="rating" min=1 max=5 step=1 data-size="xs"  value="{{ $transaccion['rate']}}" disabled="true"/>
+										<?php 
+										}
+										else
+										{
+ 										?> 					
+											<textarea rows="4" class="form-control" name="comentario" form="form" id="dejarComment" placeholder="Deja un comentario de la transaccion (opcional)">
+											</textarea>
+										<?php	
+										}
+										?>			
+												
+										
 									</div>
 
 										<!--
@@ -135,7 +168,25 @@
 												<input type="checkbox" /> Check me out
 											</label>
 										</div--> 
-
+										<div class="row">
+											<div class="centerBlock">
+											<?php 
+								 			if (trim($transaccion['comentario']) !="") 
+											{	 
+											   if(Auth::user()->id == $transaccion['user_id'])
+											      $origen = 'O';
+											   else    
+											   	  $origen = 'N';	
+								 			?>
+											 	<button id="cierroTrans" type="button" class="btn btn-default" style="color:white;background:orange;border:transparent;text-shadow:none;font-size:2em;"
+												 data-prueba="{{$origen}}" >Cerrar
+												 </button>
+											<?php
+											}
+											?>
+											
+											</div>
+										</div>
 									</form>
 								</div>
 							</div>
@@ -148,3 +199,4 @@
 </div>
 
 @overwrite
+

@@ -18,7 +18,7 @@
   </div>
 <div class="row">
   <div class="row" style="margin-bottom: 1em;">
-    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >Mis Pre-contratos:</font></div>
+    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >Mis Negociaciones:</font></div>
   </div>
 </div>
 @foreach ($contratos as $contrato)
@@ -32,10 +32,7 @@ foreach($usuarios as $usuario){
  <div class="oferta estaOnline">
   <div class="media">
     <div class="media-left">
-      <a href="{{ $usuario->linkedinProfile}}">
-
-        <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" alt="<?php echo $usuario->name;?>">
-      </a>
+         <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" alt="<?php echo $usuario->name;?>">
     </div>
     <div class="media-body">
       <div class="row">
@@ -45,23 +42,24 @@ foreach($usuarios as $usuario){
               <?php
 
               if ($contrato['moneda'] == "usd"){
-                echo "vendo";
+                echo "<font style='color:orange;font-size:1.2em;'>VENDO </font>";
               }else if($contrato['moneda'] == "uyu"){
-                echo "compro ";
+                echo "<font style='color:white;font-size:1.2em;'>COMPRO </font>";
               }
+
 
               ?>
             </h5>
           </div>
           <div class="row">
             <h5 class="media-heading">
-              <span class="enDolares">
+              <span class="enDolares" font style="color:white;font-size:1.2em;">
                 <?php
 
                 if ($contrato['moneda'] == "usd"){
-                  echo "  us$ ".$contrato['cantidad'];
+                  echo "  US$ ".$contrato['cantidad'];
                 }else if($contrato['moneda'] == "uyu"){
-                  echo "  us$ ".$contrato['resultado'];
+                  echo "  US$ ".$contrato['resultado'];
                 }
 
                 ?>

@@ -438,11 +438,11 @@
 
     $('#hazReserva').on('click', function(){
 //alert('entro a reservar...' + parseFloat(elId));      
-      bloqueoUI();
+      //bloqueoUI();
       $botonRes = $(this);
       data = "idoferta=" + elId;
       $.ajax({ 
-        method: "POST", 
+        type: "POST", 
         url: "reservarOferta", 
         data: data,
         success: function(result){
@@ -452,14 +452,14 @@
 		            $botonRes.attr("color", "white");
 		            $botonRes.text("Reservado!");
 		            $botonRes.removeClass('animate infinite pulse');
-                $.unblockUI();
+                //$.unblockUI();
                 $('#elId').val(elId).closest('.container-fluid').fadeOut('slow');
                 elId = '';
 //ver si va aca esto
-/*
+
                 bloqueoUI();
                 location.reload();
-*/                
+             
               }else{
                $botonRes.text("error");
                if(confirm('No se pudo reservar la oferta')){
@@ -468,7 +468,7 @@
             }
           } 
         });
-
+/*
 //alert ('llegue fuera de la funcion...:')
 //La funcion del ajax da error, sin embargo si esta grabando en la BD, como workAround quito el ctrl de errores
 //Da un error en el POST pero sigue de largo
@@ -481,7 +481,7 @@
         elId = '';
 
         location.reload();
-
+*/
     });
 
 //Borrar oferta
@@ -517,6 +517,11 @@
     $(".calificar").click(function(){
       var id = $(this).data("id");
       var token = $(this).data("token");
+
+    //ver si el estilo termina pasando o como termino pasando el estlo sino ....?
+    //el token apentemente no lo paso tampoco ...? ver si lo usaria
+    // var estilo = $(this).data("estilo");
+
       location.href = "{{url('transaccion/calificar/')}}/"+id;
     });
 
@@ -547,17 +552,19 @@
 
     });
 
+
     $(".concretada").click(function(){
       bloqueoUI();
       var id = $(this).data("id");
       var token = $(this).data("token");
+   
       if(confirm('luego de concretar la oferta deberas calificar la transaccion')){
         $.ajax(
         {
-         url: "{{url('oferta/concretar')}}/"+id,
-         type: 'POST',
-         dataType: "JSON",
-         data: {
+        url: "{{url('oferta/concretar')}}/"+id,
+        type: 'POST',
+        dataType: "JSON",
+        data: {
           "id": id,
           "_method": 'POST',
           "_token": token,
@@ -570,24 +577,54 @@
       }else{
         $.unblockUI();
       }
-
-
     });
 
-    $('.kv-ltr-theme-fa-star').rating({
-      hoverOnClear: false,
-      showCaption:false,
-      theme: 'krajee-fa'
+
+    $(".concretada2").click(function(){
+      bloqueoUI();
+      var id = $(this).data("id");
+      var token = $(this).data("token");
+      
+      //ahistoria = $(this).data("historia");
+
+      location.href = "{{url('transaccion/calificarh/')}}/"+id;
     });
-    
+
+    $('#contenedorCalif').find('#cierroTrans').on('click', function(){
+      bloqueoUI();
+
+      //var idUsr = $(this).data("idUsr");
+      aVengo  = $(this).data("prueba");
+      //Vengo desde desde negociaciones 
+      if (aVengo=="N")
+      {
+          var idUsr = $('#idUsrCon').val();
+          location.href = "{{url('usuario/negociaciones/')}}/"+idUsr;
+      }
+      else   // aVengo=="O"
+      {
+          var idUsr = $('#idUsr').val();
+          location.href = "{{url('usuario/ofertas/')}}/"+idUsr;
+      }
+    });
+
+      //codigo de las estrellas
+      $('.kv-ltr-theme-fa-star').rating({
+         hoverOnClear: false,
+         showCaption:false,
+         theme: 'krajee-fa'
+       });
+
+
+
     $('#input-2-ltr-star-sm').on('rating.change', function(event, value, caption) {
-     bloqueoUI();
-     idTrans = $('#idTrans').val();
-     var token = $(this).data("token");
-     var comentario = $('#dejarComment').val();
-     idUsr = $('#idUsr').val();
-     var dejar_comment = false;
-     if($('#dejarComment').val() == ""){
+    bloqueoUI();
+    idTrans = $('#idTrans').val();
+    var token = $(this).data("token");
+    var comentario = $('#dejarComment').val();
+    idUsr = $('#idUsr').val();
+    var dejar_comment = false;
+    if($('#dejarComment').val() == ""){
       dejar_comment = confirm('Seguro que no quiere dejar un comentario?');
 
     } 
@@ -613,17 +650,26 @@
         {
 
           /*todo: modal para voto satisfactorio mostrando las estrellas y el comment del usuario y los otros comments y el promedio del usuario */
-           /* $('#myModal').find('#modal-body').html('Voto enviado con exito');
+          /* $('#myModal').find('#modal-body').html('Voto enviado con exito');
             $('#myModal').find('#myModalLabel').text('Transaccion Exitosa');
             $('#myModal').modal();*/
             alert(result.succes);
+            //ver si esta bien que lo mande a la oferta 
             location.href = "{{url('oferta')}}";
+
+            //o deberia mandarlo a negociaciones como esta hecho en el cerrar, codigo debajo
+            /*
+            var idUsr = $('#idUsrCon').val();
+            location.href = "{{url('usuario/negociaciones/')}}/"+idUsr;
+            */  
+            
           }
         });
-    }else{
-      $.unblockUI();
-    }
-  }); 
+      }else{
+        $.unblockUI();
+      }
+    }); 
+
 
     $(".modal-transparent").on('show.bs.modal', function () {
       setTimeout( function() {

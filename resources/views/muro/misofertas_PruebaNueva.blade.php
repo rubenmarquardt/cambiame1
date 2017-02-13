@@ -159,35 +159,28 @@
 
 @endforeach
 
-<!-- muestro el historico de mis ofertas, donde yo quise vender -->
+<!-- prueba de precontratos -->
 
 <div class="row">
   <div class="row" style="margin-bottom: 1em;">
-    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" > Historico de Ofertas</font></div>
+    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" > PRUEBA VIEJO: - Mis Pre-contratos:</font></div>
   </div>
 </div>
-
-@foreach ($contratosC as $contratoC)
+@foreach ($contratos as $contrato)
 <?php
-
 //busco usuario dueño de la oferta reservada
-//echo 'entre '. $contratoC->concretada;
-
-$usuarios = App\Models\User::where('id', $contratoC['user_id'])->get();
+$usuarios = App\Models\User::where('id', $contrato['user_id'])->get();
 foreach($usuarios as $usuario){
-
-//por ahora limito el array a las ofertas no concretadas
-
- if ($contratoC->concretada !== 0)
- {
-
 ?> 
  <!-- todo: mostrar si el usuario esta online -->
- 
- <div class="oferta noestaOnline">
+
+ <div class="oferta estaOnline">
   <div class="media">
     <div class="media-left">
+      <a href="{{ $usuario->linkedinProfile}}">
+
         <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" alt="<?php echo $usuario->name;?>">
+      </a>
     </div>
     <div class="media-body">
       <div class="row">
@@ -196,10 +189,10 @@ foreach($usuarios as $usuario){
             <h5 class="media-heading">
               <?php
 
-              if ($contratoC['moneda'] == "usd"){
-                echo "<font style='color:orange;font-size:1.2em;'>VENDIO</font>";
-              }else if($contratoC['moneda'] == "uyu"){
-                echo "<font style='color:white;font-size:1.2em;'>COMPRÓ</font>";
+              if ($contrato['moneda'] == "usd"){
+                echo "<font style='color:orange;'>vendo</font>";
+              }else if($contrato['moneda'] == "uyu"){
+                echo "<font style='color:white;'>compro</font>";
               }
 
               ?>
@@ -207,13 +200,13 @@ foreach($usuarios as $usuario){
           </div>
           <div class="row">
             <h5 class="media-heading">
-              <span class="enDolares" font style="color:white;font-size:1.2em;">
+              <span class="enDolares" font style="color:white;">
                 <?php
 
-                if ($contratoC['moneda'] == "usd"){
-                  echo "  US$ ".$contratoC['cantidad'];
-                }else if($contratoC['moneda'] == "uyu"){
-                  echo "  US$ ".$contratoC['resultado'];
+                if ($contrato['moneda'] == "usd"){
+                  echo "  us$ ".$contrato['cantidad'];
+                }else if($contrato['moneda'] == "uyu"){
+                  echo "  us$ ".$contrato['resultado'];
                 }
 
                 ?>
@@ -223,11 +216,11 @@ foreach($usuarios as $usuario){
           <div class="row">
             <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
               <p>
-                <font class="muroOferta" style="font-size:1.3em;">
+                <font class="muroOferta" style="font-size:1.2em;">
                  <span class="currencyLabel">
                   <?php
 
-                  switch ($contratoC['moneda']) {
+                  switch ($contrato['moneda']) {
                     case 'usd':
                     echo "$ ";
                     break;
@@ -236,12 +229,12 @@ foreach($usuarios as $usuario){
                     break;
                   }
 
-                  switch ($contratoC['moneda']) {
+                  switch ($contrato['moneda']) {
                     case 'usd':
-                    echo $contratoC['resultado'];
+                    echo $contrato['resultado'];
                     break;
                     default:
-                    echo $contratoC['cantidad'];
+                    echo $contrato['cantidad'];
                     break;
                   }
 
@@ -254,36 +247,26 @@ foreach($usuarios as $usuario){
       </div>
     </div>
   </div>
-<!-- 
-   Ver si queda bien mostrar directamente fecha y comentario
-   Y/o Cambiar el icono para que muestre la trn de calificacion en modo lectura.
--->
+
   <div class="media-right" >
     <div class="row text-center botonCallToAction " style="background:#ffa500;" >
       <div class="vcenter">
         <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-center" style="margin-right:1em;">
-          <font style="color:white;"> <?php echo  substr($contratoC['updated_at'],0,10);?> </font>
+          <img src="{{ url('images/negociacionconcretada.png') }}" class="concretada img-responsive" data-id="{{ $contrato['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
         </div>
-        <!--
-            <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-center" style="margin-right:1em;">
-              <font style="color:white;"> <?php // echo $contratoC['comentario'];?> </font>          
-            </div>
-        -->
         <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-center" style="margin-right:1em;">
-          <img src="{{ url('images/calificado.png') }}" class="concretada2 img-responsive" data-id="{{ $contratoC['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+          <img src="{{ url('images/liberarnegociacion.png') }}" class="liberar img-responsive" data-id="{{ $contrato['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
         </div>
-
       </div>
     </div>
   </div>
 </div>
 </div>
-<?php 
-  }
-
- }
-?>
+<?php }?>
 @endforeach
+
+<!--Aqui esta el foreach de los pre-contratos -->
+<!--Ver si este div overrite esta bien aca -->
 
 </div>
 @overwrite
