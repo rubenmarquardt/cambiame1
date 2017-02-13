@@ -24,9 +24,16 @@
       <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >Mis Negociaciones:</font></div>
     </div>
   </div>
+<!--sino tengo ningun contrato (oferta reservada) negociado explota , tengo que tener uno negociado al menos
+hay que hacer prog defensiva xq sino tengo ningun contrato no queda instanciada la variable y reviente el codigo
+el codigo de abajo no funca tampoco
+-->
+  @if (!empty($contratos))
   @foreach ($contratos as $contrato)
   <?php
-//busco usuario dueño de la oferta reservada
+ //busco usuario dueño de la oferta reservada
+  if (isset($contrato)) {
+
   $usuarios = App\Models\User::where('id', $contrato['user_id'])->get();
   foreach($usuarios as $usuario){
     ?> 
@@ -137,7 +144,140 @@
   </div>
 </div>
 </div>
-<?php }?>
+<?php }
+ }
+?>
 @endforeach
+@endif
+
+<!-- muestro el historico de mis negociaciones, donde yo quise comprar -->
+
+<div class="row">
+  <div class="row" style="margin-bottom: 1em;">
+    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" > Historico de Negociaciones :</font></div>
+  </div>
+</div>
+
+@foreach ($contratosC as $contratoC)
+<?php
+//busco usuario dueño de la oferta reservada
+$usuarios = App\Models\User::where('id', $contratoC['user_id'])->get();
+foreach($usuarios as $usuario){
+ 
+?> 
+ <!-- todo: mostrar si el usuario esta online -->
+ 
+ <div class="oferta noestaOnline">
+  <div class="media">
+    <div class="media-left">
+        <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" alt="<?php echo $usuario->name;?>">
+    </div>
+    <div class="media-body">
+      <div class="row">
+        <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
+          <div class="row">
+            <h5 class="media-heading">
+              <?php
+
+              if ($contratoC['moneda'] == "usd"){
+                echo "<font style='color:orange;font-size:1.2em;'>VENDIO</font>";
+              }else if($contratoC['moneda'] == "uyu"){
+                echo "<font style='color:white;font-size:1.2em;'>COMPRÓ</font>";
+              }
+
+              ?>
+            </h5>
+          </div>
+          <div class="row">
+            <h5 class="media-heading">
+              <span class="enDolares" font style="color:white;font-size:1.2em;">
+                <?php
+
+                if ($contratoC['moneda'] == "usd"){
+                  echo "  US$ ".$contratoC['cantidad'];
+                }else if($contratoC['moneda'] == "uyu"){
+                  echo "  US$ ".$contratoC['resultado'];
+                }
+
+                ?>
+              </span>
+            </h5>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
+              <p>
+                <font class="muroOferta" style="font-size:1.2em;">
+                 <span class="currencyLabel">
+                  <?php
+
+                  switch ($contratoC['moneda']) {
+                    case 'usd':
+                    echo "$ ";
+                    break;
+                    default:
+                    echo "$ ";
+                    break;
+                  }
+
+                  switch ($contratoC['moneda']) {
+                    case 'usd':
+                    echo $contratoC['resultado'];
+                    break;
+                    default:
+                    echo $contratoC['cantidad'];
+                    break;
+                  }
+
+                  ?>
+                </span>
+              </font>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- 
+   Ver si queda bien mostrar directamente fecha y comentario
+   Y/o Cambiar el icono para que muestre la trn de calificacion en modo lectura.
+-->
+  <div class="media-right" >
+    <div class="row text-center botonCallToAction " style="background:#ffa500;" >
+      <div class="vcenter">
+        <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-center" style="margin-right:1em;">
+          <font style="color:white;"> <?php echo  substr($contratoC['updated_at'],0,10);?> </font>
+        </div>
+        <!--
+        <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-center" style="margin-right:1em;">
+          <font style="color:white;"> <?php //echo $contratoC['comentario'];?> </font>          
+        </div>
+        -->
+        <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-center" style="margin-right:1em;">
+          <!--
+          <img src="{{ url('images/negociacionconcretada.png') }}" class="img-responsive concretada" data-id="{{ $contrato['id'] }}" data-estilo="disabled:true" />
+          -->
+          <!-- no se esta cargando la variable -->
+          <input type="hidden" id="idHistoria" />
+          <!-- cambiar a la clase concretada2 -->
+          <img src="{{ url('images/calificado.png') }}" class="concretada2 img-responsive" data-id="{{ $contratoC['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<?php 
+  }
+
+?>
+@endforeach
+
+
+
+
+
+
+
 </div>
 @overwrite
