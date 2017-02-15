@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => 'contacto@cambiame.uy',
-        'name' => 'Bot de Cambiame.uy',
+        'name' => 'Notificación de Cambiame',
     ],
 
     /*
