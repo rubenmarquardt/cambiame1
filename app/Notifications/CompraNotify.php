@@ -62,11 +62,22 @@ class CompraNotify extends Notification
         $subset=$oferta->sortByDesc('updated_at')->first();
         $cantidad=$subset->cantidad;
         $moneda=$subset->moneda;
+        $resultado=$subset->resultado;
         
         //busca la primer reserva del comprador en la tabla (deberia ser la última q se actualizó)   
         /*$oferta = Oferta::where('reserva', $userId)->first();
         $cantidad=$oferta->cantidad;
         $moneda=$oferta->moneda;*/
+
+        //selecciona respuesta dependiendo la moneda (solamente permite ahora dolares o pesos)
+       if ($moneda=='usd'){
+            $tipo1='U$S';
+            $tipo2='UY$';
+        }
+        else{
+            $tipo1='UY$';
+            $tipo2='US$';
+        }
 
         //busca el vendedor
         $vendeId=$subset->user_id;
@@ -80,7 +91,7 @@ class CompraNotify extends Notification
                     ->success()
                     ->subject('Estás negociando en Cambiame')
                     ->greeting('Hola ' . $this->user->name . ' ya estás negociando')
-                    ->line('Quieres comprar: ' . $moneda . ' ' . $cantidad)                  
+                    ->line('Quieres comprar: ' . $tipo1 . ' ' . $cantidad .' a ' . $tipo2 . ' ' . $resultado)                  
                     /*montoOfertado*/
                     ->line('Contactate con el usuario: ' .$nameVende . ' ' . $celVende . ' ' . $emailVende)
                     /*datos: nombre, email y celular*/
