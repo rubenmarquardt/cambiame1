@@ -50,9 +50,9 @@
       <div class="row">
         <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6 col-xs-offset-3 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 text-center" style="background:green;margin-top:6px">
           @if(!Auth::check())
-            <button type="button" class="sinLogin" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:0.8em;color:white;">PUBLICAR  OFERTA</font></button> 
+            <button type="button" class="sinLogin" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:1.4em;color:white;">VENDER</font></button> 
          @else
-            <button type="button" id="publicarOfer" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:0.8em;color:white;">PUBLICAR OFERTA</font></button>
+            <button type="button" id="publicarOfer" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:1.4em;color:white;">VENDER</font></button>
          @endif
         </div>
       </div>
@@ -195,7 +195,7 @@
       -->
       <button type="button" name="contactar" data-celular="" type="button" class="sinLogin" style="background:transparent;border:transparent;">
         <font class="negociar">          
-        NEGOCIAR
+        COMPRAR
         </font>
       </button>
       @else
@@ -205,7 +205,7 @@
       <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
       <button type="button" name="contactar" data-celular="{{$tmp['name']}}" data-prueba="O" type="button" class="whatsapp" style="background:transparent;border:transparent;">
         <font class="negociar">
-          NEGOCIAR
+          COMPRAR
         </font>
       </button>
       @endif
