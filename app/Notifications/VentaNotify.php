@@ -61,12 +61,14 @@ class VentaNotify extends Notification
         $moneda=$subset->moneda;
         $resultado=$subset->resultado;
 
-        //selecciona respuesta dependiendo la moneda
+        //selecciona respuesta dependiendo la moneda (solamente permite ahora dolares o pesos)
         if ($moneda=='usd'){
-            $tipo='uyu';
+            $tipo1='U$S';
+            $tipo2='UY$';
         }
         else{
-        $tipo='usd';
+            $tipo1='UY$';
+            $tipo2='US$';
         }
         //busca el comprador
         $compraId=$subset->reserva;
@@ -79,7 +81,7 @@ class VentaNotify extends Notification
                     ->subject('Te están negociando en Cambiame')
                     ->greeting('Hola ' . $this->user->name)
                     ->line('Te quieren comprar tu oferta de:')
-                    ->line($moneda . ' ' . $cantidad .' a ' . $tipo . ' ' . $resultado)                    
+                    ->line($tipo1 . ' ' . $cantidad .' a ' . $tipo2 . ' ' . $resultado)                    
                     /*montoOfertado*/
                     ->line('Contactate con el comprador:')
                     ->line($nameCompra)
