@@ -69,9 +69,11 @@
     <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >Mis Ofertas:</font></div>
   </div>
 
+  <!-- mostrar las ofertas del usuario no concretadas-->
   @foreach ($ofertas as $oferta)
-  <!-- todo: mostrar las ofertas propias que estan en proceso de negociacion -->
   
+  @if($oferta['concretada'] == 0)
+
   <div class="oferta estaOnline">
     <div class="media">
       <div class="media-left">
@@ -103,6 +105,7 @@
                   }else if($oferta['moneda'] == "uyu"){
                     echo "  US$ ".$oferta['resultado'];
                   }
+              //    echo 'tengo oferta' .  $oferta['id'] ;
 
                   ?>
                 </span>
@@ -147,16 +150,33 @@
       <!--
         <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
       -->
-      <button type="button" style="background:transparent;border:transparent;">
-            <div class="media-right" >
-                <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="70%" />
-             </div> 
-        </button>
+
+      <!-- solo muestro el dejo borrar cuando no esta reservada aun -->
+	      <?php 
+          if (trim($oferta['reserva']) =="0") 
+				  {
+				?> 	
+            <button type="button" style="background:transparent;border:transparent;">
+                <div class="media-right" >
+                    <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="70%" />
+                </div> 
+            </button>
+        <?php 
+					}
+					else
+					{
+ 				?> 	
+          <label class="negociar"> OFERTA RESERVADA
+					</label>
+        <?php	
+					}
+				?>
+
       </div>
     </div>
   </div>
 </div>
-
+@endif
 @endforeach
 
 <!-- muestro el historico de mis ofertas, donde yo quise vender -->
