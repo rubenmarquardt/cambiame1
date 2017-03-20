@@ -38,8 +38,9 @@ class OfertaController extends Controller
 
         // $contratosConcretados = Oferta::where('concretada', '!==', $id)->get();
         //tendria qque hacer un and para evitar las que tienen 0
-         $contratosConcretados = Oferta::where('concretada', '<>', $id)->get();    
-
+       //$contratosConcretados = Oferta::where('concretada', '<>', $id)->get();    
+         $contratosConcretados = Oferta::where('concretada', '<>', $id)->orderBy('updated_at', 'desc')->get();
+      
         if($this->userId == @$ofertasUser->first()->user_id){
             $usuario = User::where('id', $id)->get();
             return View::make('muro.misofertas')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario)->with('contratos', $contratosNegociables)->with('contratosC', $contratosConcretados);
@@ -57,8 +58,10 @@ class OfertaController extends Controller
     //aqui deberia cargar las trns ya conretadas
     //pero no todas sino las del usuario que estoy leyendo, o sea de quien esta mirando sus negociaciones
     //ver donde me conviene si aca o en el for each de misnegociaciones
-        $contratosConcretados = Oferta::where('concretada', $id)->get();
 
+    // $contratosConcretados = Oferta::where('concretada', $id)->get();
+     $contratosConcretados = Oferta::where('concretada', $id)->orderBy('updated_at', 'desc')->get();
+        
     //ahora como cargo las del usuario que necesito     ?
     //en realidad creo que ese filtro se esta hacciendo abajo
     //hay que pensarlo al reves en el caso de mis compras

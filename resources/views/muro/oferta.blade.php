@@ -69,9 +69,9 @@
 </div>
 
 <div class="row" id="page-content">
-
+<!--cambio el concepto solo muestro ofertas no concretadas -->
   @foreach ($ofertas as $oferta)
-  @if($oferta['reserva'] == 0)
+  @if($oferta['concretada'] == 0)
 
 
   <?php
@@ -143,7 +143,7 @@
                 }else if($oferta['moneda'] == "uyu"){
                   echo "  US$ ".$oferta['resultado'];
                 }
-
+                  //echo 'tengo oferta' .  $oferta['id'] ;
                 ?>
               </span>
             </h5>
@@ -202,11 +202,28 @@
           <!--
           <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
           -->
-          <button type="button" style="background:transparent;border:transparent;">
-            <div class="media-right" >
-                <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="70%" />
-             </div> 
-          </button>
+          <!-- solo muestro el dejo borrar cuando no esta reservada aun  No estaria funcionando aparentemente....-->
+            <?php 
+              if (trim($oferta['reserva']) =="0") 
+              {
+            ?> 	
+                <button type="button" style="background:transparent;border:transparent;">
+                  <div class="media-right" >
+                      <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="70%" />
+                  </div> 
+                </button>
+            <?php 
+              }
+              else
+              {
+            ?> 	
+              <label class="negociar"> OFERTA RESERVADA
+              </label>
+            <?php	
+              }
+            ?>
+
+         
       @else
       <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
       <button type="button" name="contactar" data-celular="{{$tmp['name']}}" data-prueba="O" type="button" class="whatsapp" style="background:transparent;border:transparent;">

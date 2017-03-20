@@ -591,7 +591,7 @@
     });
 
     $('#contenedorCalif').find('#cierroTrans').on('click', function(){
-      bloqueoUI();
+      //bloqueoUI();
 
       //var idUsr = $(this).data("idUsr");
       aVengo  = $(this).data("prueba");
@@ -624,13 +624,24 @@
     var comentario = $('#dejarComment').val();
     idUsr = $('#idUsr').val();
     var dejar_comment = false;
-    if($('#dejarComment').val() == ""){
-      dejar_comment = confirm('Seguro que no quiere dejar un comentario?');
 
-    } 
+    var comentarioSesp = comentario.trim();
+
+    //if($('#dejarComment').val() == ""){
+    if (comentarioSesp == "")  
+    {  
+      alert('Debe dejar un comentario de la transaccion');
+      dejar_comment = false
+    }
+    else
+      dejar_comment = true;
+     
+    /*
     if($('#dejarComment').val() !== "" ){
+
       dejar_comment = true;
     }
+    */
     if (dejar_comment){
 
       $.ajax(
