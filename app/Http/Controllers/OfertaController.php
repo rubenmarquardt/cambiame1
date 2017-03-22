@@ -46,7 +46,9 @@ class OfertaController extends Controller
             return View::make('muro.misofertas')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario)->with('contratos', $contratosNegociables)->with('contratosC', $contratosConcretados);
         }
 
-        return "tu vieja";
+        //si llega aca es que el usuario no tiene ofertas aun lo redirijo a la pagina de ofertas
+        //return "tu vieja";
+        return redirect('oferta');
     }
 
     public function negociacionesUser($id){
@@ -71,7 +73,10 @@ class OfertaController extends Controller
             return View::make('muro.misnegociaciones')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario)->with('contratos', $contratosNegociables)->with('contratosC', $contratosConcretados) ;
         }
 
-        return "tu vieja";
+        //si llega aca es que el usuario no tiene negociaciones aun
+        //si llega aca es que el usuario no tiene ofertas aun lo redirijo a la pagina de ofertas
+        return redirect('oferta');
+       // return "tu vieja";
     }
     
     public function getInterbancario()
