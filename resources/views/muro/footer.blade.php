@@ -124,9 +124,9 @@
 </div>
 -->
 <!-- JavaScripts -->
-<script src="{{url('js')}}/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+<script src="{{url('js')}}/jquery.min.js"></script>
 
-<script src="{{url('js')}}/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="{{url('js')}}/bootstrap.min.js"></script>
 
 <script src="{{url('js')}}/clipboard.min.js"></script>
 <script src="{{url('js')}}/star-rating.min.js" type="text/javascript"></script>
