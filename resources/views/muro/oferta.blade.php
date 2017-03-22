@@ -69,11 +69,11 @@
 </div>
 
 <div class="row" id="page-content">
-<!--cambio el concepto solo muestro ofertas no concretadas -->
+<!--cambio el concepto solo muestro ofertas no concretadas ni reservadas-->
   @foreach ($ofertas as $oferta)
-  @if($oferta['concretada'] == 0)
-
-
+  @if($oferta['concretada'] == 0) 
+  @if($oferta['reserva'] == 0) 
+                    
   <?php
 
   $tmp = App\Models\User::where('id', $oferta['user_id'])->first();
@@ -239,6 +239,7 @@
 
 
 </div>
+@endif
 @endif
 @endforeach
 </div>
