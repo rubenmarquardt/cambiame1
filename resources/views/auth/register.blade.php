@@ -64,7 +64,7 @@
                     </div>    
                     <div class="form-group{{ $errors->has('terms') ? ' has-error' : '' }}">
                     <label class="col-md-4 control-label">
-                                ¿Aceptas los<a href="http://cambiame.uy/terminos.html" target=_blank >Términos y Condiciones</a>?
+                                ¿Aceptas los <a href="http://cambiame.uy/terminos.html" target=_blank >Términos y Condiciones</a>?
                             </label>
                     <div class="col-md-6">
                     <input type="checkbox" class="form-control" name="terms" id="terms" value="{{ old('terms') ?: 'checked' }}" />
