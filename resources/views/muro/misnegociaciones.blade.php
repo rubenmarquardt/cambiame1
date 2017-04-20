@@ -31,9 +31,9 @@ el codigo de abajo no funca tampoco
   @if (!empty($contratos))
   @foreach ($contratos as $contrato)
   <?php
- //busco usuario dueño de la oferta reservada
-  if (isset($contrato)) {
-
+  //busco usuario dueño de la oferta reservada
+  if (isset($contrato)&&$contrato['concretada'] == 0) {
+ 
   $usuarios = App\Models\User::where('id', $contrato['user_id'])->get();
   foreach($usuarios as $usuario){
     ?> 
@@ -123,19 +123,25 @@ el codigo de abajo no funca tampoco
 
         <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4" style="padding-left:1px;padding-right:1px;">
           <div class="blockCenter">
-            <img src="{{ url('images/negociacionconcretada.png') }}" class="img-responsive concretada" data-id="{{ $contrato['id'] }}" />
+            <button type="button" style="background:transparent;border:transparent;"> 
+                <img src="{{ url('images/negociacionconcretada.png') }}" class="img-responsive concretada" data-id="{{ $contrato['id'] }}" />
+            </button>   
           </div>
         </div>
         <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4" style="padding-left:1px;padding-right:1px;">
           <div class="blockCenter">
-           <img src="{{ url('images/liberarnegociacion.png') }}" class="img-responsive liberar" data-id="{{ $contrato['id'] }}"/>
+           <button type="button" style="background:transparent;border:transparent;">
+                <img src="{{ url('images/liberarnegociacion.png') }}" class="img-responsive liberar" data-id="{{ $contrato['id'] }}"/>
+          </button>   
          </div>
        </div>
   <!-- comento el boton de wp-->     
   <!-- emprolijar para que el campo no se llame data-celular -->
        <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4" style="padding-left:1px;padding-right:1px;">
         <div class="blockCenter">
+          <button type="button" style="background:transparent;border:transparent;">
              <img src="{{ url('images/email.png') }}" class="img-responsive whatsapp" data-celular="{{$usuario->name}}" data-prueba="N" />
+          </button>   
         </div>
       </div>
 
@@ -244,7 +250,7 @@ foreach($usuarios as $usuario){
   <div class="media-right" >
     <div class="row text-center botonCallToAction " style="background:#ffa500;" >
       <div class="vcenter">
-        <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-center" style="margin-right:1em;">
+        <div class="col-sm-7 col-xs-7 col-lg-7 col-md-7 text-center" style="padding-left:1px">
           <font style="color:white;"> <?php echo  substr($contratoC['updated_at'],0,10);?> </font>
         </div>
         <!--
@@ -252,14 +258,15 @@ foreach($usuarios as $usuario){
           <font style="color:white;"> <?php //echo $contratoC['comentario'];?> </font>          
         </div>
         -->
-        <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-center" style="margin-right:1em;">
+        <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4 text-center" style="padding-left:1px;padding-right:1px;">
           <!--
           <img src="{{ url('images/negociacionconcretada.png') }}" class="img-responsive concretada" data-id="{{ $contrato['id'] }}" data-estilo="disabled:true" />
           -->
           <!-- no se esta cargando la variable -->
           <input type="hidden" id="idHistoria" />
-          <!-- cambiar a la clase concretada2 -->
-          <img src="{{ url('images/calificado.png') }}" class="concretada2 img-responsive" data-id="{{ $contratoC['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+          <button type="button" style="background:transparent;border:transparent;">
+              <img src="{{ url('images/calificado.png') }}" class="concretada2 img-responsive" data-id="{{ $contratoC['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+          </button>
         </div>
 
       </div>
