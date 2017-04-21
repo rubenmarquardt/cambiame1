@@ -45,7 +45,7 @@
           <h4 style="font-size:1.8em;color:white;" id="pizarra"> </h4>
         </div>
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center" style="margin-bottom: 3px;">
-          <font style="font-size:0.8em;color:black;" > En cambios te darian <div id="enCambios"></div> </font>
+          <font style="font-size:1.2em;color:black;" > En cambios te darian <div id="enCambios"></div> </font>
         </div>
       </div>
       <div class="row">
@@ -62,7 +62,7 @@
 </div>
 <!--Agrego una fila de espacios xq no me toma el margen superior -->
 <div class="row">
-    <font style="font-size:0.8em;color:white;">'</font>
+    <font style="font-size:1.2em;color:white;">'</font>
 </div>
 <div class="row">
   <div class="row" style="margin-bottom: 1em;">
@@ -281,7 +281,8 @@ foreach($usuarios as $usuario){
   <div class="media-right" >
     <div class="row text-center botonCallToAction " style="background:#ffa500;" >
       <div class="vcenter">
-        <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-center" style="margin-right:1em;">
+        
+        <div class="col-sm-7 col-xs-7 col-lg-7 col-md-7 text-center" style="padding-left:1px">
           <font style="color:white;"> <?php echo  substr($contratoC['updated_at'],0,10);?> </font>
         </div>
         <!--
@@ -289,10 +290,11 @@ foreach($usuarios as $usuario){
               <font style="color:white;"> <?php // echo $contratoC['comentario'];?> </font>          
             </div>
         -->
-        <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-center" style="margin-right:1em;">
-          <img src="{{ url('images/calificado.png') }}" class="concretada2 img-responsive" data-id="{{ $contratoC['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
-        </div>
-
+        <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4 text-center" style="padding-left:1px;padding-right:1px;">
+            <button type="button" style="background:transparent;border:transparent;">
+               <img src="{{ url('images/calificado.png') }}" class="concretada2 img-responsive" data-id="{{ $contratoC['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+            </button>      
+         </div>     
       </div>
     </div>
   </div>

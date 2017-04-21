@@ -337,8 +337,7 @@ class OfertaController extends Controller
                 $oferta->comentario = $request['comentario'];
             }
             if($oferta->save()){
-//aqui pone el campo concretada en 1, ya sea positiva o negativamente (como esta hoy en dia)
-                return response()->json(["succes"=>"calificacion guardada!"]);
+                return response()->json(["succes"=>"Operacion Finalizada con exito !"]);
             }else{
                 return 1;
             }

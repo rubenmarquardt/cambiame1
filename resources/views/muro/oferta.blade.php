@@ -44,7 +44,7 @@
           <h4 style="font-size:1.8em;color:white;" id="pizarra"> </h4>
         </div>
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center" style="margin-bottom: 3px;">
-          <font style="font-size:0.8em;color:black;" > En cambios te darian <div id="enCambios"></div> </font>
+          <font style="font-size:1.2em;color:black;" > En cambios te darian <div id="enCambios"></div> </font>
         </div>
       </div>
       <div class="row">
@@ -61,7 +61,7 @@
 </div>
 <!--Agrego una fila de espacios xq no me toma el margen superior -->
 <div class="row">
-    <font style="font-size:0.8em;color:white;">'</font>
+    <font style="font-size:1.3em;color:white;">'</font>
 </div>
 
 <div class="row" style="marging-top: 10px; margin-bottom: 1em;">

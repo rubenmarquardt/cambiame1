@@ -457,9 +457,10 @@
                 elId = '';
 //ver si va aca esto
 
+               if(confirm('Oferta Reservada con exito! Chequealo en el menu Mis Compras')){
                 bloqueoUI();
                 location.reload();
-             
+                }
               }else{
                $botonRes.text("error");
                if(confirm('No se pudo reservar la oferta')){
@@ -706,13 +707,41 @@
 
   });
 
-  //esta funcion tambien tendria que hacer el formateo de la cantidad para que quede guardada ok ?
+  //esta funcion tambien tendria que hacer el formateo de la cantidad para que quede guardada ok ...
+  //falta el tema del largo solamente
+/*   
 function soloNumeros(e) 
 { 
 var key = window.Event ? e.which : e.keyCode 
 return ((key >= 48 && key <= 57) || (key==8)) 
 }
+*/
 
+//en proceso controlar el valor maximo permitido
+
+ function soloNumeros(e)
+    {
+        // capturamos la tecla pulsada
+        var teclaPulsada= window.Event ? e.which : e.keyCode 
+        // capturamos el contenido del input
+        var valor=document.getElementById("exampleInputAmount").value;
+ 
+        if(valor.length<6)
+        {
+            // 13 = tecla enter
+            // Si el usuario pulsa la tecla enter o el punto y no hay ningun otro
+            // punto
+            if(teclaPulsada==13)
+            {
+                return true;
+            }
+ 
+            // devolvemos true o false dependiendo de si es numerico o no
+            return /\d/.test(String.fromCharCode(teclaPulsada));
+        }else{
+            return false;
+        }
+    }
 
 Number.prototype.formatMoney = function(c, d, t){  
 var n = this, 
