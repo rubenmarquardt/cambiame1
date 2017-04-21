@@ -197,9 +197,14 @@ $usuarios = App\Models\User::where('id', $contratoC['user_id'])->get();
 foreach($usuarios as $usuario){
 
 //por ahora limito el array a las ofertas no concretadas
-
- if ($contratoC->concretada !== 0)
- {
+ 
+ //RETOMAR ESTE PUNTO A VER COMO si anduvo 
+ //VER COMO SE ESTA HACIENDO EN OFERTA CON EL TEMA DEL - tmp (PINTADO DE OFERTAS)
+ //if ($contratoC->concretada !== 0 && $contratoC->user_id==$usuario->id)
+//if ($contratoC->concretada !== 0)
+//if ($contratoC->concretada !== 0 && $contratoC->user_id==$usuario->id)
+if ($contratoC->concretada !== 0 && $contratoC->user_id==$tmp[0]['id'])
+{
 
 ?> 
  <!-- todo: mostrar si el usuario esta online -->
