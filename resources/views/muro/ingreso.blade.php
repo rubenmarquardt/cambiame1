@@ -8,7 +8,7 @@
     <div class="row" >
       <div class="col-sm-4 col-xs-4 col-md-4 text-center ingresos" >
         <div class="moneDiv">
-          <select class="form-control select select-primary select-block mbl" id="selectCambiameMone" style="background-color:orange;">
+          <select class="form-control select select-primary select-block mbl" id="selectCambiameMone" >
             <option value="0" style="font-weight:bold;background:#d8d9d6;color:black;font-size:1.2em;">$</option>
             <option value="1" style="font-weight:bold;background:#d8d9d6;color:black;font-size:1.2em;" selected>US$</option>
           </select>
