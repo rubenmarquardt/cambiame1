@@ -24,10 +24,8 @@
       <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >Mis Negociaciones:</font></div>
     </div>
   </div>
-<!--sino tengo ningun contrato (oferta reservada) negociado explota , tengo que tener uno negociado al menos
-hay que hacer prog defensiva xq sino tengo ningun contrato no queda instanciada la variable y reviente el codigo
-el codigo de abajo no funca tampoco
--->
+<!--sino tengo ningun contrato (oferta reservada) negociado me muestra solo el historico, o sea  var contratoC -->
+
   @if (!empty($contratos))
   @foreach ($contratos as $contrato)
   <?php
@@ -259,9 +257,6 @@ foreach($usuarios as $usuario){
         </div>
         -->
         <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4 text-center" style="padding-left:1px;padding-right:1px;">
-          <!--
-          <img src="{{ url('images/negociacionconcretada.png') }}" class="img-responsive concretada" data-id="{{ $contrato['id'] }}" data-estilo="disabled:true" />
-          -->
           <!-- no se esta cargando la variable -->
           <input type="hidden" id="idHistoria" />
           <button type="button" style="background:transparent;border:transparent;">
