@@ -121,6 +121,7 @@ h1 {
 #exampleInputAmount{
   background: transparent;
   border: none;
+  height: 1.5em;
   text-align: center;
   font-weight:bold;
   color:#494d49;
@@ -139,15 +140,23 @@ h1 {
 
 
 #selectCambiameMone{
-  -webkit-appearance: none;
-  border-radius:0;
+  border-radius:1px;
   width: 6em;
+  height: 3em;
   background: transparent;
-  border: none;
+  border: 1px solid;
   text-align: center;
   font-weight:bold;
   color:#494d49;
 }
+
+/* si no funca esto en el celular probar a ponerle de fondo una imagen
+background: url(../images/down-arrow.png) no-repeat 254px 12px;
+*/
+/*
+  -webkit-appearance: none;
+  -moz-appearance: none;
+*/
 
 .moneDiv {
   margin-right: 32%;
