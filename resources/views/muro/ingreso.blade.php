@@ -19,7 +19,7 @@
       </div>
       <div class="col-sm-4 col-xs-4 col-md-4 text-center ingresos" style="background-color:orange;">
         <div class="row text-center" >
-          <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 ingresos text-center" style="background:orange;">
+          <div class="col-sm-10 col-xs-10 col-lg-10 col-md-10 ingresos text-center" style="background:orange;">
             <button style="background:transparent;border:transparent;margin-top:10px;" data-toggle="collapse" href="#collapseExample" aria-expanded="true" aria-controls="collapseExample" id="contenedorCalc">
               <font style="font-weight:bold;background:orange;font-size:1.2em;" >
                 CALCULAR

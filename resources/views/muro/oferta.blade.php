@@ -17,7 +17,7 @@
             <h4 style="color:white;" id="cantF"> </h4>  
         </div>
       </div> 
-      <div class="row" style="background:#494d49;margin-top:1em;">
+      <div class="row" style="background:#494d49;margin-top:1em;margin-right:1px;">
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center" >
           <h4 style="color:white;" id="uyu">PESOS URUGUAYOS</h4>
           <h4 style="color:white;" id="usd">DOLARES AMERICANOS</h4>
@@ -26,7 +26,7 @@
           <font style="font-size:1.8em;color:white;" id="cantEnUyu"></font>
         </div>
       </div>
-      <div class="row" style="background:green;margin-top:1em;">
+      <div class="row" style="background:green;margin-top:1em;margin-right:1px;">
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
           <h4 style="color:white;">AHORRAS</h4>
         </div>
@@ -34,7 +34,7 @@
           <h4 style="font-size:1.8em;color:white;" id="ahorras"></h4>
         </div>
       </div>
-      <div class="row" style="background:#6e706b;margin-top:1em;">
+      <div class="row" style="background:#6e706b;margin-top:1em;margin-right:1px;">
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
           <h4 style="color:white;">COTIZACION PIZARRA</h4>
           <input type="hidden" value="{{ $elPiza['compra'] or null }}" name="pizarra" id="valPizaComp" />

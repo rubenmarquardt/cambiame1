@@ -18,7 +18,7 @@
             <h4 style="color:white;" id="cantF"> </h4>  
         </div>
       </div> 
-      <div class="row" style="background:#494d49;margin-top:1em;">
+      <div class="row" style="background:#494d49;margin-top:1em;margin-right:1px;">
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center" >
           <h4 style="color:white;" id="uyu">PESOS URUGUAYOS</h4>
           <h4 style="color:white;" id="usd">DOLARES AMERICANOS</h4>
@@ -27,7 +27,7 @@
           <font style="font-size:1.8em;color:white;" id="cantEnUyu"></font>
         </div>
       </div>
-      <div class="row" style="background:green;margin-top:1em;">
+      <div class="row" style="background:green;margin-top:1em;margin-right:1px;">
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
           <h4 style="color:white;">AHORRAS</h4>
         </div>
@@ -35,7 +35,7 @@
           <h4 style="font-size:1.8em;color:white;" id="ahorras"></h4>
         </div>
       </div>
-      <div class="row" style="background:#6e706b;margin-top:1em;">
+      <div class="row" style="background:#6e706b;margin-top:1em;margin-right:1px;">
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
           <h4 style="color:white;">COTIZACION PIZARRA</h4>
           <input type="hidden" value="{{ $elPiza['compra'] or null }}" name="pizarra" id="valPizaComp" />
@@ -51,9 +51,9 @@
       <div class="row">
         <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6 col-xs-offset-3 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 text-center" style="background:green;margin-top:6px">
           @if(!Auth::check())
-            <button type="button" class="sinLogin" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:0.8em;color:white;">PUBLICAR  OFERTA</font></button> 
+            <button type="button" class="sinLogin" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:1.4em;color:white;">VENDER</font></button> 
          @else
-            <button type="button" id="publicarOfer" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:0.8em;color:white;">PUBLICAR OFERTA</font></button>
+            <button type="button" id="publicarOfer" style="margin-top: 10px;background:transparent;border:none;outline:none;"><font style="font-size:1.4em;color:white;">VENDER</font></button>
          @endif
         </div>
       </div>
@@ -62,7 +62,7 @@
 </div>
 <!--Agrego una fila de espacios xq no me toma el margen superior -->
 <div class="row">
-    <font style="font-size:1.2em;color:white;">'</font>
+    <font style="font-size:1.3em;color:white;">'</font>
 </div>
 <div class="row">
   <div class="row" style="margin-bottom: 1em;">
