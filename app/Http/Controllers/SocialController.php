@@ -72,7 +72,7 @@ class SocialController extends Controller {
 
        }
 
-       public function onlineUser($id, $op){
+             public function onlineUser($id, $op){
 
 
            $elId = $id;
@@ -91,5 +91,5 @@ class SocialController extends Controller {
             $tmp->save();
 
        }
-
+        
 }

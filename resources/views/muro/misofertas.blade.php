@@ -158,7 +158,7 @@
 				?> 	
             <button type="button" style="background:transparent;border:transparent;">
                 <div class="media-right" >
-                    <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="70%" />
+                    <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ Hashids::encode($oferta['id']) }}" data-token="{{ csrf_token() }}" height="70%" />
                 </div> 
             </button>
         <?php 
@@ -288,7 +288,7 @@ if ($contratoC->concretada !== 0 && $contratoC->user_id==$tmp[0]['id'])
         -->
         <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4 text-center" style="padding-left:1px;padding-right:1px;">
             <button type="button" style="background:transparent;border:transparent;">
-               <img src="{{ url('images/calificado.png') }}" class="concretada2 img-responsive" data-id="{{ $contratoC['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+               <img src="{{ url('images/calificado.png') }}" class="concretada2 img-responsive" data-id="{{ Hashids::encode($contratoC['id']) }}" data-token="{{ csrf_token() }}" height="100%" />
             </button>      
          </div>     
       </div>

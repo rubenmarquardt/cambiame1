@@ -27,7 +27,7 @@
 
   <!-- Latest compiled and minified JavaScript -->
 
-  <meta name="_token" content="{!! csrf_token() !!}"/>
+  <meta name="_token" content="{{ csrf_token() }}">
 
   <!-- Styles -->
   <link href="{{ url('css/app2.css') }}" rel="stylesheet">
@@ -85,11 +85,11 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               {{ Auth::user()->name }} <span class="caret"></span>
             </a>
-
+           
             <ul class="dropdown-menu" role="menu">
-            <li><a href=" {{ url('usuario/ofertas') }}/{{ Auth::user()->id }}"><i class="fa fa-btn glyphicon glyphicon-star"></i>Mis Ofertas</a></li>
-            <li><a href=" {{ url('usuario/negociaciones') }}/{{ Auth::user()->id }}"><i class="fa fa-btn glyphicon glyphicon-star"></i>Mis Compras</a></li>
-              <li><a href=" {{ action ('SocialController@logoutActivo') }}/{{Auth::user()->id}}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+              <li><a href=" {{ url('usuario/ofertas/'.Hashids::encode(Auth::user()->id)) }}"><i class="fa fa-btn glyphicon glyphicon-star"></i>Mis Ofertas</a></li>
+              <li><a href=" {{ url('usuario/negociaciones/'.Hashids::encode(Auth::user()->id)) }}"><i class="fa fa-btn glyphicon glyphicon-star"></i>Mis Compras</a></li>
+              <li><a href=" {{ action ('SocialController@logoutActivo') }}/{{Auth::user()->id }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
             </ul>
           </li>
           @endif
