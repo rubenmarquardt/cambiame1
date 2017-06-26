@@ -132,6 +132,7 @@
 <script src="{{url('js')}}/star-rating.min.js" type="text/javascript"></script>
 <script src="{{url('js')}}/theme.js" type="text/javascript"></script>
 <script src="{{url('js/jquery.blockUI.js')}}" ></script>
+<script src="{{url('js/hashids.min.js')}}" ></script>
 
 
 <!--script src="js/app.js"></scriptque tiene este archivo que jode??? --> 
@@ -422,8 +423,9 @@
         $('#hazReserva').text("Oferta Reservada!");
         $('#hazReserva').removeClass('animate infinite pulse');
       }  
-
-      elId = $(this).prev().closest('#elId').val();
+      var hashids = new Hashids("esto-es-cambiame", 16, "abcdefghijmoprxyz1236789");
+    
+      elId = hashids.decode($(this).prev().closest('#elId').val());
 
       aCelular = $(this).data("celular");
       $('#numeroCel').text(aCelular);
@@ -487,7 +489,8 @@
 
 //Borrar oferta
     $(".deleteProduct").click(function(){
-    	var id = $(this).data("id");
+      var hashids = new Hashids("esto-es-cambiame", 16, "abcdefghijmoprxyz1236789");
+    	var id =  hashids.decode($(this).data("id"));
     	var token = $(this).data("token");
     	if(confirm('seguro que desea eliminar oferta?')){
 //confirm('Antes de Ejecutar el Ajax');
@@ -516,19 +519,21 @@
     });
 
     $(".calificar").click(function(){
-      var id = $(this).data("id");
+      var hashids = new Hashids("esto-es-cambiame", 16, "abcdefghijmoprxyz1236789");
+    	var id =  hashids.decode($(this).data("id"));
       var token = $(this).data("token");
 
     //ver si el estilo termina pasando o como termino pasando el estlo sino ....?
     //el token apentemente no lo paso tampoco ...? ver si lo usaria
     // var estilo = $(this).data("estilo");
 
-      location.href = "{{url('transaccion/calificar/')}}/"+id;
+      location.href = "{{url('transaccion/calificar/')}}/"+ hashids.encode(id);
     });
 
     $(".liberar").click(function(){
       bloqueoUI();
-      var id = $(this).data("id");
+      var hashids = new Hashids("esto-es-cambiame", 16, "abcdefghijmoprxyz1236789");
+      var id = hashids.decode($(this).data("id"));
       var token = $(this).data("token");
       if(confirm('seguro que desea liberar negociacion?')){
         $.ajax(
@@ -556,7 +561,8 @@
 
     $(".concretada").click(function(){
       bloqueoUI();
-      var id = $(this).data("id");
+      var hashids = new Hashids("esto-es-cambiame", 16, "abcdefghijmoprxyz1236789");
+      var id = hashids.decode($(this).data("id"));   
       var token = $(this).data("token");
    
       if(confirm('luego de concretar la oferta deberas calificar la transaccion')){
@@ -572,7 +578,7 @@
         },
         success: function ()
         {
-          location.href = "{{url('transaccion/calificar/')}}/"+id;
+          location.href = "{{url('transaccion/calificar/')}}/"+ hashids.encode(id);
         }
       });
       }else{
@@ -583,7 +589,7 @@
 
     $(".concretada2").click(function(){
       bloqueoUI();
-      var id = $(this).data("id");
+      var id = $(this).data("id");    
       var token = $(this).data("token");
       
       //ahistoria = $(this).data("historia");
@@ -596,6 +602,8 @@
 
       //var idUsr = $(this).data("idUsr");
       aVengo  = $(this).data("prueba");
+      var hashids = new Hashids("esto-es-cambiame", 16, "abcdefghijmoprxyz1236789");
+       
       //Vengo desde desde negociaciones 
       if (aVengo=="N")
       {
@@ -604,6 +612,7 @@
       }
       else   // aVengo=="O"
       {
+          //var idUsr = hashids.encode($('#idUsr').val());
           var idUsr = $('#idUsr').val();
           location.href = "{{url('usuario/ofertas/')}}/"+idUsr;
       }

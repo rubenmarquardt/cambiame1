@@ -31,10 +31,10 @@
 								<?php 
 								 }
 								 ?>
-								<input type="hidden" value="{{ $transaccion['id']}}" id="idTrans" data-token="{{ csrf_token() }}"/>
-								<input type="hidden" value="{{ $usr['id']}}" id="idUsr" data-token="{{ csrf_token() }}"/>
-								<input type="hidden" value="{{ $transaccion['reserva']}}" id="idUsrRes" data-token="{{ csrf_token() }}"/>
-								<input type="hidden" value="{{ $transaccion['concretada']}}" id="idUsrCon" data-token="{{ csrf_token() }}"/>
+								<input type="hidden" value="{{ Hashids::encode($transaccion['id']) }}" id="idTrans" data-token="{{ csrf_token() }}"/>
+								<input type="hidden" value="{{ Hashids::encode($usr['id']) }}" id="idUsr" data-token="{{ csrf_token() }}"/>
+								<input type="hidden" value="{{ Hashids::encode($transaccion['reserva']) }}" id="idUsrRes" data-token="{{ csrf_token() }}"/>
+								<input type="hidden" value="{{ Hashids::encode($transaccion['concretada']) }}" id="idUsrCon" data-token="{{ csrf_token() }}"/>
 							</div>
 						</div>
 					</div>

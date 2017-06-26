@@ -49,8 +49,7 @@ Route::auth();
 Route::resource('mail', 'MailController');
 
 
-Route::get('usuario/logout/{user}', function(App\Models\User $user) {
-	
+Route::get('usuario/logout/{user}', function(App\Models\User $user) {	
 	
 	$user->activo = "0";
 	$user->save();

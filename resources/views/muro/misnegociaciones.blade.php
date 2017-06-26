@@ -122,14 +122,14 @@
         <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4" style="padding-left:1px;padding-right:1px;">
           <div class="blockCenter">
             <button type="button" style="background:transparent;border:transparent;"> 
-                <img src="{{ url('images/negociacionconcretada.png') }}" class="img-responsive concretada" data-id="{{ $contrato['id'] }}" />
+                <img src="{{ url('images/negociacionconcretada.png') }}" class="img-responsive concretada" data-id="{{  Hashids::encode($contrato['id']) }}" />
             </button>   
           </div>
         </div>
         <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4" style="padding-left:1px;padding-right:1px;">
           <div class="blockCenter">
            <button type="button" style="background:transparent;border:transparent;">
-                <img src="{{ url('images/liberarnegociacion.png') }}" class="img-responsive liberar" data-id="{{ $contrato['id'] }}"/>
+                <img src="{{ url('images/liberarnegociacion.png') }}" class="img-responsive liberar" data-id="{{ Hashids::encode($contrato['id']) }}"/>
           </button>   
          </div>
        </div>
@@ -260,7 +260,7 @@ foreach($usuarios as $usuario){
           <!-- no se esta cargando la variable -->
           <input type="hidden" id="idHistoria" />
           <button type="button" style="background:transparent;border:transparent;">
-              <img src="{{ url('images/calificado.png') }}" class="concretada2 img-responsive" data-id="{{ $contratoC['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
+              <img src="{{ url('images/calificado.png') }}" class="concretada2 img-responsive" data-id="{{ Hashids::encode($contratoC['id']) }}" data-token="{{ csrf_token() }}" height="100%" />
           </button>
         </div>
 

@@ -11,6 +11,7 @@ use App\Models\User;
 use Goutte\Client;
 use App\Notifications\CompraNotify;
 use App\Notifications\VentaNotify;
+use Hashids;
 
 class OfertaController extends Controller
 {
@@ -25,35 +26,43 @@ class OfertaController extends Controller
     private function dolarPizzarraInter(){
         $this->pizarra = $this->getPizarra();
         $this->elInter = rtrim($this->getInterbancario());
-        
-
-
     }
 
     public function ofertasUser($id){
-        $ofertasUser = Oferta::where('user_id', $id)->get();
-        $contratosNegociables = Oferta::where('reserva', $id)->get();
+     
+        try{
+        $decode = Hashids::decode($id)[0];
+        $ofertasUser = Oferta::where('user_id', $decode)->get();
+        $contratosNegociables = Oferta::where('reserva', $decode)->get();
         $this->dolarPizzarraInter();
         $this->userId = Auth::user()->id;
 
         // $contratosConcretados = Oferta::where('concretada', '!==', $id)->get();
         //tendria qque hacer un and para evitar las que tienen 0
        //$contratosConcretados = Oferta::where('concretada', '<>', $id)->get();    
-         $contratosConcretados = Oferta::where('concretada', '<>', $id)->orderBy('updated_at', 'desc')->get();
+         $contratosConcretados = Oferta::where('concretada', '<>', $decode)->orderBy('updated_at', 'desc')->get();
       
         if($this->userId == @$ofertasUser->first()->user_id){
-            $usuario = User::where('id', $id)->get();
+            $usuario = User::where('id', $decode)->get();
+            $encode=Hashids::encode($usuario);
             return View::make('muro.misofertas')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario)->with('contratos', $contratosNegociables)->with('contratosC', $contratosConcretados);
         }
 
         //si llega aca es que el usuario no tiene ofertas aun lo redirijo a la pagina de ofertas
         //return "tu vieja";
         return redirect('oferta');
+        }
+        catch(\Exception $e)
+        {
+            abort(404, 'Woop no serás mal intencionado?');
+        }
     }
 
     public function negociacionesUser($id){
-        $ofertasUser = Oferta::where('user_id', $id)->get();
-        $contratosNegociables = Oferta::where('reserva', $id)->get();
+         try {
+        $decode = Hashids::decode($id)[0];
+        $ofertasUser = Oferta::where('user_id', $decode)->get();
+        $contratosNegociables = Oferta::where('reserva', $decode)->get();
         $this->dolarPizzarraInter();
         $this->userId = Auth::user()->id;
     
@@ -62,13 +71,13 @@ class OfertaController extends Controller
     //ver donde me conviene si aca o en el for each de misnegociaciones
 
     // $contratosConcretados = Oferta::where('concretada', $id)->get();
-     $contratosConcretados = Oferta::where('concretada', $id)->orderBy('updated_at', 'desc')->get();
+     $contratosConcretados = Oferta::where('concretada', $decode)->orderBy('updated_at', 'desc')->get();
         
     //ahora como cargo las del usuario que necesito     ?
     //en realidad creo que ese filtro se esta hacciendo abajo
     //hay que pensarlo al reves en el caso de mis compras
         if($this->userId == @$ofertasUser->first()->user_id){
-            $usuario = User::where('id', $id)->get();
+            $usuario = User::where('id', $decode)->get();
             
             return View::make('muro.misnegociaciones')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario)->with('contratos', $contratosNegociables)->with('contratosC', $contratosConcretados) ;
         }
@@ -77,11 +86,17 @@ class OfertaController extends Controller
         //si llega aca es que el usuario no tiene ofertas aun lo redirijo a la pagina de ofertas
         return redirect('oferta');
        // return "tu vieja";
+         }
+       catch(\Exception $e)
+        {
+            abort(404, 'Woop no serás mal intencionado?');
+        }
     }
     
     public function getInterbancario()
     {
         $client = new Client();
+        try{
         $crawler = $client->request('GET', 'http://www.bcu.gub.uy/');
         $crawler->filter('.Cotizaciones')->each(function($node){
             $stn = (string)$node->text();
@@ -95,10 +110,16 @@ class OfertaController extends Controller
             
         });
         return $this->str;
+        }
+        catch(\Exception $e)
+        {
+            abort(404, $e);
+        }
     }
 
     public function getPizarra(){
         $client = new Client();
+        try{
         $crawler = $client->request('GET', 'http://www.gales.com.uy/home/');
         $crawler->filter('.monedas')->each(function($node){
             $stn = (string)$node->text();
@@ -110,6 +131,11 @@ class OfertaController extends Controller
         });
         
         return $this->str2;
+        }
+        catch(\Exception $e)
+        {
+            abort(404, $e); 
+        }
 
     }
     
@@ -270,7 +296,8 @@ class OfertaController extends Controller
     }
 
     public function calificarTrans($id){
-        $ofertaCon = Oferta::find($id);
+        $decode = Hashids::decode($id)[0];
+        $ofertaCon = Oferta::find($decode);
         if ($ofertaCon->concretada == Auth::user()->id){
             $usr = User::find($ofertaCon->user_id);
             return View::make('usuario.calificartrans')->with('usr', $usr)->with('transaccion', $ofertaCon);
@@ -279,7 +306,8 @@ class OfertaController extends Controller
     }
 
     public function historicoTrans($id){
-        $ofertaCon = Oferta::find($id);
+        $decode = Hashids::decode($id)[0];
+        $ofertaCon = Oferta::find($decode);
         //if ($ofertaCon->concretada == Auth::user()->id){
         $usr = User::find($ofertaCon->user_id);
         return View::make('usuario.calificartrans')->with('usr', $usr)->with('transaccion', $ofertaCon);
@@ -305,8 +333,8 @@ class OfertaController extends Controller
 
     public function guardarCalif(Request $request){
         if($request->ajax()){
-            //$this->user = Auth::user()->id;
-            $usrId = $request['idUsr'];
+            //$this->user = Auth::user()->id;        
+            $usrId = Hashids::decode($request['idUsr'])[0];
             $usrOfertas = Oferta::where('user_id', $usrId)->get();
             $rateTotalUsr = 0;
             $sumaRates = 0;
@@ -331,7 +359,7 @@ class OfertaController extends Controller
                 $usr->save();
             }
      
-            $oferta = Oferta::where('id', $request['idTrans'])->first();
+            $oferta = Oferta::where('id', Hashids::decode($request['idTrans']))->first();
             $oferta->rate = $request['value'];
             if(isset($request['comentario'])){
                 $oferta->comentario = $request['comentario'];

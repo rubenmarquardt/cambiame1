@@ -209,7 +209,7 @@
             ?> 	
                 <button type="button" style="background:transparent;border:transparent;">
                   <div class="media-right" >
-                      <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="70%" />
+                      <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ Hashids::encode($oferta['id']) }}" data-token="{{ csrf_token() }}" height="70%" />
                   </div> 
                 </button>
             <?php 
@@ -225,7 +225,7 @@
 
          
       @else
-      <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
+      <input type="hidden" value="{{ Hashids::encode($oferta['id']) }}" id="elId"/>
       <button type="button" name="contactar" data-celular="{{$tmp['name']}}" data-prueba="O" type="button" class="whatsapp" style="background:transparent;border:transparent;">
         <font class="negociar">
           COMPRAR
