@@ -140,11 +140,11 @@ h1 {
 
 
 #selectCambiameMone{
-  border-radius:1px;
+  border-radius:0;
   width: 6em;
   height: 3em;
   background: transparent;
-  border: 1px solid;
+  border: none;
   text-align: center;
   font-weight:bold;
   color:#494d49;
@@ -255,7 +255,7 @@ input::-webkit-input-placeholder {
 
 .whatsapp{
 
-  margin-top:14%;
+  margin-top:0;
 
 }
 
