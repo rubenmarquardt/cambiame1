@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use App\Models\Oferta;
 use App\Models\User;
+use Hashids;
 
 
 class VentaNotify extends Notification
@@ -88,7 +89,7 @@ class VentaNotify extends Notification
                     ->line($celCompra)
                     ->line($emailCompra)                    
                     ->line('Una vez realizado la transacción no te olvides ir a tus Negociaciones y concretarla:')
-                    ->action('Ir a la app', 'http://app.cambiame.uy/usuario/negociaciones/'.$userId)
+                    ->action('Ir a la app', 'http://app.cambiame.uy/usuario/negociaciones/'.$encode=Hashids::encode($userId))
                     ->line('Gracias por usar nuestra plataforma');
     }
 
