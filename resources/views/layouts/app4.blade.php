@@ -37,7 +37,7 @@
   <!-- Styles rating -->
   
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300,300italic' rel='stylesheet' type='text/css'>
-
+{!! Analytics::render() !!}
 
 </head>
 
