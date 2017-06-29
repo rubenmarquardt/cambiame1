@@ -151,8 +151,7 @@
 										else
 										{
  										?> 					
-											<textarea rows="4" class="form-control" name="comentario" form="form" id="dejarComment" placeholder="Deja un comentario de la transaccion (opcional)">
-											</textarea>
+											<textarea rows="4" class="form-control" name="comentario" form="form" id="dejarComment" placeholder="Deja un comentario de la transaccion (opcional)"></textarea>
 										<?php	
 										}
 										?>			
