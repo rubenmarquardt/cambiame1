@@ -296,22 +296,33 @@ class OfertaController extends Controller
     }
 
     public function calificarTrans($id){
+        try{
         $decode = Hashids::decode($id)[0];
         $ofertaCon = Oferta::find($decode);
         if ($ofertaCon->concretada == Auth::user()->id){
             $usr = User::find($ofertaCon->user_id);
             return View::make('usuario.calificartrans')->with('usr', $usr)->with('transaccion', $ofertaCon);
         }
+        }catch(\Exception $e)
+        {
+            abort(404, 'Woops, que trata de hacer?'); 
+        }
 
     }
 
     public function historicoTrans($id){
-        $decode = Hashids::decode($id)[0];
+        try{
+        $decode = Hashids::decode($id)[0];        
         $ofertaCon = Oferta::find($decode);
         //if ($ofertaCon->concretada == Auth::user()->id){
         $usr = User::find($ofertaCon->user_id);
         return View::make('usuario.calificartrans')->with('usr', $usr)->with('transaccion', $ofertaCon);
         //}
+        }
+        catch(\Exception $e)
+        {
+            abort(404, 'Woops, que trata de hacer?'); 
+        }
 
     }
 

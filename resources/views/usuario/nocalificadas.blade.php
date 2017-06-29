@@ -12,7 +12,7 @@
   <div class="centerBlock">
   <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
       <div class="alert alert-info animated infinite pulse" role="alert">
-        <strong>Ten en cuenta!</strong> Para poder seguir utilizando nuestro sistema tienes que brindar informacion de como te ha ido con la negociacion.
+        <strong>Atención!</strong> Para poder seguir utilizando Cambiame tienes que brindar información de como te fue con la negociación.
       </div>
     </div>
   </div>

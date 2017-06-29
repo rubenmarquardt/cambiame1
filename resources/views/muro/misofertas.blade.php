@@ -77,7 +77,7 @@
   <div class="oferta estaOnline">
     <div class="media">
       <div class="media-left">
-          <img class="media-object" src="<?php echo $tmp[0]['pictureUrl']; ?>" alt="<?php echo $tmp[0]['name'];?>">
+          <img class="media-object" src="<?php echo $tmp[0]['pictureUrl']; ?>" title="<?php echo $tmp[0]['name']; ?>" alt="<?php echo $tmp[0]['name'];?>">
       </div>
       <div class="media-body">
         <div class="row">
@@ -158,7 +158,7 @@
 				?> 	
             <button type="button" style="background:transparent;border:transparent;">
                 <div class="media-right" >
-                    <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ Hashids::encode($oferta['id']) }}" data-token="{{ csrf_token() }}" height="70%" />
+                    <img src="{{ url('images/close.png') }}" title="Eliminar oferta" class="deleteProduct" data-id="{{ Hashids::encode($oferta['id']) }}" data-token="{{ csrf_token() }}" height="70%" />
                 </div> 
             </button>
         <?php 
@@ -203,7 +203,7 @@ if ($contratoC->concretada !== 0 && $contratoC->user_id==$tmp[0]['id'])
  <div class="oferta noestaOnline">
   <div class="media">
     <div class="media-left">
-        <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" alt="<?php echo $usuario->name;?>">
+        <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" title="<?php echo $tmp[0]['name']; ?>" alt="<?php echo $usuario->name;?>">
     </div>
     <div class="media-body">
       <div class="row">
@@ -288,7 +288,7 @@ if ($contratoC->concretada !== 0 && $contratoC->user_id==$tmp[0]['id'])
         -->
         <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4 text-center" style="padding-left:1px;padding-right:1px;">
             <button type="button" style="background:transparent;border:transparent;">
-               <img src="{{ url('images/calificado.png') }}" class="concretada2 img-responsive" data-id="{{ Hashids::encode($contratoC['id']) }}" data-token="{{ csrf_token() }}" height="100%" />
+               <img src="{{ url('images/calificado.png') }}" title="Ver calificación de la compra" class="concretada2 img-responsive" data-id="{{ Hashids::encode($contratoC['id']) }}" data-token="{{ csrf_token() }}" height="100%" />
             </button>      
          </div>     
       </div>

@@ -640,7 +640,7 @@
     //if($('#dejarComment').val() == ""){
     if (comentarioSesp == "")  
     {  
-      alert('Debe dejar un comentario de la transaccion');
+      alert('Debe dejar un comentario de la transacción');
       dejar_comment = false
     }
     else

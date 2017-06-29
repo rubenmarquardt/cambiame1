@@ -13,7 +13,7 @@
 						<div class="col-md-12">
 							<div class="centerBlock">
 								<h3> <?php echo $usr['name'];?> 
-    							<img class="img-circle foto-perfil img-responsive" src="<?php echo $usr['pictureUrl']; ?>" alt="<?php echo $usr['name'];?>">								
+    							<img class="img-circle foto-perfil img-responsive" src="<?php echo $usr['pictureUrl']; ?>" title="<?php echo $usr->name;?>" alt="<?php echo $usr['name'];?>">								
 								</h3>
 							</div>
 						</div>
@@ -151,8 +151,7 @@
 										else
 										{
  										?> 					
-											<textarea rows="4" class="form-control" name="comentario" form="form" id="dejarComment" placeholder="Deja un comentario de la transaccion (opcional)">
-											</textarea>
+											<textarea rows="4" class="form-control" name="comentario" form="form" id="dejarComment" placeholder="Deja un comentario de la transaccion (opcional)"></textarea>
 										<?php	
 										}
 										?>			
