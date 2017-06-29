@@ -99,7 +99,7 @@
       @else 
         
         <div class="container-fluid" style="padding:0;">
-        <img class="media-object" src="<?php echo $tmp['pictureUrl']; ?>" >
+        <img class="media-object" title="<?php echo $tmp['name']; ?>" src="<?php echo $tmp['pictureUrl']; ?>" >
 
           <div class="stars">
             <?php 
@@ -209,7 +209,7 @@
             ?> 	
                 <button type="button" style="background:transparent;border:transparent;">
                   <div class="media-right" >
-                      <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ Hashids::encode($oferta['id']) }}" data-token="{{ csrf_token() }}" height="70%" />
+                      <img src="{{ url('images/close.png') }}" title="Eliminar oferta" class="deleteProduct" data-id="{{ Hashids::encode($oferta['id']) }}" data-token="{{ csrf_token() }}" height="70%" />
                   </div> 
                 </button>
             <?php 

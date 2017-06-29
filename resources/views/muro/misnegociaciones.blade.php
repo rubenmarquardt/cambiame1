@@ -47,7 +47,7 @@
       @endif 
       ">
       <div class="media-left">
-          <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" alt="<?php echo $usuario->name;?>">
+          <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" title="<?php echo $usuario->name; ?>" alt="<?php echo $usuario->name;?>">
       </div>
       <div class="media-body">
         <div class="row">
@@ -122,14 +122,14 @@
         <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4" style="padding-left:1px;padding-right:1px;">
           <div class="blockCenter">
             <button type="button" style="background:transparent;border:transparent;"> 
-                <img src="{{ url('images/negociacionconcretada.png') }}" class="img-responsive concretada" data-id="{{  Hashids::encode($contrato['id']) }}" />
+                <img src="{{ url('images/negociacionconcretada.png') }}" title="Concretar Negociación" class="img-responsive concretada" data-id="{{  Hashids::encode($contrato['id']) }}" />
             </button>   
           </div>
         </div>
         <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4" style="padding-left:1px;padding-right:1px;">
           <div class="blockCenter">
            <button type="button" style="background:transparent;border:transparent;">
-                <img src="{{ url('images/liberarnegociacion.png') }}" class="img-responsive liberar" data-id="{{ Hashids::encode($contrato['id']) }}"/>
+                <img src="{{ url('images/liberarnegociacion.png') }}" title="Liberar oferta" class="img-responsive liberar" data-id="{{ Hashids::encode($contrato['id']) }}"/>
           </button>   
          </div>
        </div>
@@ -138,7 +138,7 @@
        <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4" style="padding-left:1px;padding-right:1px;">
         <div class="blockCenter">
           <button type="button" style="background:transparent;border:transparent;">
-             <img src="{{ url('images/email.png') }}" class="img-responsive whatsapp" data-celular="{{$usuario->name}}" data-prueba="N" />
+             <img src="{{ url('images/email.png') }}" title="Revisar información del vendedor" class="img-responsive whatsapp" data-celular="{{$usuario->name}}" data-prueba="N" />
           </button>   
         </div>
       </div>
@@ -174,7 +174,7 @@ foreach($usuarios as $usuario){
  <div class="oferta noestaOnline">
   <div class="media">
     <div class="media-left">
-        <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" alt="<?php echo $usuario->name;?>">
+        <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" title="<?php echo $usuario->name; ?>" alt="<?php echo $usuario->name;?>">
     </div>
     <div class="media-body">
       <div class="row">
@@ -260,7 +260,7 @@ foreach($usuarios as $usuario){
           <!-- no se esta cargando la variable -->
           <input type="hidden" id="idHistoria" />
           <button type="button" style="background:transparent;border:transparent;">
-              <img src="{{ url('images/calificado.png') }}" class="concretada2 img-responsive" data-id="{{ Hashids::encode($contratoC['id']) }}" data-token="{{ csrf_token() }}" height="100%" />
+              <img src="{{ url('images/calificado.png') }}" title="Ver calificación de la compra" class="concretada2 img-responsive" data-id="{{ Hashids::encode($contratoC['id']) }}" data-token="{{ csrf_token() }}" height="100%" />
           </button>
         </div>
 
