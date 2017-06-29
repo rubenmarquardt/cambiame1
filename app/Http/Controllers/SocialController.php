@@ -41,7 +41,7 @@ class SocialController extends Controller {
             return redirect('/');
         
           }else{
-             return '¡¡¡Algo fue mal!!!';
+             abort(404, 'Woops, algo pasó!');
           }
        }
 
