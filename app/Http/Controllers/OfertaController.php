@@ -95,8 +95,8 @@ class OfertaController extends Controller
     
     public function getInterbancario()
     {
-        $client = new Client();
-        try{
+        $client = new Client(); 
+        try{       
         $crawler = $client->request('GET', 'http://www.bcu.gub.uy/');
         $crawler->filter('.Cotizaciones')->each(function($node){
             $stn = (string)$node->text();
@@ -106,14 +106,14 @@ class OfertaController extends Controller
             
             if($stn[76]!=""){
                 $this->str = $stn[76];    
-            }           
+            }                  
             
-        });
-        return $this->str;
+        }); 
+           return $this->str;    
         }
         catch(\Exception $e)
         {
-            abort(404, $e);
+            abort(404, 'No se pudo obtener el dolar interbancario, reintente unos minutos más.');
         }
     }
 
@@ -134,7 +134,7 @@ class OfertaController extends Controller
         }
         catch(\Exception $e)
         {
-            abort(404, $e); 
+            abort(404, 'No se pudo obtener el dolar a cotizar, reintente en unos minutos más'); 
         }
 
     }

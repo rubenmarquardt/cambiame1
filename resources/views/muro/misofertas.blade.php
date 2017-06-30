@@ -91,7 +91,6 @@
                 }else if($oferta['moneda'] == "uyu"){
                   echo "<font style='color:white;font-size:1.2em'>COMPRO</font>";
                 }
-
                 ?>
               </h5>
             </div>
@@ -139,7 +138,7 @@
                     ?>
                   </span>
                 </font>
-              </p>
+              </p><span style="font-size:1em;color:#aaa;"><?php echo  substr($oferta['updated_at'],0,10);?></span>
             </div>
           </div>
         </div>
@@ -275,7 +274,7 @@ if ($contratoC->concretada !== 0 && $contratoC->user_id==$tmp[0]['id'])
    Y/o Cambiar el icono para que muestre la trn de calificacion en modo lectura.
 -->
   <div class="media-right" >
-    <div class="row text-center botonCallToAction " style="background:#ffa500;" >
+    <div class="row text-center botonCallToAction " style="background:orange;" >
       <div class="vcenter">
         
         <div class="col-sm-7 col-xs-7 col-lg-7 col-md-7 text-center" style="padding-left:1px">

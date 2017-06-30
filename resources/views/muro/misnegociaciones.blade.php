@@ -21,7 +21,7 @@
 <div class="row">
   <div class="row">
     <div class="row" style="margin-bottom: 1em;">
-      <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >Mis Negociaciones:</font></div>
+      <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >Mis Negociaciones</font></div>
     </div>
   </div>
 <!--sino tengo ningun contrato (oferta reservada) negociado me muestra solo el historico, o sea  var contratoC -->
@@ -37,7 +37,7 @@
     ?> 
     <!-- todo: mostrar si el usuario esta online -->
 
-    <div class="container-fluid" style="padding-left:0;">
+    <div class="container-fluid" style="padding-left:0; padding-right:0;">
       <div class="media
       oferta 
       @if($usuario->isOnline())
@@ -109,15 +109,15 @@
                     ?>
                   </span>
                 </font>
-              </p>
+              </p> <span style="font-size:1em;color:#aaa;"><?php echo  substr($contrato['updated_at'],0,10);?></span>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="media-right" style="padding-right:10px;">
-      <div class="row text-center botonCallToAction " style="background:#ffa500;padding:0px;">
+    <div class="media-right" style="padding-right:10px; margin-right:-10px;">
+      <div class="row text-center botonCallToAction " style="background:orange;padding:2px;">
 
         <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4" style="padding-left:1px;padding-right:1px;">
           <div class="blockCenter">
@@ -158,7 +158,7 @@
 
 <div class="row">
   <div class="row" style="margin-bottom: 1em;">
-    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" > Historico de Negociaciones :</font></div>
+    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" > Historico de Negociaciones</font></div>
   </div>
 </div>
 
@@ -245,8 +245,8 @@ foreach($usuarios as $usuario){
    Ver si queda bien mostrar directamente fecha y comentario
    Y/o Cambiar el icono para que muestre la trn de calificacion en modo lectura.
 -->
-  <div class="media-right" >
-    <div class="row text-center botonCallToAction " style="background:#ffa500;" >
+  <div class="media-right" style="padding-right:10px;" >
+    <div class="row text-center botonCallToAction " style="background:orange; padding:0px; width:11em" >
       <div class="vcenter">
         <div class="col-sm-7 col-xs-7 col-lg-7 col-md-7 text-center" style="padding-left:1px">
           <font style="color:white;"> <?php echo  substr($contratoC['updated_at'],0,10);?> </font>
