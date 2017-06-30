@@ -78,7 +78,7 @@
   $tmp = App\Models\User::where('id', $oferta['user_id'])->first();
   $estado = ($tmp->activo == 1 ? 'estaOnline' : 'noestaOnline');
   ?>
-  <div class="container-fluid" style="padding-left:0;padding-right:0;">
+  <div class="container-fluid" style="padding-left:0;padding-right:0; margin-right:-3px">
     <div class="media
     oferta 
     @if($tmp->isOnline())
