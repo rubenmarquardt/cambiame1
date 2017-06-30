@@ -17,7 +17,7 @@
       <div class="col-sm-4 col-xs-4  col-md-4  text-center ingresos" style="margin-right:0.5em">
         <input name="cantidad" type="number" class="form-control" id="exampleInputAmount" placeholder="Monto" style="font-size: 2em;"  min="0" max="999999" maxlength="6" size="6" onKeyPress="return soloNumeros(event)">
       </div>
-      <div class="col-sm-3 col-xs-3 col-md-3 text-center ingresos" style="background-color:orange;">
+      <div class="col-sm-4 col-xs-4 col-md-4 text-center ingresos" style="background-color:orange; margin-right:-1.5em;">
         <div class="row text-center" >
           <div class="col-sm-10 col-xs-10 col-lg-10 col-md-10 ingresos text-center" style="background:orange;">
             <button style="background:transparent;border:transparent;margin-top:10px;" data-toggle="collapse" href="#collapseExample" aria-expanded="true" aria-controls="collapseExample" id="contenedorCalc">

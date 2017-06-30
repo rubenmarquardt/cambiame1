@@ -98,10 +98,10 @@
     </div>
   </nav>
 
-<body style="background:#ffffff;" id="app-layout">
+<body id="app-layout">
 
   <div class="container-fluid" id="elmaster">
-    <div class="content" style="background: white;">
+    <div class="content">
 
       @yield('cotenido de logueo')
       @yield('contenido del muro')  
