@@ -75,16 +75,10 @@
   @if($oferta['reserva'] == 0) 
                     
   <?php
-
   $tmp = App\Models\User::where('id', $oferta['user_id'])->first();
-
   $estado = ($tmp->activo == 1 ? 'estaOnline' : 'noestaOnline');
-
-
   ?>
-
-
-  <div class="container-fluid" style="padding-left:0;padding-right:0;">
+  <div class="container-fluid" style="padding-left:0;padding-right:0; margin-right:-3px">
     <div class="media
     oferta 
     @if($tmp->isOnline())
@@ -104,13 +98,10 @@
           <div class="stars">
             <?php 
               $rate = (int)floor($tmp->rate);
-
-            
               for($i = 1; $i <= $rate; $i++){
               // echo '<input class="star star-'.$i.'" id="star-'.$i.'" type="radio" name="star"/>';
                 echo '<label class="star star-'.$i.'" for="star-'.$i.'" style="color: #FD4;"></label>';
               }
-
             ?>
           </div>
         </div>
@@ -172,11 +163,10 @@
                     break;
                   }
 
-                  ?>
+                  ?>                  
                 </span>
-              </font>
-            
-          </div>
+              </font>            
+          </div><span style="font-size:1em;color:#aaa;"><?php echo  substr($oferta['updated_at'],0,10);?></span>
         </div>
       </div>
     </div>

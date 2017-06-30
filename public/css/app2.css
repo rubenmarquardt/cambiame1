@@ -36,6 +36,11 @@
   color:white;
 
 }
+.fechaOferta{
+  font-size:10em; 
+  color:white;
+
+}
 
 #page-content
 {
@@ -178,7 +183,7 @@ background: url(../images/down-arrow.png) no-repeat 254px 12px;
  body, html{
    height: 100%;
    background-repeat: no-repeat;
-   background-color: #d3d3d3;
+   background-color: white;
    /*font-family: 'Oxygen', sans-serif;*/
    /*font-family: 'Roboto', sans-serif;*/
    font-family: 'Lato', sans-serif;
@@ -243,8 +248,9 @@ input::-webkit-input-placeholder {
 }
 .botonCallToAction{
   background: #489a08;
-  height: 6em;
-  width: 13em;
+  height: 8em;
+  width: 10em;
+  padding-right: 15px;
 }
 
 .oferNegociables{
@@ -272,13 +278,13 @@ input::-webkit-input-placeholder {
 }
 
 .modal-header {
-  padding: 15px;
+  padding: 0px;
   border-bottom: 0px solid;
 }
 
 #elmaster{
-  padding-right:0;
-}
+  padding-right: 0;
+ }
 
 
 
