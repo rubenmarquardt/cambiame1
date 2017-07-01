@@ -89,7 +89,7 @@
 									</dd>
 
 									<dt>
-										El dolar al momento de la negociacion:
+										El dólar al momento de la negociación:
 									</dt>
 									<dd>
 										<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6" style="background:orange;">
@@ -175,17 +175,14 @@
 											   if(Auth::user()->id == $transaccion['user_id'])
 											      $origen = 'O';
 											   else    
-											   	  $origen = 'N';	
-								 			?>
-											 	<button id="cierroTrans" type="button" class="btn btn-default" style="color:white;background:orange;border:transparent;text-shadow:none;font-size:2em;"
+											   	  $origen = 'N';									 			
+											?>											
+											</div>											
+										</div>
+										<button id="cierroTrans" type="button" class="btn btn-default" style="color:white;background:orange;border:transparent;text-shadow:none;font-size:2em;"
 												 data-prueba="{{$origen}}" >Cerrar
 												 </button>
-											<?php
-											}
-											?>
-											
-											</div>
-										</div>
+												 <?php }?>
 									</form>
 								</div>
 							</div>
