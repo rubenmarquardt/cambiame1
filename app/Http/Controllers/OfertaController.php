@@ -192,7 +192,7 @@ class OfertaController extends Controller
                 $oferta->dolarCambio = $request['dolarCambio'];
                 $oferta->resultado = $request['resultado'];
                 $oferta->cantidad = $request['cantidad'];
-                $oferta->user_id = $request['user_id'];
+                $oferta->user_id = $decode = Hashids::decode($request['user_id'])[0];
                 $oferta->reserva = 0;
                 if($oferta->save()){
                     return 1;
@@ -281,16 +281,16 @@ class OfertaController extends Controller
         }
     }
 
-    public function destroy($id){
+    public function destroy($id){        
         $oferta = Oferta::find($id);
         if ($oferta->user_id == Auth::user()->id){
             $oferta->delete();
             return response()->json([
-            'success' => 'Record has been deleted successfully!'
+            'success' => 'Se elimino tu oferta!'
             ]);   
         }else{
            return response()->json([
-            'success' => 'you dont own this record brotha!'
+            'success' => 'No puedes borrar esto'
             ]);    
         }
     }

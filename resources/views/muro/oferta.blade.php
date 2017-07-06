@@ -99,7 +99,6 @@
             <?php 
               $rate = (int)floor($tmp->rate);
               for($i = 1; $i <= $rate; $i++){
-              // echo '<input class="star star-'.$i.'" id="star-'.$i.'" type="radio" name="star"/>';
                 echo '<label class="star star-'.$i.'" for="star-'.$i.'" style="color: #FD4;"></label>';
               }
             ?>
@@ -128,13 +127,11 @@
             <h5 class="media-heading">
               <span class="enDolares" style="color:#aaa;font-size:1.2em;">				
                 <?php
-
                 if ($oferta['moneda'] == "usd"){
                   echo "  US$ ".$oferta['cantidad'];
                 }else if($oferta['moneda'] == "uyu"){
                   echo "  US$ ".$oferta['resultado'];
-                }
-                  //echo 'tengo oferta' .  $oferta['id'] ;
+                }                
                 ?>
               </span>
             </h5>
@@ -174,14 +171,7 @@
   <div class="media-right" >
     <div class="row text-center botonCallToAction">
       @if(!Auth::check())
-      <!--
-      <input type="hidden" value="{{ $oferta['id']}}" id="elId"/>
-      <button type="button" name="contactar" data-celular="{{$tmp['celular']}}" type="button" class="whatsapp" style="background:transparent;border:transparent;">
-        <font class="negociar">
-          NEGOCIAR
-        </font>
-      </button>
-      -->
+  
       <button type="button" name="contactar" data-celular="" type="button" class="sinLogin" style="background:transparent;border:transparent;">
         <font class="negociar">          
         COMPRAR
@@ -189,9 +179,7 @@
       </button>
       @else
       @if(Auth::user()->id == $oferta['user_id'])
-          <!--
-          <img src="{{ url('images/close.png') }}" class="deleteProduct" data-id="{{ $oferta['id'] }}" data-token="{{ csrf_token() }}" height="100%" />
-          -->
+         
           <!-- solo muestro el dejo borrar cuando no esta reservada aun  No estaria funcionando aparentemente....-->
             <?php 
               if (trim($oferta['reserva']) =="0") 

@@ -25,31 +25,7 @@
         </div>
       </div>
     </div>
-  <!--
-    <div class="modal modal-fullscreen fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="backgroudn:#494e48;color:white;">
-    	<div class="modal-dialog" role="document">
-    		<div class="modal-content" style="background:#494e48;color:white;    height: 359px;">
-          
-           <div class="modal-header" style="    margin-top: 5%;">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <div class="centerBlock" style="margin-top: 5%;">
-            <h4 class="modal-title" id="myModalLabel">Oferta publicada</h4>
-         </div>
-          <div class="modal-body">
-          <div class="centerBlock">
-           <p style="margin-top:5%"> Oferta publicada con Exito! </p>
-          </div>
-          <div class="modal-footer">
-            <div class="centerBlock" style="    margin-top: 55px;">
-              <button id="cierroModal" type="button" class="btn btn-default" data-dismiss="modal" style="background:transparent;border:transparent;text-shadow:none;font-size:2em;">Cerrar</button>
-            </div>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
--->
+ 
 <div class="modal modal-fullscreen fade" id="modal-fullscreen-negociar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="background:#494e48;color:white;">
@@ -66,20 +42,14 @@
     <div class="row">
      <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12" style="background:orange">
       <center>
-      <p><font style="h1" id="mensaje1"></font></p> </center>
-      <!--
-        <h1>Continua la transaccion presionado Reservar oferta. Recbiras un e-mail con los datos de la misma</h1>
-
-      <button id="copiarPPapeles" type="button" class="btn btn-default" data-clipboard-target="#numeroCel" style="background:transparent;border:solid 0px black;text-shadow:none;margin-top:3em;width:50%;">Copiar al portapapeles!</button>
-      -->
+      <p><font style="h1;font-size:1.6em;" id="mensaje1"></font></p> </center>
+      
      </div>
      <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
        <center><button id="hazReserva" type="button" class="btn btn-default animated infinite pulse" style="margin-top:3em;margin-bottom:3em;">Reservar oferta!</button>
-          <p><font style="h1" id="mensaje2"></font></p>
+          <p><font style="h1;font-size:1.2em;" id="mensaje2"></font></p>
         </center>
-        <!--
-        <p>Presionando Reservar Oferta, la misma se quita del muro temporalmente hasta concretar la negociación</p>
-        -->
+       
       </div>
     </div>
     <div class="modal-footer" style="text-align:center;">
@@ -90,39 +60,7 @@
 </div>
 </div>
 </div>
-  <!-- Modal Negociar
-  <div class="modal modal-fullscreen fade" id="myModalNegociar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="backgroudn:#494e48;color:white;">
-   <div class="modal-dialog" role="document">
-    <div class="modal-content" style="background:#494e48;color:white;">
-     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h4 class="modal-title" id="myModalLabel">Datos del Anunciante</h4>
-    </div>
-    <div class="modal-body">
-      <div class="row">
-       <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
-        <center><font style="font-size:2em" id="numeroCel"></font></center>
-      </div>
-    </div>
-    <div class="row">
-     <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12" style="background:orange">
-      <center><button id="copiarPPapeles" type="button" class="btn btn-default" data-clipboard-target="#numeroCel" style="background:transparent;border:solid 1px black;text-shadow:none;margin-top:3em;">Copiar al portapapeles!</button>
-       <h1>Continua la transaccion por whatsapp</h1></center>
-     </div>
-     <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
-       <center><button id="hazReserva" type="button" class="btn btn-default animated infinite pulse" style="margin-top:3em;margin-bottom:3em;">Reservar oferta!</button>
-        <p>Haz la reserva para que la oferta se quite del muro temporalmente hasta concretar la negociación</p></center>
-      </div>
-    </div>
-    <div class="modal-footer" style="text-align:center;">
-     <button id="cierroModal" type="button" class="btn " style="background:transparent;border:transparent;text-shadow:none;font-size:2em;" data-dismiss="modal">Cerrar</button>
-
-   </div>
- </div>
-</div>
-</div>
-</div>
--->
+  
 <!-- JavaScripts -->
 <script src="{{url('js')}}/jquery.min.js"></script>
 
@@ -143,11 +81,7 @@
   $(document).ready(function(){
    $.unblockUI();
    new Clipboard('#copiarPPapeles');
-    /*   $(".currencyLabel").text();
-       $(".currencyLabel").formatCurrency({region : 'es-UY'});
-       
-       $(".enDolares").formatCurrency();
-       */
+    
 
        $dolarInter = $('.aaa').text();
        
@@ -182,27 +116,24 @@
 
        		$ahorrasF = '' + parseFloat(ahorras).formatMoney(0, ',', '.'); 
           $('#ahorras').text('$ ' + $ahorrasF);
-//     		$('#ahorras').text('$ ' + ahorras);
 
        		$('#uyu').hide();
        		$('#usd').show();
-       	//$('#cantEnUyu').text(pesoadolarinter);
+
          $pesoadolarinter2 = '' + parseFloat(pesoadolarinter).formatMoney(2, ',', '.');
 			  $('#cantEnUyu').text($pesoadolarinter2);
-       //	$('#pizarra').text(dolarCambioVenta);
+       
 	   		$('#pizarra').text('' + $dolarCambioVenta);
 
 	   // formateo los US$ que te ahorras 			
       $pesoadolarcambios2 = '' + parseFloat(pesoadolarcambios).formatMoney(2, ',', '.');
 			$('#enCambios').text($pesoadolarcambios2 + " dolares");
-     //	$('#enCambios').text(pesoadolarcambios + " dolares");
+
 
        	}else if($amount.val() != "" && $select.val() == 1){
 
        		$('#selectCambiameMone').val(1);
 
-//     		var dolarapesointer = parseFloat(cantidad * dolarInter ).toFixed(2);
-//			var dolarapesocambios = parseFloat(cantidad * dolarCambioCompra).toFixed(2);
 
 //formateo sin decimales los $ que ahorro - Verificar la cuenta
       var dolarapesointer = parseFloat(cantidad * dolarInter ).toFixed(0);
@@ -216,43 +147,31 @@
 
           $ahorrasF = '' + parseFloat(ahorras).formatMoney(0, ',', '.'); 
          $('#ahorras').text('$ ' + $ahorrasF);
-//        $('#ahorras').text('$ ' + ahorras);
+
  
        		$('#usd').hide();
        		$('#uyu').show();
 
          $dolarapesointer = '' + parseFloat(dolarapesointer).formatMoney(0, ',', '.');
  		      $('#cantEnUyu').text($dolarapesointer);
-    // 		$('#cantEnUyu').text(dolarapesointer);
 
 //le formateo el "," a la pizarra
-//    		$('#pizarra').text(dolarCambioCompra);
        		$('#pizarra').text('' + $dolarCambioCompra);
 
         var dolarapesocambios2 = parseFloat(dolarapesocambios);
             $cambiado = '' + dolarapesocambios2.formatMoney(0, ',', '.');
 
        		  $('#enCambios').text($cambiado + " pesos");  
-  //     		$('#enCambios').text(dolarapesocambios + " pesos");
 
        	}
 //23-11-2016: esta llamndo bien a la funcion y formteando el nro
         $amountF = '' + parseFloat(cantidad).formatMoney(0, ',', '.');
         $('#cantF').text($amountF) ;
-//     el tema que si lo asingo como texto no hace nada y como valor no lo asigna a la textbox, 
-//     una opcion podria ser mostrarlo como label debajo 
-//        $('#exampleInputAmount').text($amountF) ; 
-//        $('#exampleInputAmount').val($amountF) ;
-
 
 
 //23-11-2016: esta llamndo bien a la funcion y formteando el nro
         $amountF = '' + parseFloat(cantidad).formatMoney(0, ',', '.');
         $('#cantF').text($amountF) ;
-//     el tema que si lo asingo como texto no hace nada y como valor no lo asigna a la textbox, 
-//     una opcion podria ser mostrarlo como label debajo 
-//        $('#exampleInputAmount').text($amountF) ; 
-//        $('#exampleInputAmount').val($amountF) ;
 
 //07-11-2016: Fin de modificaciones de formato
 
@@ -271,15 +190,7 @@
           if (cant0 >0)
        	     calculadora();
        });
-/*
-       $('#contenedorCalc').click(function(){
-       	calculadora();
-       });
-*/
-      /*
-       $('#selectCambiameMone').on('change', function(){
-       	calculadora();
-      */ 
+
 
        $('#selectCambiameMone').on('change', function(){
          //corrijo el error del vacio
@@ -329,8 +240,6 @@
 
       }); 
 
-       /*   $selectAccion = $('#selectCambiameAccion');*/
-
 
        $form = $('#salvadorOferta');
        $form.submit(function(e){
@@ -344,8 +253,7 @@
                 }else{
                 	var dolarCambio = parseFloat($dolarCambioCompra.replace(',','.'));
                 }
-                // data += "&moneda=" + $('#selectCambiameMone').val() + "&dolarInter=" + parseFloat($dolarInter.replace(',','.')) + "&dolarCambio=" + dolarCambio + "&resultado=" +  parseFloat($('#cantEnUyu').text());
-    // 24/11: le grabo la cantidad ya formateada
+ 
                 data += "&moneda=" + $('#selectCambiameMone').val() + "&dolarInter=" + parseFloat($dolarInter.replace(',','.')) + "&dolarCambio=" + dolarCambio + "&resultado=" +  $('#cantEnUyu').text() + "&cantidad=" + $('#cantF').text() ;
                 
                 $.ajax({ 
@@ -405,8 +313,8 @@
       //Vengo desde oferta 
       if (aVengo=="O")
       {     
-        $('#mensaje1').text('Continua la transaccion presionado Reservar oferta. Recbiras un e-mail con los datos de la misma');
-        $('#mensaje2').text('Presionando Reservar Oferta, la misma se quita del muro temporalmente hasta concretar la negociación');
+        $('#mensaje1').text('Continúa presionando Reservar Oferta. Recibirás un e-mail con los datos de contacto y de la reserva. Para una mayor confianza, te recomendamos que busques el perfil de Linkedin de la persona de contacto. ');
+        $('#mensaje2').text('Una vez presionado, se quita del muro temporalmente, hasta que se haya concretado la negociación.');
 
         $('#hazReserva').prop("disabled", false);
         $('#hazReserva').text("Reservar Oferta!");
@@ -414,8 +322,7 @@
      }else
       {     
         //Vengo desde negociaciones 
-        //aVengo=="N"
-        $('#mensaje1').text('Chequea tu e-mail con los datos del Anunciante');
+        $('#mensaje1').text('Revisa tu e-mail con los datos del Anunciante');
         $('#mensaje2').text('La Oferta fue reservada temporalmente hasta concretar la negociación');
 
         $('#hazReserva').prop("disabled", true);
@@ -439,8 +346,7 @@
     });
 
     $('#hazReserva').on('click', function(){
-//alert('entro a reservar...' + parseFloat(elId));      
-      //bloqueoUI();
+
       $botonRes = $(this);
       data = "idoferta=" + elId;
       $.ajax({ 
@@ -459,7 +365,7 @@
                 elId = '';
 //ver si va aca esto
 
-               if(confirm('Oferta Reservada con exito! Chequealo en el menu Mis Compras')){
+               if(confirm('Oferta Reservada con exito! Revisalo en el menu Mis Compras')){
                 bloqueoUI();
                 location.reload();
                 }
@@ -471,20 +377,6 @@
             }
           } 
         });
-/*
-//alert ('llegue fuera de la funcion...:')
-//La funcion del ajax da error, sin embargo si esta grabando en la BD, como workAround quito el ctrl de errores
-//Da un error en el POST pero sigue de largo
-        $botonRes.prop("disabled", true);
-        $botonRes.attr("color", "white");
-        $botonRes.text("Reservado!");
-        $botonRes.removeClass('animate infinite pulse');
-        $.unblockUI();
-        $('#elId').val(elId).closest('.container-fluid').fadeOut('slow');
-        elId = '';
-
-        location.reload();
-*/
     });
 
 //Borrar oferta
@@ -492,7 +384,7 @@
       var hashids = new Hashids("esto-es-cambiame", 16, "abcdefghijmoprxyz1236789");
     	var id =  hashids.decode($(this).data("id"));
     	var token = $(this).data("token");
-    	if(confirm('seguro que desea eliminar oferta?')){
+    	if(confirm('Va a eliminar su oferta, ¿está seguro?')){
 //confirm('Antes de Ejecutar el Ajax');
         $.ajax({
          url: "{{url('oferta/delete')}}/"+id,
@@ -511,7 +403,7 @@
 //confirm('Despues de Reload');
         },
         error: function(data){
-          alert("Error al borrar");
+          alert("No se pudo eliminar esta oferta.");
           console.log(data);
         }
       });
@@ -525,7 +417,7 @@
 
     //ver si el estilo termina pasando o como termino pasando el estlo sino ....?
     //el token apentemente no lo paso tampoco ...? ver si lo usaria
-    // var estilo = $(this).data("estilo");
+
 
       location.href = "{{url('transaccion/calificar/')}}/"+ hashids.encode(id);
     });
@@ -600,7 +492,7 @@
     $('#contenedorCalif').find('#cierroTrans').on('click', function(){
       //bloqueoUI();
 
-      //var idUsr = $(this).data("idUsr");
+   
       aVengo  = $(this).data("prueba");
       var hashids = new Hashids("esto-es-cambiame", 16, "abcdefghijmoprxyz1236789");
        
@@ -612,7 +504,6 @@
       }
       else   // aVengo=="O"
       {
-          //var idUsr = hashids.encode($('#idUsr').val());
           var idUsr = $('#idUsr').val();
           location.href = "{{url('usuario/ofertas/')}}/"+idUsr;
       }
@@ -636,22 +527,15 @@
     var dejar_comment = false;
 
     var comentarioSesp = comentario.trim();
-
-    //if($('#dejarComment').val() == ""){
+  
     if (comentarioSesp == "")  
     {  
       alert('Debe dejar un comentario de la transacción');
       dejar_comment = false
     }
     else
-      dejar_comment = true;
-     
-    /*
-    if($('#dejarComment').val() !== "" ){
+      dejar_comment = true;     
 
-      dejar_comment = true;
-    }
-    */
     if (dejar_comment){
 
       $.ajax(
@@ -670,19 +554,10 @@
         success: function (result)
         {
 
-          /*todo: modal para voto satisfactorio mostrando las estrellas y el comment del usuario y los otros comments y el promedio del usuario */
-          /* $('#myModal').find('#modal-body').html('Voto enviado con exito');
-            $('#myModal').find('#myModalLabel').text('Transaccion Exitosa');
-            $('#myModal').modal();*/
+           /*todo: modal para voto satisfactorio mostrando las estrellas y el comment del usuario y los otros comments y el promedio del usuario */
             alert(result.succes);
             //ver si esta bien que lo mande a la oferta 
-            location.href = "{{url('oferta')}}";
-
-            //o deberia mandarlo a negociaciones como esta hecho en el cerrar, codigo debajo
-            /*
-            var idUsr = $('#idUsrCon').val();
-            location.href = "{{url('usuario/negociaciones/')}}/"+idUsr;
-            */  
+            location.href = "{{url('oferta')}}";           
             
           }
         });
@@ -755,8 +630,6 @@ return ((key >= 48 && key <= 57) || (key==8))
 Number.prototype.formatMoney = function(c, d, t){  
 var n = this, 
     c = isNaN(c = Math.abs(c)) ? 2 : c, 
-    //d = d == undefined ? "." : d, 
-    //t = t == undefined ? "," : t, 
     d = d == undefined ? "," : d, 
     t = t == undefined ? "." : t,
     s = n < 0 ? "-" : "", 
