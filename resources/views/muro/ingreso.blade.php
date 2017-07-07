@@ -33,7 +33,7 @@
   <!--El token sirve para el borrado de ofertas-->
   @if(Auth::check())
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-  <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+  <input type="hidden" name="user_id" value="{{ Hashids::encode(Auth::user()->id) }}">
   @endif  
 </form>  
 
