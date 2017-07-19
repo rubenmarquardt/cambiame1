@@ -182,7 +182,7 @@
 
 <div class="row">
   <div class="row" style="margin-bottom: 1em;">
-    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" > Histórico de Ofertas</font></div>
+    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 oferNegociables text-center"><font class="labeltext oferText" >Histórico de Ofertas</font></div>
   </div>
 </div>
 
