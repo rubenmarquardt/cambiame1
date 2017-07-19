@@ -32,7 +32,7 @@ class OfertaController extends Controller
      
         try{
         $decode = Hashids::decode($id)[0];
-        $ofertasUser = Oferta::where('user_id', $decode)->get();
+        $ofertasUser = Oferta::where('user_id', $decode)->orderBy('updated_at', 'desc')->get();
         $contratosNegociables = Oferta::where('reserva', $decode)->get();
         $this->dolarPizzarraInter();
         $this->userId = Auth::user()->id;
@@ -61,7 +61,7 @@ class OfertaController extends Controller
     public function negociacionesUser($id){
          try {
         $decode = Hashids::decode($id)[0];
-        $ofertasUser = Oferta::where('user_id', $decode)->get();
+        $ofertasUser = Oferta::where('user_id', $decode)->orderBy('updated_at', 'desc')->get();
         $contratosNegociables = Oferta::where('reserva', $decode)->get();
         $this->dolarPizzarraInter();
         $this->userId = Auth::user()->id;
@@ -140,8 +140,8 @@ class OfertaController extends Controller
     }
     
     public function index(){
-  
-        $ofertas = Oferta::all()->toArray();
+        //->sortByDesc('updated_at') lo ordena por fecha descendente
+        $ofertas = Oferta::all()->sortByDesc('updated_at')->toArray();
 
         $this->dolarPizzarraInter();
 
