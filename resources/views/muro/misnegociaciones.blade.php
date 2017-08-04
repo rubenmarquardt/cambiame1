@@ -47,7 +47,9 @@
       @endif 
       ">
       <div class="media-left">
+        <a href="{{$usuario->linkedinProfile}}" target="_blank">  
           <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" title="<?php echo $usuario->name; ?>" alt="<?php echo $usuario->name;?>">
+        </a>
       </div>
       <div class="media-body">
         <div class="row">
@@ -174,7 +176,9 @@ foreach($usuarios as $usuario){
  <div class="oferta noestaOnline">
   <div class="media">
     <div class="media-left">
+      <a href="{{$usuario->linkedinProfile}}" target="_blank">
         <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" title="<?php echo $usuario->name; ?>" alt="<?php echo $usuario->name;?>">
+      </a>
     </div>
     <div class="media-body">
       <div class="row">

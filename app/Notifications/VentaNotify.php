@@ -21,7 +21,7 @@ class VentaNotify extends Notification
     protected $userId;
     protected $moneda;
     protected $userComprador;
-    protected $compraId, $nameCompra, $emailCompra, $celCompra, $lastDate;
+    protected $compraId, $nameCompra, $emailCompra, $celCompra, $linkedinCompra, $lastDate;
 
     /**
      * Create a new notification instance.
@@ -77,6 +77,7 @@ class VentaNotify extends Notification
         $nameCompra=$userComprador->name;
         $celCompra=$userComprador->celular;
         $emailCompra=$userComprador->email;
+        $linkedinCompra=$userComprador->linkedinProfile;
 
         return (new MailMessage)
                     ->subject('Te están negociando en Cambiame')
@@ -84,6 +85,8 @@ class VentaNotify extends Notification
                     ->line('Te quieren comprar tu oferta de:')
                     ->line($tipo1 . ' ' . $cantidad .' a ' . $tipo2 . ' ' . $resultado)                    
                     /*montoOfertado*/
+                    ->line('Revisa el perfil de LinkedIn del comprador:')
+                    ->line($linkedinCompra)
                     ->line('Contactate con el comprador:')
                     ->line($nameCompra)
                     ->line($celCompra)
