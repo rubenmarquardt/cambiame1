@@ -90,11 +90,11 @@
     <div class="media-left">
       @if(!Auth::check())
         <img class="media-object" src="" >
-      @else 
-        
-        <div class="container-fluid" style="padding:0;">
-        <img class="media-object" title="<?php echo $tmp['name']; ?>" src="<?php echo $tmp['pictureUrl']; ?>" >
-
+      @else         
+        <div class="container-fluid" style="padding:0;"> 
+        <a href="{{$tmp['linkedinProfile']}}" target="_blank">  
+          <img class="media-object" title="<?php echo $tmp['name']; ?>" src="<?php echo $tmp['pictureUrl']; ?>" >
+         </a>
           <div class="stars">
             <?php 
               $rate = (int)floor($tmp->rate);

@@ -21,7 +21,7 @@ class CompraNotify extends Notification
     protected $userId;
     protected $moneda;
     protected $userVendedor;
-    protected $vendeId, $nameVende, $emailVende, $celVende, $lastDate;
+    protected $vendeId, $nameVende, $emailVende, $celVende, $linkedinVende, $lastDate;
 
 
     /**
@@ -62,7 +62,7 @@ class CompraNotify extends Notification
         $subset=$oferta->sortByDesc('updated_at')->first();
         $cantidad=$subset->cantidad;
         $moneda=$subset->moneda;
-        $resultado=$subset->resultado;
+        $resultado=$subset->resultado;        
         
         //busca la primer reserva del comprador en la tabla (deberia ser la última q se actualizó)   
         /*$oferta = Oferta::where('reserva', $userId)->first();
@@ -85,7 +85,7 @@ class CompraNotify extends Notification
         $nameVende=$userVendedor->name;
         $celVende=$userVendedor->celular;
         $emailVende=$userVendedor->email;
-
+        $linkedinVende=$userVendedor->linkedinProfile;
         
         return (new MailMessage)
                     ->success()
@@ -93,6 +93,8 @@ class CompraNotify extends Notification
                     ->greeting('Hola ' . $this->user->name . ' ya estás negociando')
                     ->line('Quieres comprar: ' . $tipo1 . ' ' . $cantidad .' a ' . $tipo2 . ' ' . $resultado)                  
                     /*montoOfertado*/
+                    ->line('Revisa el perfil de LinkedIn del vendedor:')
+                    ->line($linkedinVende)
                     ->line('Contactate con el usuario: ' .$nameVende . ' ' . $celVende . ' ' . $emailVende)
                     /*datos: nombre, email y celular*/
                     ->line('Una vez realizado la transacción no te olvides de cerrarla y calificarla')

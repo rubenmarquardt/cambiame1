@@ -313,7 +313,7 @@
       //Vengo desde oferta 
       if (aVengo=="O")
       {     
-        $('#mensaje1').text('Continúa presionando Reservar Oferta. Recibirás un e-mail con los datos de contacto y de la reserva. Para una mayor confianza, te recomendamos que busques el perfil de Linkedin de la persona de contacto. ');
+        $('#mensaje1').text('Continúa presionando Reservar Oferta. Recibirás un e-mail con los datos de contacto y de la reserva. Para una mayor confianza, te recomendamos que visites el perfil en LinkedIn de la persona de contacto.');
         $('#mensaje2').text('Una vez presionado, se quita del muro temporalmente, hasta que se haya concretado la negociación.');
 
         $('#hazReserva').prop("disabled", false);

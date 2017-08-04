@@ -77,7 +77,9 @@
   <div class="oferta estaOnline">
     <div class="media">
       <div class="media-left">
+        <a href="{{ $tmp[0]['linkedinProfile']}}" target="_blank">
           <img class="media-object" src="<?php echo $tmp[0]['pictureUrl']; ?>" title="<?php echo $tmp[0]['name']; ?>" alt="<?php echo $tmp[0]['name'];?>">
+        </a>
       </div>
       <div class="media-body">
         <div class="row">
@@ -202,7 +204,9 @@ if ($contratoC->concretada !== 0 && $contratoC->user_id==$tmp[0]['id'])
  <div class="oferta noestaOnline">
   <div class="media">
     <div class="media-left">
+      <a href="{{$usuario->linkedinProfile}}" target="_blank">
         <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" title="<?php echo $tmp[0]['name']; ?>" alt="<?php echo $usuario->name;?>">
+      </a>
     </div>
     <div class="media-body">
       <div class="row">
