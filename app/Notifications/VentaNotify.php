@@ -91,8 +91,8 @@ class VentaNotify extends Notification
                     ->line($nameCompra)
                     ->line($celCompra)
                     ->line($emailCompra)                    
-                    ->line('Una vez realizado la transacción no te olvides ir a tus Negociaciones y concretarla:')
-                    ->action('Ir a la app', 'http://app.cambiame.uy/usuario/negociaciones/'.$encode=Hashids::encode($userId))
+                    ->line('Una vez realizado la transacción podés ir a Mis Ofertas y revisar la transacción')
+                    ->action('Ir a la app', 'http://app.cambiame.uy/')
                     ->line('Gracias por usar nuestra plataforma');
     }
 

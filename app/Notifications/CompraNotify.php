@@ -97,7 +97,7 @@ class CompraNotify extends Notification
                     ->line($linkedinVende)
                     ->line('Contactate con el usuario: ' .$nameVende . ' ' . $celVende . ' ' . $emailVende)
                     /*datos: nombre, email y celular*/
-                    ->line('Una vez realizado la transacción no te olvides de cerrarla y calificarla')
+                    ->line('Una vez realizado la transacción no te olvides de ir a Mis Compras y calificarla:')
                     ->action('Ir a la app', 'http://app.cambiame.uy')
                     ->line('Gracias por usar nuestra plataforma');
     }
