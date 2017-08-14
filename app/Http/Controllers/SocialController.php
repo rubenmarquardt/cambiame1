@@ -50,16 +50,16 @@ class SocialController extends Controller {
             	$new_user = new User;
             	$new_user->name = $request->name;
             	$new_user->email = $request->email;
-            	$new_user->celular = $request->celular;
-            	$new_user->linkedinProfile = $request->linkedinProfile;
-            	$new_user->pictureUrl = $request->pictureUrl;              
-              
-              /*Mail::send('auth.emails.welcome', ['user'=>$new_user], function($msg)use($new_user){
-                $msg->subject('Bot de Cambiame');
-                $msg->to($new_user->email);
-
-              }); */
-
+              $new_user->celular = $request->celular;
+              $new_user->linkedinProfile = $request->linkedinProfile; 
+              if(isset($request['pictureUrl']))
+              {
+                $new_user->pictureUrl = $request->pictureUrl;               
+              }
+              else
+              {
+                abort(404, 'Oh no!, deberás subir una foto tuya en LinkedIn y volver a entrar. Muchas Gracias!');
+              }                   
             	$new_user->save();
 
               //Notificacion a mail
