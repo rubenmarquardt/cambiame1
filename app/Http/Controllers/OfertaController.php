@@ -76,16 +76,15 @@ class OfertaController extends Controller
     //ahora como cargo las del usuario que necesito     ?
     //en realidad creo que ese filtro se esta hacciendo abajo
     //hay que pensarlo al reves en el caso de mis compras
-        if($this->userId == @$ofertasUser->first()->user_id){
-            $usuario = User::where('id', $decode)->get();
-            
+        //if($this->userId == @$ofertasUser->first()->user_id){
+            if ($this->userId == @$contratosNegociables->first()->reserva || $this->userId == @$contratosConcretados->first()->concretada) {
+            $usuario = User::where('id', $decode)->get();            
             return View::make('muro.misnegociaciones')->with('elInter', $this->elInter)->with('ofertas', $ofertasUser)->with('elPiza', $this->pizarra)->with('tmp', $usuario)->with('contratos', $contratosNegociables)->with('contratosC', $contratosConcretados) ;
         }
 
         //si llega aca es que el usuario no tiene negociaciones aun
         //si llega aca es que el usuario no tiene ofertas aun lo redirijo a la pagina de ofertas
-        return redirect('oferta');
-       // return "tu vieja";
+        return redirect('oferta');       
          }
        catch(\Exception $e)
         {
