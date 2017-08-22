@@ -365,7 +365,7 @@
                 elId = '';
 //ver si va aca esto
 
-               if(confirm('Oferta Reservada con exito! Revisalo en el menu Mis Compras')){
+               if(confirm('Oferta Reservada con exito!. Revisa en menú Mis Compras')){
                 bloqueoUI();
                 location.reload();
                 }
@@ -457,7 +457,7 @@
       var id = hashids.decode($(this).data("id"));   
       var token = $(this).data("token");
    
-      if(confirm('luego de concretar la oferta deberas calificar la transaccion')){
+      if(confirm('Has concretado la oferta, ahora deberás calificar la transacción')){
         $.ajax(
         {
         url: "{{url('oferta/concretar')}}/"+id,
@@ -555,8 +555,8 @@
         {
 
            /*todo: modal para voto satisfactorio mostrando las estrellas y el comment del usuario y los otros comments y el promedio del usuario */
-            alert(result.succes);
-            //ver si esta bien que lo mande a la oferta 
+            alert(result.success);
+            //Va a Mis Ofertas 
             location.href = "{{url('oferta')}}";           
             
           }
