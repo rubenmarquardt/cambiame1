@@ -221,19 +221,15 @@ class OfertaController extends Controller
                                
             if($oferta->save()){       
 
-             //Notificacion a mail
-  //aqui da error en el local               
+             //Notificacion a mail             
                 $usr->notify(new CompraNotify($usr));
                 $usrVendedor->notify(new VentaNotify($usrVendedor));                   
                 
-                return 0;
-                
-
+                return 0;  
             }else{
                 return 1;
             }
         }   
-
     }
 
     public function liberar($id){
@@ -345,40 +341,37 @@ class OfertaController extends Controller
         if($request->ajax()){
             //$this->user = Auth::user()->id;        
             $usrId = Hashids::decode($request['idUsr'])[0];
-            $usrOfertas = Oferta::where('user_id', $usrId)->get();
+            
             $rateTotalUsr = 0;
             $sumaRates = 0;
             $indice = 0;
-            foreach($usrOfertas as $oferta){
-                if($oferta->rate != ''){
-                    $indice++;
-                    $sumaRates += $oferta->rate;
-                }
-            }
 
-            
-
-            if($indice != 0){
-
-                $usr = User::where('id', $usrId)->first();
-
-                $rateTotalUsr = $sumaRates / $indice;
-
-                $usr->rate = $rateTotalUsr;
-
-                $usr->save();
-            }
-     
             $oferta = Oferta::where('id', Hashids::decode($request['idTrans']))->first();
             $oferta->rate = $request['value'];
             if(isset($request['comentario'])){
                 $oferta->comentario = $request['comentario'];
             }
-            if($oferta->save()){
-                return response()->json(["succes"=>"Operacion Finalizada con exito !"]);
-            }else{
-                return 1;
+            $oferta->save();
+            $usrOfertas = Oferta::where('user_id', $usrId)->get();
+            foreach($usrOfertas as $oferta){
+                if($oferta->rate != null){
+                    $indice++;
+                    $sumaRates += $oferta->rate;
+                }               
+            }    
+
+            if($indice != 0){
+                $usr = User::where('id', $usrId)->first();
+                $rateTotalUsr = $sumaRates / $indice;
+                $usr->rate = $rateTotalUsr;
+                $usr->save();
+                return response()->json(["success"=>"Calificación guardada!"]);
+                }
+                else{
+                    return response()->json(["success"=>"Calificación al usuario no promediada!"]);          
             }
+     
+            
         }   
     }
 
