@@ -52,7 +52,10 @@ class SocialController extends Controller {
             	$new_user->email = $request->email;
               $new_user->celular = $request->celular;
               $new_user->linkedinProfile = $request->linkedinProfile; 
-              if(isset($request['pictureUrl']))
+
+  //corregir aca esta mal la pregunta xq la variable viene seteada de antes desde el register.blade           
+              //if(isset($request['pictureUrl']))
+              if ($request['pictureUrl'] != '/images/close.png')
               {
                 $new_user->pictureUrl = $request->pictureUrl;               
               }
@@ -62,7 +65,7 @@ class SocialController extends Controller {
               }                   
             	$new_user->save();
 
-              //Notificacion a mail
+  //Notificacion a mail -- comento la notificacion localmente, descomentar antes de subir
               $new_user->notify(new UserNotify($new_user));
 
             	Auth::login($new_user);
