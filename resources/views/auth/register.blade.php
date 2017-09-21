@@ -10,12 +10,14 @@
                 <div class="panel-body">
                     <form class="form-horizontal" id="formRegistro" role="form" method="POST" action="{{ url('/registraruser') }}">
                         {{ csrf_field() }}
+                        <?php $Auximg = isset($user['pictureUrl']) ? $user['pictureUrl'] : '/images/close.png';
+                        ?>   
                         <div class="media">
                           <div class="media-left">
                              
-                            
+   <!-- ponerle lo que le puse en el register local -->                         
                             <div class="col-md-12 col-md-offset-8">
-                                <img src="{{$user['pictureUrl']}}" />
+                                <img src="{{ $Auximg }}" />
                             </div>
                             
                             
@@ -89,7 +91,7 @@
                 <input type="hidden" name="name" value="{{ $user->name or 'null'}}" />
                 <input type="hidden" name="email" value="{{ $user->email or 'null'}}" />
                 <input type="hidden" name="linkedinProfile" value="{{ $user['publicProfileUrl'] or 'null'}}" />
-                <input type="hidden" name="pictureUrl" value="{{$user['pictureUrl']}}" />
+                <input type="hidden" name="pictureUrl" value="{{$Auximg}}" />
                 
             </form>
         </div>

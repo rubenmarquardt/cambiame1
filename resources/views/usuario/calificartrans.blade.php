@@ -5,16 +5,38 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h2 class="text-center">
-				Calificación de la transacción.
+				Calificación de la transacción Nro: {{$transaccion['id']}}
 			</h2>
 			<div class="row">
 				<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="centerBlock">
-								<h3> <?php echo $usr['name'];?> 
-    							<img class="img-circle foto-perfil img-responsive" src="<?php echo $usr['pictureUrl']; ?>" title="<?php echo $usr->name;?>" alt="<?php echo $usr['name'];?>">								
-								</h3>
+
+							   <?php 
+								 if (trim($transaccion['comentario']) =="") 
+								 {
+								?>
+										<h3> <?php echo $usr['name'];?> 
+										<img class="img-circle foto-perfil img-responsive" src="<?php echo $usr['pictureUrl']; ?>" title="<?php echo $usr->name;?>" alt="<?php echo $usr['name'];?>">								
+										</h3>
+								<?php
+								 }
+								 else
+								 {
+									$usuariosC = App\Models\User::where('id',$transaccion->concretada)->get();  
+									foreach($usuariosC as $usuarioC)
+									{
+										$nombreC =   $usuarioC;
+									}
+								?>
+								  		<h3> <?php echo $nombreC['name'];?> 
+										<img class="img-circle foto-perfil img-responsive" src="<?php echo $nombreC['pictureUrl']; ?>" title="<?php echo $nombreC->name;?>" alt="<?php echo $nombreC['name'];?>">								
+										</h3>
+								<?php
+								 }
+								?>
+
 							</div>
 						</div>
 					</div>
@@ -151,7 +173,7 @@
 										else
 										{
  										?> 					
-											<textarea rows="4" class="form-control" name="comentario" form="form" id="dejarComment" placeholder="Deja un comentario de la transaccion (opcional)"></textarea>
+											<textarea rows="4" class="form-control" name="comentario" form="form" id="dejarComment" placeholder="Deja un comentario de la transaccion"></textarea>
 										<?php	
 										}
 										?>			

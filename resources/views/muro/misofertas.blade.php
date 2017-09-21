@@ -77,9 +77,36 @@
   <div class="oferta estaOnline">
     <div class="media">
       <div class="media-left">
-        <a href="{{ $tmp[0]['linkedinProfile']}}" target="_blank">
-          <img class="media-object" src="<?php echo $tmp[0]['pictureUrl']; ?>" title="<?php echo $tmp[0]['name']; ?>" alt="<?php echo $tmp[0]['name'];?>">
-        </a>
+      
+<!-- aqui en vez del tmp tengo que traer los datos del usr que reservo-->
+
+       <?php 
+          if (trim($oferta['reserva']) =="0") 
+				  {
+				?>
+            <a href="{{ $tmp[0]['linkedinProfile']}}" target="_blank">
+              <img class="media-object" src="<?php echo $tmp[0]['pictureUrl']; ?>" title="<?php echo $tmp[0]['name']; ?>" alt="<?php echo $tmp[0]['name'];?>">
+            </a>
+      <?php 
+					}
+					else
+					{
+
+              $usuariosR = App\Models\User::where('id',$oferta['reserva'])->get();  
+              foreach($usuariosR as $usuarioR)
+              {
+                $nombreR =   $usuarioR;
+              }  
+ 				   ?> 	
+           <!-- armar algo similar para calificarh (esta abierta en este editor) -->
+            <a href="{{ $nombreR['linkedinProfile']}}" target="_blank">
+              <img class="media-object" src="<?php echo $nombreR['pictureUrl']; ?>" title="<?php echo $nombreR['name']; ?>" alt="<?php echo $nombreR['name'];?>">
+            </a>
+      <?php	
+					}
+				?>
+
+
       </div>
       <div class="media-body">
         <div class="row">
@@ -167,7 +194,7 @@
 					else
 					{
  				?> 	
-          <label class="negociar"> OFERTA RESERVADA
+          <label class="negociar"> OFERTA RESERVADA 
 					</label>
         <?php	
 					}
@@ -197,6 +224,12 @@ foreach($usuarios as $usuario){
 //por ahora limito el array a las ofertas no concretadas del usuario logueado
 if ($contratoC->concretada !== 0 && $contratoC->user_id==$tmp[0]['id'])
 {
+// en contratoC->concretada tengo el id del usuario que estoy precisando.......
+   $usuariosC = App\Models\User::where('id',$contratoC->concretada)->get();  
+    foreach($usuariosC as $usuarioC)
+    {
+      $nombreC =   $usuarioC;
+    }  
 
 ?> 
  <!-- todo: mostrar si el usuario esta online -->
@@ -204,8 +237,8 @@ if ($contratoC->concretada !== 0 && $contratoC->user_id==$tmp[0]['id'])
  <div class="oferta noestaOnline">
   <div class="media">
     <div class="media-left">
-      <a href="{{$usuario->linkedinProfile}}" target="_blank">
-        <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" title="<?php echo $tmp[0]['name']; ?>" alt="<?php echo $usuario->name;?>">
+      <a href="{{$nombreC->linkedinProfile}}" target="_blank">
+        <img class="media-object" src="<?php echo $nombreC->pictureUrl; ?>" title="<?php echo $nombreC['name']; ?>" alt="<?php echo $nombreC->name;?>">
       </a>
     </div>
     <div class="media-body">
