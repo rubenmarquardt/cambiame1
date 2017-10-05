@@ -84,6 +84,7 @@ Route::get('reservarOferta', 'OfertaController@reservarOferta');
 //calificar transaccion
 Route::get('transaccion/calificar/{id}',  ['uses' => 'OfertaController@calificarTrans', 'middleware'=>'auth'])->name('calificar');
 Route::post('transaccion/calificar/{id}', ['uses' => 'OfertaController@calificarTrans', 'middleware'=>'auth'])->name('calificar');
+
 Route::get('guardarate',  ['uses' => 'OfertaController@guardarCalif', 'middleware'=>'auth']);
 Route::post('guardarate', ['uses' => 'OfertaController@guardarCalif', 'middleware'=>'auth']);
 
@@ -93,4 +94,9 @@ Route::post('calificar/ofertas', ['uses' => 'OfertaController@transaccionesNoCal
 //historicoTransaccion
 Route::get('transaccion/calificarh/{id}',  ['uses' => 'OfertaController@historicoTrans', 'middleware'=>'auth'])->name('calificarh');
 
+//por ahora dejo la llamada al historico
+Route::get('transaccion/calificarc/{id}',  ['uses' => 'OfertaController@historicoTrans', 'middleware'=>'auth'])->name('calificarc');
+
+Route::get('guardarate2',  ['uses' => 'OfertaController@guardarCalifComp', 'middleware'=>'auth']);
+Route::post('guardarate2', ['uses' => 'OfertaController@guardarCalifComp', 'middleware'=>'auth']);
 

@@ -92,17 +92,37 @@
         <img class="media-object" src="" >
       @else         
         <div class="container-fluid" style="padding:0;"> 
-        <a href="{{$tmp['linkedinProfile']}}" target="_blank">  
-          <img class="media-object" title="<?php echo $tmp['name']; ?>" src="<?php echo $tmp['pictureUrl']; ?>" >
-         </a>
+          <a href="{{$tmp['linkedinProfile']}}" target="_blank">  
+            <img class="media-object" title="<?php echo $tmp['name']; ?>" src="<?php echo $tmp['pictureUrl']; ?>" >
+          </a>
           <div class="stars">
             <?php 
+              $indice = 0;
+              $indice1 = 0;
+              $indice2 = 0;
+
+              //busco trns como vendedor
+              $indice1 = App\Models\Oferta::where('user_id', '=',$tmp['id'])
+                     ->where('rate', '>',0)->count();
+              
+              //busco trns como comprador
+              $indice2 = App\Models\Oferta::where('concretada', '=',$tmp['id'])
+                     ->where('rate2', '>',0)->count();
+
+              $indice = $indice1 + $indice2;
+        
               $rate = (int)floor($tmp->rate);
               for($i = 1; $i <= $rate; $i++){
                 echo '<label class="star star-'.$i.'" for="star-'.$i.'" style="color: #FD4;"></label>';
               }
+              //echo "<label style='font-size:0.9em;color:#aaa;'> $indice trns</label>";
+              //echo $indice . ' trns' 
             ?>
           </div>
+          <div class="row">
+             <span style="font-size:0.9em;color:#aaa;"><?php //echo ($indice > 0 ? $indice : 'Nuevo') . ' trns' ;
+                                                        echo $indice ; ?></span>
+          </div>        
         </div>
       @endif
     </div>
@@ -113,11 +133,30 @@
           <div class="row">
             <h5 class="media-heading" >
               <?php
+              //agrego logica de los medios de pago
+                  switch ($oferta['medioPago']) {
+                    case '0':
+                         $Intercambio = '  En Persona';
+                    break;     
+                    case '1':
+                         $Intercambio = '  E-bank';
+                    break;     
+                    case '2':
+                         $Intercambio = '  PayPal'; 
+                    break;     
+                    case '3':
+                         $Intercambio = '  Red de Pagos';
+                    break;     
+                    break;
+                    default:
+                        $Intercambio = '  En Persona';
+                    break;
+                  }
 
               if ($oferta['moneda'] == "usd"){
-                echo "<font style='color:orange;font-size:1.2em;'>VENDO</font>";      
+                echo "<font style='color:orange;font-size:1.2em;'>VENDO: {$Intercambio}</font>";      
               }else if($oferta['moneda'] == "uyu"){
-                echo "<font style='color:white;font-size:1.2em;'>COMPRO</font>";
+                echo "<font style='color:white;font-size:1.2em;'>COMPRO: {$Intercambio}</font>";
               }
 
               ?>

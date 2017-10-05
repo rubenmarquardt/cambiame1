@@ -253,8 +253,13 @@
                 }else{
                 	var dolarCambio = parseFloat($dolarCambioCompra.replace(',','.'));
                 }
- 
-                data += "&moneda=" + $('#selectCambiameMone').val() + "&dolarInter=" + parseFloat($dolarInter.replace(',','.')) + "&dolarCambio=" + dolarCambio + "&resultado=" +  $('#cantEnUyu').text() + "&cantidad=" + $('#cantF').text() ;
+
+                // aqui guardo el medio de pago 
+               // $('#selectIntercambio').val()
+
+                  data += "&medioPago=" + $('#selectIntercambio').val() +"&moneda=" + $('#selectCambiameMone').val() + "&dolarInter=" + parseFloat($dolarInter.replace(',','.')) + "&dolarCambio=" + dolarCambio + "&resultado=" +  $('#cantEnUyu').text() + "&cantidad=" + $('#cantF').text() ;
+
+             //   data += "&moneda=" + $('#selectCambiameMone').val() + "&dolarInter=" + parseFloat($dolarInter.replace(',','.')) + "&dolarCambio=" + dolarCambio + "&resultado=" +  $('#cantEnUyu').text() + "&cantidad=" + $('#cantF').text() ;
                 
                 $.ajax({ 
                 	method: "POST", 
@@ -489,6 +494,18 @@
       location.href = "{{url('transaccion/calificarh/')}}/"+id;
     });
 
+    $(".concretada3").click(function(){
+      bloqueoUI();
+      var id = $(this).data("id");    
+      var token = $(this).data("token");
+      
+      //ahistoria = $(this).data("historia");
+
+      location.href = "{{url('transaccion/calificarc/')}}/"+id;
+    });
+
+    
+
     $('#contenedorCalif').find('#cierroTrans').on('click', function(){
       //bloqueoUI();
 
@@ -565,6 +582,82 @@
         $.unblockUI();
       }
     }); 
+
+    $('#input-3-ltr-star-sm').on('rating.change', function(event, value, caption) {
+    bloqueoUI();
+    idTrans = $('#idTrans').val();
+    var token = $(this).data("token");
+    var comentario = $('#dejarComment2').val();
+    //esto otro usr lo uso para volver el menu
+    idUsrBack = $('#idUsr').val();
+    //el usr es el usr que concreto la transaccion
+    idUsr   = $('#idUsrCon').val();
+    var dejar_comment = false;
+
+//alert('tengo ' + idUsr + ' ' + comentario + ' ' + value );
+
+    var comentarioSesp = comentario.trim();
+  
+    if (comentarioSesp == "")  
+    {  
+      alert('Debe dejar un comentario de la transacción');
+      dejar_comment = false
+    }
+    else
+      dejar_comment = true;     
+
+    if (dejar_comment){
+
+      $.ajax(
+      {
+        url: "{{url('guardarate2')}}",
+        type: 'POST',
+        dataType: "JSON",
+        data: {
+          "idUsr": idUsr,
+          "value": value,
+          "comentario": comentario,
+          "idTrans":idTrans,
+          "_method": 'POST',
+          "_token": token,
+        },
+        success: function (result)
+        {
+
+           /*todo: modal para voto satisfactorio mostrando las estrellas y el comment del usuario y los otros comments y el promedio del usuario */
+            alert(result.success);
+            //Va a Mis Ofertas 
+            location.href = "{{url('usuario/ofertas/')}}/"+ idUsrBack;           
+            
+          }
+        });
+      }else{
+        $.unblockUI();
+      }
+    }); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     $(".modal-transparent").on('show.bs.modal', function () {

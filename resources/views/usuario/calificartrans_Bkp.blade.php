@@ -1,17 +1,6 @@
 @extends('layouts.app4')
 @section('contenido del muro')
 
-<?php
-	if(Auth::user()->id == $transaccion['user_id'])
-		$origen = 'O';
-	else    
-		$origen = 'N';									 			
-?>	 
-<input type="hidden" value="{{ Hashids::encode($transaccion['id']) }}" id="idTrans" data-token="{{ csrf_token() }}"/>
-<input type="hidden" value="{{ Hashids::encode($usr['id']) }}" id="idUsr" data-token="{{ csrf_token() }}"/>
-<input type="hidden" value="{{ Hashids::encode($transaccion['reserva']) }}" id="idUsrRes" data-token="{{ csrf_token() }}"/>
-<input type="hidden" value="{{ Hashids::encode($transaccion['concretada']) }}" id="idUsrCon" data-token="{{ csrf_token() }}"/>
-													 
 <div class="container-fluid" id="contenedorCalif">
 	<div class="row">
 		<div class="col-md-12">
@@ -19,6 +8,59 @@
 				Calificación de la transacción Nro: {{$transaccion['id']}}
 			</h2>
 			<div class="row">
+				<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="centerBlock">
+
+							   <?php 
+								 if (trim($transaccion['comentario']) =="") 
+								 {
+								?>
+										<h3> <?php echo $usr['name'];?> 
+										<img class="img-circle foto-perfil img-responsive" src="<?php echo $usr['pictureUrl']; ?>" title="<?php echo $usr->name;?>" alt="<?php echo $usr['name'];?>">								
+										</h3>
+								<?php
+								 }
+								 else
+								 {
+									$usuariosC = App\Models\User::where('id',$transaccion->concretada)->get();  
+									foreach($usuariosC as $usuarioC)
+									{
+										$nombreC =   $usuarioC;
+									}
+								?>
+								  		<h3> <?php echo $nombreC['name'];?> 
+										<img class="img-circle foto-perfil img-responsive" src="<?php echo $nombreC['pictureUrl']; ?>" title="<?php echo $nombreC->name;?>" alt="<?php echo $nombreC['name'];?>">								
+										</h3>
+								<?php
+								 }
+								?>
+
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="centerBlock">
+								<!--input id="rate" name="input-name" type="number" class="rating" min=1 max=5 step=1 data-size="xs" ><br /-->
+				
+								<?php 
+								 if (trim($transaccion['comentario']) =="") 
+								 {
+								?>	 
+								 <input id="input-2-ltr-star-sm" name="input-2-ltr-star-sm" class="kv-ltr-theme-fa-star rating-loading" value="2" dir="ltr" data-size="sm">
+								<?php 
+								 }
+								 ?>
+								<input type="hidden" value="{{ Hashids::encode($transaccion['id']) }}" id="idTrans" data-token="{{ csrf_token() }}"/>
+								<input type="hidden" value="{{ Hashids::encode($usr['id']) }}" id="idUsr" data-token="{{ csrf_token() }}"/>
+								<input type="hidden" value="{{ Hashids::encode($transaccion['reserva']) }}" id="idUsrRes" data-token="{{ csrf_token() }}"/>
+								<input type="hidden" value="{{ Hashids::encode($transaccion['concretada']) }}" id="idUsrCon" data-token="{{ csrf_token() }}"/>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
 					<div class="row">
 						<div class="col-md-12">
@@ -97,91 +139,19 @@
 
 				</div>
 			</div>
-			<form role="form">
 			<div class="row">
 				<div class="container-fluid">
 					<div class="centerBlock">
-
 						<div class="row">
-							<div class="col-md-12">
-								<div class="centerBlock">
-								<?php 
-								 if (trim($transaccion['comentario']) =="") 
-								 {
-								?>	 
-								 <input id="input-2-ltr-star-sm" name="input-2-ltr-star-sm" class="kv-ltr-theme-fa-star rating-loading" value="2" dir="ltr" data-size="sm">
-								<?php 
-								 }
-								 ?>
-
-								<?php 
-									if (trim($transaccion['comentario']) =="") 
-									{
-									?>
-											<h3> <?php echo $usr['name'];?> 
-											<img class="img-circle foto-perfil img-responsive" src="<?php echo $usr['pictureUrl']; ?>" title="<?php echo $usr->name;?>" alt="<?php echo $usr['name'];?>">								
-											</h3>
-									<?php
-									}
-									else
-									{
-										$usuariosC = App\Models\User::where('id',$transaccion->concretada)->get();  
-										foreach($usuariosC as $usuarioC)
-										{
-											$nombreC =   $usuarioC;
-										}
-									?>
-											<h3>Comprador: <?php echo $nombreC['name'];?> 
-											<img class="img-circle foto-perfil img-responsive" src="<?php echo $nombreC['pictureUrl']; ?>" title="<?php echo $nombreC->name;?>" alt="<?php echo $nombreC['name'];?>">								
-											</h3>
-
-										<label for="dejarComment2">
-											Comentario:
-										</label>
-											<?php 
-											if (trim($transaccion['comentario2']) !="") 
-											{
-											?> 					
-												{{$transaccion['comentario2']}}
-												&nbsp;
-												Calificación Otorgada:
-												{{$transaccion['rate2']}}
-												<input id="rate2" name="input-name" type="number" class="rating" min=1 max=5 step=1 data-size="xs"  value="{{ $transaccion['rate2']}}" disabled="true"/>
-											<?php 
-											}
-											else
-											{
-												//si vengo de ofertas puedo calificar al comprador, 
-												//si vengo de negociaciones no xq me estaria calificando a mi mismo
-												if(Auth::user()->id == $transaccion['user_id'])	
-												{
-											?> 	
-												<input id="input-3-ltr-star-sm" name="input-3-ltr-star-sm" class="kv-ltr-theme-fa-star rating-loading" value="2" dir="ltr" data-size="sm">			
-												&nbsp;
-												<textarea rows="4" class="form-control" name="comentario2" form="form" id="dejarComment2" placeholder="Deja un comentario de la transaccion"></textarea>
-											<?php	
-												}
-											}
-											?>
-
-
-											<h3>
-												--------------------------------------------------------
-											</h3>
-
-											<h3>Vendedor: <?php echo $usr['name'];?> 
-											<img class="img-circle foto-perfil img-responsive" src="<?php echo $usr['pictureUrl']; ?>" title="<?php echo $usr->name;?>" alt="<?php echo $usr['name'];?>">								
-											</h3>
-									<?php
-									}
-									?>
-
-								</div>
+							<div class="col-md-12" id="lineainfinita">
+								<h3>
+									--------------------------------------------------------
+								</h3>
 							</div>
 						</div>
-					
 						<div class="row">
 							<div class="col-md-12">
+								<form role="form">
 									<div class="form-group">
 										<!--ocultar si tiene comentarios 
 										to do: pasar l calificacion a estrellas, usando el control de las pag de inicio-->
@@ -224,20 +194,24 @@
 											<?php 
 								 			if (trim($transaccion['comentario']) !="") 
 											{	 
+											   if(Auth::user()->id == $transaccion['user_id'])
+											      $origen = 'O';
+											   else    
+											   	  $origen = 'N';									 			
 											?>											
 											</div>											
 										</div>
 										<button id="cierroTrans" type="button" class="btn btn-default" style="color:white;background:orange;border:transparent;text-shadow:none;font-size:2em;"
 												 data-prueba="{{$origen}}" >Cerrar
 												 </button>
-									 <?php }?>
+												 <?php }?>
+									</form>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			</form>
 		</div>
 	</div>
 </div>
