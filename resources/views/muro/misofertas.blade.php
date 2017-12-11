@@ -296,11 +296,10 @@ if ($contratoC->concretada !== 0 && $contratoC->user_id==$tmp[0]['id'])
                     echo $contratoC['cantidad'];
                     break;
                   }
-
                   ?>
                 </span>
               </font>
-            </p>
+            </p><span style="font-size:1em;color:#aaa;"><?php echo  substr($contratoC['updated_at'],0,10);?></span>
           </div>
         </div>
       </div>
@@ -313,18 +312,16 @@ if ($contratoC->concretada !== 0 && $contratoC->user_id==$tmp[0]['id'])
   <div class="media-right" >
     <div class="row text-center botonCallToAction " style="background:orange;" >
       <div class="vcenter">
-        
-        <div class="col-sm-7 col-xs-7 col-lg-7 col-md-7 text-center" style="padding-left:1px">
-          <font style="color:white;"> <?php echo  substr($contratoC['updated_at'],0,10);?> </font>
-        </div>
         <!--
-            <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-center" style="margin-right:1em;">
-              <font style="color:white;"> <?php // echo $contratoC['comentario'];?> </font>          
-            </div>
-        -->
-        <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4 text-center" style="padding-left:1px;padding-right:1px;">
+        <div class="col-sm-4 col-xs-4 col-lg-5 col-md-4 text-center" style="padding-left:1px;padding-right:1px;">
+            <button type="button" style="background:transparent;border:transparent;"> 
+                <img src="{{ url('images/negociacionconcretada.png') }}" title="Calificar al Comprador" class="img-responsive concretada3" data-id="{{  Hashids::encode($contratoC['id']) }}" />
+            </button>   
+        </div>
+        -->    
+        <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6 text-center" style="padding-left:1px;padding-right:1px;">
             <button type="button" style="background:transparent;border:transparent;">
-               <img src="{{ url('images/calificado.png') }}" title="Ver calificación de la compra" class="concretada2 img-responsive" data-id="{{ Hashids::encode($contratoC['id']) }}" data-token="{{ csrf_token() }}" height="100%" />
+               <img src="{{ url('images/calificado.png') }}" title="Ver calificación de la compra y/o Calificar al comprador" class="concretada2 img-responsive" data-id="{{ Hashids::encode($contratoC['id']) }}" data-token="{{ csrf_token() }}" height="100%" />
             </button>      
          </div>     
       </div>

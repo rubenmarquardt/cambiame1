@@ -186,11 +186,16 @@ class OfertaController extends Controller
                 return redirect()->route('/');
             }else{
                 $oferta = new Oferta;
+           //aqui es que podria agregar la tabla de monedas  a futuro   
                 $oferta->moneda = ($request['moneda'] == 1 ? 'usd' : 'uyu');
                 $oferta->dolarInter = $request['dolarInter'];
                 $oferta->dolarCambio = $request['dolarCambio'];
                 $oferta->resultado = $request['resultado'];
                 $oferta->cantidad = $request['cantidad'];
+          //agrego el medio de pago          
+          //el medio de pago 1 es el que me interesa ebank
+                $oferta->medioPago= $request['medioPago'];
+                
                 $oferta->user_id = $decode = Hashids::decode($request['user_id'])[0];
                 $oferta->reserva = 0;
                 if($oferta->save()){
@@ -249,7 +254,7 @@ class OfertaController extends Controller
             }
         }else{
            return response()->json([
-            'success' => 'you dont own this record brotha!'
+            'success' => 'No te pertence registro'
             ]);    
         }
     }
@@ -271,7 +276,7 @@ class OfertaController extends Controller
            }
         }else{
             return response()->json([
-            'success' => 'you dont own this record brotha!'
+            'success' => 'No te pertence registro'
             ]);    
         }
     }
@@ -305,6 +310,11 @@ class OfertaController extends Controller
 
     }
 
+/*
+    public function compradorTrans($id){
+        //esta es la funcion para calificar al comprador.....finalmante uso el historico para todo
+    }
+*/
     public function historicoTrans($id){
         try{
         $decode = Hashids::decode($id)[0];        
@@ -320,6 +330,9 @@ class OfertaController extends Controller
         }
 
     }
+
+    
+
 
     public function transaccionesNoCalificadas(){
         
@@ -375,4 +388,48 @@ class OfertaController extends Controller
         }   
     }
 
+    public function guardarCalifComp(Request $request){
+        if($request->ajax()){
+            //$this->user = Auth::user()->id;        
+            $usrId = Hashids::decode($request['idUsr'])[0];
+            
+            $rateTotalUsr = 0;
+            $sumaRates = 0;
+            $indice = 0;
+
+            $oferta = Oferta::where('id', Hashids::decode($request['idTrans']))->first();
+            //guardo el comentario y la calificacion del comprador
+            $oferta->rate2 = $request['value'];
+            if(isset($request['comentario'])){
+                $oferta->comentario2 = $request['comentario'];
+            }
+            $oferta->save();
+            
+            //busco las ofertas en las que el usuario actuo como comprador
+            $usrOfertas = Oferta::where('concretada', $usrId)->get();
+
+            foreach($usrOfertas as $oferta){
+                //acumulo calificaciones como comprador
+                if($oferta->rate2 != null){
+                    $indice++;
+                    $sumaRates += $oferta->rate2;
+                }               
+            }    
+
+            if($indice != 0){
+                $usr = User::where('id', $usrId)->first();
+                $rateTotalUsr = $sumaRates / $indice;
+                //por ahora lo acumulo en el rate del usuario ver si hay que agregar una columna de calificacion
+                //como comprador y otra que guarde el indice, o sea la cantidad de transacciones realizadas
+                $usr->rate = $rateTotalUsr;
+                $usr->save();
+                return response()->json(["success"=>"Calificación Comprador guardada!"]);
+                }
+                else{
+                    return response()->json(["success"=>"Calificación al usuario no promediada!"]);          
+            }
+     
+            
+        }   
+    }
 }

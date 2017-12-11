@@ -239,7 +239,7 @@ foreach($usuarios as $usuario){
                   ?>
                 </span>
               </font>
-            </p>
+            </p><span style="font-size:1em;color:#aaa;"><?php echo  substr($contratoC['updated_at'],0,10);?></span>
           </div>
         </div>
       </div>
@@ -249,18 +249,10 @@ foreach($usuarios as $usuario){
    Ver si queda bien mostrar directamente fecha y comentario
    Y/o Cambiar el icono para que muestre la trn de calificacion en modo lectura.
 -->
-  <div class="media-right" style="padding-right:10px;" >
+  <div class="media-right" >
     <div class="row text-center botonCallToAction " style="background:orange; padding:0px; width:11em" >
       <div class="vcenter">
-        <div class="col-sm-7 col-xs-7 col-lg-7 col-md-7 text-center" style="padding-left:1px">
-          <font style="color:white;"> <?php echo  substr($contratoC['updated_at'],0,10);?> </font>
-        </div>
-        <!--
-        <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-center" style="margin-right:1em;">
-          <font style="color:white;"> <?php //echo $contratoC['comentario'];?> </font>          
-        </div>
-        -->
-        <div class="col-sm-4 col-xs-4 col-lg-4 col-md-4 text-center" style="padding-left:1px;padding-right:1px;">
+        <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6 text-center" style="padding-left:1px;padding-right:1px;">
           <!-- no se esta cargando la variable -->
           <input type="hidden" id="idHistoria" />
           <button type="button" style="background:transparent;border:transparent;">
