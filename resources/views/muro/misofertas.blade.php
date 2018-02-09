@@ -78,15 +78,15 @@
     <div class="media">
       <div class="media-left">
       
-<!-- aqui en vez del tmp tengo que traer los datos del usr que reservo-->
 
        <?php 
           if (trim($oferta['reserva']) =="0") 
 				  {
 				?>
-            <a href="{{ $tmp[0]['linkedinProfile']}}" target="_blank">
-              <img class="media-object" src="<?php echo $tmp[0]['pictureUrl']; ?>" title="<?php echo $tmp[0]['name']; ?>" alt="<?php echo $tmp[0]['name'];?>">
-            </a>
+            <!-- width="80px" no se porque si le pongo % se pierde la imagen-->
+              <a href="{{ $tmp[0]['linkedinProfile']}}" target="_blank">
+                <img class="media-object"  width="500%"  src="<?php echo $tmp[0]['pictureUrl']; ?>" title="<?php echo $tmp[0]['name']; ?>" alt="<?php echo $tmp[0]['name'];?>">
+              </a>
       <?php 
 					}
 					else

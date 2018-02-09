@@ -93,7 +93,9 @@
       @else         
         <div class="container-fluid" style="padding:0;"> 
           <a href="{{$tmp['linkedinProfile']}}" target="_blank">  
-            <img class="media-object" title="<?php echo $tmp['name']; ?>" src="<?php echo $tmp['pictureUrl']; ?>" >
+            <!-- media object width="80px" height="80px" width="800%" height="auto"-->
+            <!-- el resposive te lo deja chico y y ponerlo en la clase no funciono solo si lo pongo a fuego-->
+            <img class="media-object"  width="500%" title="<?php echo $tmp['name']; ?>" src="<?php echo $tmp['pictureUrl']; ?>" >
           </a>
           <div class="stars">
             <?php 
@@ -115,14 +117,10 @@
               for($i = 1; $i <= $rate; $i++){
                 echo '<label class="star star-'.$i.'" for="star-'.$i.'" style="color: #FD4;"></label>';
               }
-              //echo "<label style='font-size:0.9em;color:#aaa;'> $indice trns</label>";
+              echo "<label style='font-size:0.9em;color:#aaa;'> $indice </label>";
               //echo $indice . ' trns' 
             ?>
           </div>
-          <div class="row">
-             <span style="font-size:0.9em;color:#aaa;"><?php //echo ($indice > 0 ? $indice : 'Nuevo') . ' trns' ;
-                                                        echo $indice ; ?></span>
-          </div>        
         </div>
       @endif
     </div>

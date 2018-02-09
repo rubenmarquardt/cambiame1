@@ -354,9 +354,10 @@ input::-webkit-input-placeholder {
  }
 
  /* mostrar estrellas */
+/* modifique la clase por el tema del error de imagen antes estaba 100%*/
 
  div.stars {
-  width: 100%;
+  width: 600%;
   display: inline-block;
   float:left;
 }
