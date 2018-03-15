@@ -195,7 +195,10 @@ class OfertaController extends Controller
           //agrego el medio de pago          
           //el medio de pago 1 es el que me interesa ebank
                 $oferta->medioPago= $request['medioPago'];
-                
+                $oferta->observacion= $request['observacion'];
+          //doy de alta una oferta activa      
+                $oferta->activa=1;
+
                 $oferta->user_id = $decode = Hashids::decode($request['user_id'])[0];
                 $oferta->reserva = 0;
                 if($oferta->save()){
@@ -281,13 +284,29 @@ class OfertaController extends Controller
         }
     }
 
-    public function destroy($id){        
+  //cambio la funcion para que no me elimine ofertas      
+  //cuando devuelvo ofertas siempre tengo que preguntar por este campo
+   // public function destroy($id){        
+    public function desactivar($id){        
         $oferta = Oferta::find($id);
         if ($oferta->user_id == Auth::user()->id){
-            $oferta->delete();
+            //$oferta->delete();
+            $oferta->activa=0;
+            /*
             return response()->json([
             'success' => 'Se elimino tu oferta!'
             ]);   
+            */
+            if($oferta->save()){
+                return response()->json([
+                    'success' => 'Se elimino tu oferta!'
+                    ]);   
+            }else{
+             return response()->json([
+                'success' => 'Error: No se pudo eliminar la oferta'
+                ]);  
+            }
+
         }else{
            return response()->json([
             'success' => 'No puedes borrar esto'

@@ -87,6 +87,7 @@
             </a>
            
             <ul class="dropdown-menu" role="menu">
+              <li><a href=" {{ url('usuario/perfil/'.Hashids::encode(Auth::user()->id)) }}"><i class="fa fa-btn glyphicon glyphicon-star"></i>Mi Perfil</a></li>
               <li><a href=" {{ url('usuario/ofertas/'.Hashids::encode(Auth::user()->id)) }}"><i class="fa fa-btn glyphicon glyphicon-star"></i>Mis Ofertas</a></li>
               <li><a href=" {{ url('usuario/negociaciones/'.Hashids::encode(Auth::user()->id)) }}"><i class="fa fa-btn glyphicon glyphicon-star"></i>Mis Compras</a></li>
               <li><a href=" {{ action ('SocialController@logoutActivo') }}/{{Auth::user()->id }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>

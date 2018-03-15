@@ -32,4 +32,7 @@ class UserController extends Controller
     $this->middleware('auth');
   }
 
+   public function profile(){
+    return View('usuario.perfil');
+  }
 }

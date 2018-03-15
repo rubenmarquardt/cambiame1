@@ -64,7 +64,10 @@ Route::get('login', function(){
 });
 
 //borrar oferta
-Route::delete('/oferta/delete/{id}', 'OfertaController@destroy');
+//Route::delete('/oferta/delete/{id}', 'OfertaController@destroy');
+
+//Desactivar Oferta
+Route::post('/oferta/desactivar/{id}', 'OfertaController@desactivar');
 //liberar oferta
 Route::post('/oferta/liberar/{id}', 'OfertaController@liberar');
 //concretar oferta concretada
@@ -100,3 +103,6 @@ Route::get('transaccion/calificarc/{id}',  ['uses' => 'OfertaController@historic
 Route::get('guardarate2',  ['uses' => 'OfertaController@guardarCalifComp', 'middleware'=>'auth']);
 Route::post('guardarate2', ['uses' => 'OfertaController@guardarCalifComp', 'middleware'=>'auth']);
 
+/*Perfil de usuario*/
+Route::get('usuario/perfil/{id}', 'UserController@profile');
+Route::post('usuario/updateperfil/{id}', 'UserController@updateProfile');

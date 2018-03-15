@@ -69,11 +69,12 @@
 </div>
 
 <div class="row" id="page-content">
-<!--cambio el concepto solo muestro ofertas no concretadas ni reservadas-->
+<!--cambio el concepto solo muestro ofertas no concretadas ni reservadas y activas-->
   @foreach ($ofertas as $oferta)
   @if($oferta['concretada'] == 0) 
   @if($oferta['reserva'] == 0) 
-                    
+  @if($oferta['activa'] == 1) 
+
   <?php
   $tmp = App\Models\User::where('id', $oferta['user_id'])->first();
   $estado = ($tmp->activo == 1 ? 'estaOnline' : 'noestaOnline');
@@ -94,8 +95,8 @@
         <div class="container-fluid" style="padding:0;"> 
           <a href="{{$tmp['linkedinProfile']}}" target="_blank">  
             <!-- media object width="80px" height="80px" width="800%" height="auto"-->
-            <!-- el resposive te lo deja chico y y ponerlo en la clase no funciono solo si lo pongo a fuego-->
-            <img class="media-object"  width="500%" title="<?php echo $tmp['name']; ?>" src="<?php echo $tmp['pictureUrl']; ?>" >
+            <!-- ver como puedo jugar con los @media dentro del app2.css -->
+            <img class="tamanioImg" title="<?php echo $tmp['name']; ?>" src="<?php echo $tmp['pictureUrl']; ?>" >
           </a>
           <div class="stars">
             <?php 
@@ -114,12 +115,19 @@
               $indice = $indice1 + $indice2;
         
               $rate = (int)floor($tmp->rate);
+              /*
               for($i = 1; $i <= $rate; $i++){
                 echo '<label class="star star-'.$i.'" for="star-'.$i.'" style="color: #FD4;"></label>';
               }
-              echo "<label style='font-size:0.9em;color:#aaa;'> $indice </label>";
+              */
+              if ($rate!=null){
+                echo '<label class="star star-" style="color: #FD4;"> '.round($rate,1). '</label>';
+              }else{echo '<label style="color: #FD4;"> nuevo</label>';}
+
+               //echo '<label style="font-size:0.8em;color:#aaa;">'. $indice .'</label>';
               //echo $indice . ' trns' 
             ?>
+            <label class="trans trans-" style="color: #FD4;"><?php echo  ' ' .$indice ; ?></label>
           </div>
         </div>
       @endif
@@ -134,35 +142,47 @@
               //agrego logica de los medios de pago
                   switch ($oferta['medioPago']) {
                     case '0':
-                         $Intercambio = '  En Persona';
+                         $Intercambio = ' en Persona';
                     break;     
                     case '1':
-                         $Intercambio = '  E-bank';
+                         $Intercambio = ' e-banking';
                     break;     
                     case '2':
-                         $Intercambio = '  PayPal'; 
+                         $Intercambio = ' PayPal'; 
                     break;     
                     case '3':
-                         $Intercambio = '  Red de Pagos';
+                         $Intercambio = ' Red de Pagos';
                     break;     
                     break;
                     default:
-                        $Intercambio = '  En Persona';
+                        $Intercambio = ' en Persona';
                     break;
                   }
-
+               $observacion = $oferta['observacion'];      
               if ($oferta['moneda'] == "usd"){
-                echo "<font style='color:orange;font-size:1.2em;'>VENDO: {$Intercambio}</font>";      
+
+                //echo "<font style='color:orange;font-size:1.2em;'>VENDO: {$Intercambio} - {$observacion}</font>";      
+                  echo "<font class='textoOferta1'>VENDO:</font>";  
+                  echo "<br>"; 
+                  echo "<font class='textoOferta1'>{$Intercambio} - {$observacion}</font>";  
               }else if($oferta['moneda'] == "uyu"){
-                echo "<font style='color:white;font-size:1.2em;'>COMPRO: {$Intercambio}</font>";
+                  echo "<font class='textoOferta2'>COMPRO:</font>";
+                  echo "<br>"; 
+                  echo "<font class='textoOferta2'>{$Intercambio} - {$observacion}</font>";  
+                //echo "<font style='color:white;font-size:1.2em;'>COMPRO: {$Intercambio} - {$observacion}</font>";
               }
 
               ?>
             </h5>
           </div>
           <div class="row">
+              <!--
             <h5 class="media-heading">
+            
               <span class="enDolares" style="color:#aaa;font-size:1.2em;">				
+              -->  
+              <font class="textoOfertaDolar">  
+              <span class="currencyLabel">				
                 <?php
                 if ($oferta['moneda'] == "usd"){
                   echo "  US$ ".$oferta['cantidad'];
@@ -171,11 +191,17 @@
                 }                
                 ?>
               </span>
+              </font>
+            <!--  
             </h5>
+            -->
           </div>
           <div class="row">
             <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
+                <!--
                 <font class="muroOferta" style="font-size:1.3em;">
+                  -->
+                <font class="textoOfertaPesos">  
                  <span class="currencyLabel">
                   <?php
 
@@ -254,6 +280,7 @@
 
 
 </div>
+@endif
 @endif
 @endif
 @endforeach

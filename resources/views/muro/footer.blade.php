@@ -257,7 +257,9 @@
                 // aqui guardo el medio de pago 
                // $('#selectIntercambio').val()
 
-                  data += "&medioPago=" + $('#selectIntercambio').val() +"&moneda=" + $('#selectCambiameMone').val() + "&dolarInter=" + parseFloat($dolarInter.replace(',','.')) + "&dolarCambio=" + dolarCambio + "&resultado=" +  $('#cantEnUyu').text() + "&cantidad=" + $('#cantF').text() ;
+                    data += "&observacion=" + $('#observacion').val() + "&medioPago=" + $('#selectIntercambio').val() +"&moneda=" + $('#selectCambiameMone').val() + "&dolarInter=" + parseFloat($dolarInter.replace(',','.')) + "&dolarCambio=" + dolarCambio + "&resultado=" +  $('#cantEnUyu').text() + "&cantidad=" + $('#cantF').text() ;
+              
+              //    data += "&medioPago=" + $('#selectIntercambio').val() +"&moneda=" + $('#selectCambiameMone').val() + "&dolarInter=" + parseFloat($dolarInter.replace(',','.')) + "&dolarCambio=" + dolarCambio + "&resultado=" +  $('#cantEnUyu').text() + "&cantidad=" + $('#cantF').text() ;
 
              //   data += "&moneda=" + $('#selectCambiameMone').val() + "&dolarInter=" + parseFloat($dolarInter.replace(',','.')) + "&dolarCambio=" + dolarCambio + "&resultado=" +  $('#cantEnUyu').text() + "&cantidad=" + $('#cantF').text() ;
                 
@@ -389,15 +391,16 @@
       var hashids = new Hashids("esto-es-cambiame", 16, "abcdefghijmoprxyz1236789");
     	var id =  hashids.decode($(this).data("id"));
     	var token = $(this).data("token");
+
     	if(confirm('Va a eliminar su oferta, ¿está seguro?')){
 //confirm('Antes de Ejecutar el Ajax');
         $.ajax({
-         url: "{{url('oferta/delete')}}/"+id,
-         type: "post",
+         url: "{{url('oferta/desactivar')}}/"+id,
+         type: 'POST',
          dataType: "JSON",
          data: {
           "id": id,
-          _method:"DELETE",         
+          "_method": 'POST',      //Antes aqui decia DELETE, tambien en la url   
           "_token": token,
         },
         success: function (data){
