@@ -1,0 +1,26 @@
+to do cambiame:
+
+Ande: Afinar nros: 19 al 23
+	  Seguimiento de Tareas de Los demas	
+				
+Contactos:
+      Reiterar contacto con sistema de pagos para que no se duerma......(hecho.....)
+      Reiterar contacto con Prometo x lo mismo....... (hecho.....)	  
+
+Campaña de usuarios:
+      Retomar al enviar el video, ver si contar alguna noticia en que estamos tambien
+	  Encuesta a usuarios que banco usan ?
+	  
+
+Impactar a Produccion y probar con Ruben:
+
+Ejecutar en el sql:
+ALTER TABLE `ofertas` ADD `observacion` VARCHAR(180) NULL DEFAULT NULL AFTER `medioPago`;
+ALTER TABLE `ofertas` ADD `activa` INT(10) NOT NULL DEFAULT '1' AFTER `observacion`;
+
+
+imagen actual (c error):
+https://media.licdn.com/mpr/mprx/0_-76t6QBqvdQh5TYEKSKtaQMz9yNT5KGwlwpt8tGzqJQh5hi9ROKyDtnz-ZfyQ-gFzSKyHAzvJsz8_qunUpimatqMysz3_qbQgpilLP3NBUhSWGyVASv05Ff5pffAoqrBqxbYCTHh5UP
+
+imagen nueva (c error):
+https://media-exp2.licdn.com/mpr/mpr/shrinknp_400_400/AAIA_wDGAAAAAQAAAAAAAAw-AAAAJDhkNWY4NWQxLTE0OTktNDNmMy04NWI2LTdhZDBlMWM1NDQ1ZQ.jpg

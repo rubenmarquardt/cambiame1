@@ -28,6 +28,7 @@
 
   @if (!empty($contratos))
   @foreach ($contratos as $contrato)
+  @if($contrato['activa'] == 1) 
   <?php
   //busco usuario dueño de la oferta reservada
   if (isset($contrato)&&$contrato['concretada'] == 0) {
@@ -48,7 +49,7 @@
       ">
       <div class="media-left">
         <a href="{{$usuario->linkedinProfile}}" target="_blank">  
-          <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" title="<?php echo $usuario->name; ?>" alt="<?php echo $usuario->name;?>">
+          <img class="tamanioImg" src="<?php echo $usuario->pictureUrl; ?>" title="<?php echo $usuario->name; ?>" alt="<?php echo $usuario->name;?>">
         </a>
       </div>
       <div class="media-body">
@@ -59,18 +60,23 @@
                 <?php
 
                 if ($contrato['moneda'] == "usd"){
-                  echo "<font style='color:orange;font-size:1.2em;'>VENDO</font>";
+                  //echo "<font style='color:orange;font-size:1.2em;'>VENDO</font>";
+                  echo "<font class='textoOferta1'>VENDIO</font>";
                 }else if($contrato['moneda'] == "uyu"){
-                  echo "<font style='color:white;font-size:1.2em;'>COMPRO</font>";
+                  //echo "<font style='color:white;font-size:1.2em;'>COMPRO</font>";
+                  echo "<font class='textoOferta2'>COMPRO</font>";
                 }
 
                 ?>
               </h5>
             </div>
             <div class="row">
+              <!--
               <h5 class="media-heading">
                  <span class="enDolares" font style="color:#aaa;font-size:1.2em;">    
-
+              -->
+                <font class="textoOfertaDolar">  
+              <span class="currencyLabel">		   
                   <?php
 
                   if ($contrato['moneda'] == "usd"){
@@ -81,12 +87,18 @@
 
                   ?>
                 </span>
+                </font>
+              <!--  
               </h5>
+              -->
             </div>
             <div class="row">
               <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
                 <p>
+                  <!--
                   <font class="muroOferta" style="font-size:1.3em;">
+                  -->
+                  <font class="textoOfertaPesos">    
                    <span class="currencyLabel">
                     <?php
 
@@ -153,6 +165,7 @@
 <?php }
  }
 ?>
+@endif
 @endforeach
 @endif
 
@@ -165,6 +178,7 @@
 </div>
 
 @foreach ($contratosC as $contratoC)
+@if($contratoC['activa'] == 1) 
 <?php
 //busco usuario dueño de la oferta reservada
 $usuarios = App\Models\User::where('id', $contratoC['user_id'])->get();
@@ -177,7 +191,7 @@ foreach($usuarios as $usuario){
   <div class="media">
     <div class="media-left">
       <a href="{{$usuario->linkedinProfile}}" target="_blank">
-        <img class="media-object" src="<?php echo $usuario->pictureUrl; ?>" title="<?php echo $usuario->name; ?>" alt="<?php echo $usuario->name;?>">
+        <img class="tamanioImg" src="<?php echo $usuario->pictureUrl; ?>" title="<?php echo $usuario->name; ?>" alt="<?php echo $usuario->name;?>">
       </a>
     </div>
     <div class="media-body">
@@ -188,17 +202,24 @@ foreach($usuarios as $usuario){
               <?php
 
               if ($contratoC['moneda'] == "usd"){
-                echo "<font style='color:orange;font-size:1.2em;'>VENDIO</font>";
+                //echo "<font style='color:orange;font-size:1.2em;'>VENDIO</font>";
+                echo "<font class='textoOferta1'>VENDIO</font>";
               }else if($contratoC['moneda'] == "uyu"){
-                echo "<font style='color:white;font-size:1.2em;'>COMPRÓ</font>";
+                echo "<font class='textoOferta2'>COMPRÓ</font>";
+                //echo "<font style='color:white;font-size:1.2em;'>COMPRÓ</font>";
               }
 
               ?>
             </h5>
           </div>
           <div class="row">
+            <!--
             <h5 class="media-heading">
               <span class="enDolares" font style="color:white;font-size:1.2em;">
+            -->    
+             <font class="textoOfertaDolar">  
+              <span class="currencyLabel">				
+
                 <?php
 
                 if ($contratoC['moneda'] == "usd"){
@@ -209,12 +230,18 @@ foreach($usuarios as $usuario){
 
                 ?>
               </span>
+              </font>
+            <!--  
             </h5>
+            -->
           </div>
           <div class="row">
             <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
               <p>
+                <!--
                 <font class="muroOferta" style="font-size:1.2em;">
+                -->
+                 <font class="textoOfertaPesos">    
                  <span class="currencyLabel">
                   <?php
 
@@ -269,6 +296,7 @@ foreach($usuarios as $usuario){
   }
 
 ?>
+@endif
 @endforeach
 
 

@@ -73,20 +73,21 @@
   @foreach ($ofertas as $oferta)
   
   @if($oferta['concretada'] == 0)
+  @if($oferta['activa'] == 1) 
 
   <div class="oferta estaOnline">
     <div class="media">
       <div class="media-left">
       
-<!-- aqui en vez del tmp tengo que traer los datos del usr que reservo-->
 
        <?php 
           if (trim($oferta['reserva']) =="0") 
 				  {
 				?>
-            <a href="{{ $tmp[0]['linkedinProfile']}}" target="_blank">
-              <img class="media-object" src="<?php echo $tmp[0]['pictureUrl']; ?>" title="<?php echo $tmp[0]['name']; ?>" alt="<?php echo $tmp[0]['name'];?>">
-            </a>
+            <!-- width="80px" no se porque si le pongo % se pierde la imagen-->
+              <a href="{{ $tmp[0]['linkedinProfile']}}" target="_blank">
+                <img class="tamanioImg"  width="500%"  src="<?php echo $tmp[0]['pictureUrl']; ?>" title="<?php echo $tmp[0]['name']; ?>" alt="<?php echo $tmp[0]['name'];?>">
+              </a>
       <?php 
 					}
 					else
@@ -100,7 +101,7 @@
  				   ?> 	
            <!-- armar algo similar para calificarh (esta abierta en este editor) -->
             <a href="{{ $nombreR['linkedinProfile']}}" target="_blank">
-              <img class="media-object" src="<?php echo $nombreR['pictureUrl']; ?>" title="<?php echo $nombreR['name']; ?>" alt="<?php echo $nombreR['name'];?>">
+              <img class="tamanioImg" src="<?php echo $nombreR['pictureUrl']; ?>" title="<?php echo $nombreR['name']; ?>" alt="<?php echo $nombreR['name'];?>">
             </a>
       <?php	
 					}
@@ -116,16 +117,23 @@
                 <?php
 
                 if ($oferta['moneda'] == "usd"){
-                  echo "<font style='color:orange;font-size:1.2em'>VENDO</font>";
+                  //echo "<font style='color:orange;font-size:1.2em'>VENDO</font>";
+                  echo "<font class='textoOferta1'>VENDO</font>";
                 }else if($oferta['moneda'] == "uyu"){
-                  echo "<font style='color:white;font-size:1.2em'>COMPRO</font>";
+                  //echo "<font style='color:white;font-size:1.2em'>COMPRO</font>";
+                  echo "<font class='textoOferta2'>COMPRO</font>";
                 }
                 ?>
               </h5>
             </div>
             <div class="row">
+
+              <!--
               <h5 class="media-heading">
                 <span class="enDolares" font style="color:#aaa;font-size:1.2em;">
+             -->   
+              <font class="textoOfertaDolar">  
+              <span class="currencyLabel">				
                   <?php
 
                   if ($oferta['moneda'] == "usd"){
@@ -136,13 +144,20 @@
               //    echo 'tengo oferta' .  $oferta['id'] ;
 
                   ?>
+           
                 </span>
+              </font>
+            <!--           
               </h5>
+           -->   
             </div>
             <div class="row">
               <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
                 <p>
+                  <!--
                   <font class="muroOferta" style="font-size:1.3em;">
+                  -->  
+                  <font class="textoOfertaPesos">    
                    <span class="currencyLabel">
                     <?php
 
@@ -205,6 +220,7 @@
   </div>
 </div>
 @endif
+@endif
 @endforeach
 
 <!-- muestro el historico de mis ofertas, donde yo quise vender -->
@@ -216,6 +232,7 @@
 </div>
 
 @foreach ($contratosC as $contratoC)
+@if($contratoC['activa'] == 1) 
 <?php
 
 $usuarios = App\Models\User::where('id', $contratoC['user_id'])->get();
@@ -238,7 +255,7 @@ if ($contratoC->concretada !== 0 && $contratoC->user_id==$tmp[0]['id'])
   <div class="media">
     <div class="media-left">
       <a href="{{$nombreC->linkedinProfile}}" target="_blank">
-        <img class="media-object" src="<?php echo $nombreC->pictureUrl; ?>" title="<?php echo $nombreC['name']; ?>" alt="<?php echo $nombreC->name;?>">
+        <img class="tamanioImg" src="<?php echo $nombreC->pictureUrl; ?>" title="<?php echo $nombreC['name']; ?>" alt="<?php echo $nombreC->name;?>">
       </a>
     </div>
     <div class="media-body">
@@ -249,17 +266,23 @@ if ($contratoC->concretada !== 0 && $contratoC->user_id==$tmp[0]['id'])
               <?php
 
               if ($contratoC['moneda'] == "usd"){
-                echo "<font style='color:orange;font-size:1.2em;'>VENDIO</font>";
+                //echo "<font style='color:orange;font-size:1.2em;'>VENDIO</font>";
+                echo "<font class='textoOferta1'>VENDIO</font>";
               }else if($contratoC['moneda'] == "uyu"){
-                echo "<font style='color:white;font-size:1.2em;'>COMPRÓ</font>";
+                //echo "<font style='color:white;font-size:1.2em;'>COMPRÓ</font>";
+                echo "<font class='textoOferta2'>COMPRÓ</font>";
               }
 
               ?>
             </h5>
           </div>
           <div class="row">
+            <!--
             <h5 class="media-heading">
-              <span class="enDolares" font style="color:white;font-size:1.2em;">
+               <span class="enDolares" font style="color:white;font-size:1.2em;">
+            -->   
+              <font class="textoOfertaDolar">  
+              <span class="currencyLabel">		  
                 <?php
 
                 if ($contratoC['moneda'] == "usd"){
@@ -270,12 +293,18 @@ if ($contratoC->concretada !== 0 && $contratoC->user_id==$tmp[0]['id'])
 
                 ?>
               </span>
+              </font>
+            <!--
             </h5>
+            -->
           </div>
           <div class="row">
             <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 text-center">
               <p>
+                <!--
                 <font class="muroOferta" style="font-size:1.3em;">
+                -->
+                 <font class="textoOfertaPesos">     
                  <span class="currencyLabel">
                   <?php
 
@@ -334,6 +363,7 @@ if ($contratoC->concretada !== 0 && $contratoC->user_id==$tmp[0]['id'])
 
  }
 ?>
+@endif
 @endforeach
 
 </div>

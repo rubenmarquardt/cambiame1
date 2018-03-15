@@ -42,6 +42,35 @@
 
 }
 
+.textoOferta1{
+  font-size:1.2em; 
+  color:orange;
+}
+
+.textoOferta2{
+  font-size:1.2em; 
+  color:white;
+}
+
+
+.textoOfertaDolar{
+  font-size:1.2em; 
+  color:#aaa;
+}
+
+.textoOfertaPesos{
+  font-size:1.3em; 
+  color:white;
+}
+    
+.tamanioImg{
+  width:80px;
+  height:80px;
+}
+
+
+
+
 #page-content
 {
   height:60vh;
@@ -95,6 +124,11 @@ h1 {
 }
 
 .ingresos{
+  background-color:#d8d9d6;
+  height: 3em;
+}
+
+.ingresos2{
   background-color:#d8d9d6;
   height: 3em;
 }
@@ -166,11 +200,14 @@ background: url(../images/down-arrow.png) no-repeat 254px 12px;
 .moneDiv {
   margin-right: 32%;
   float: right;
-
   width: 37%;
-  
 }
 
+.moneDiv2 {
+  margin-right: 32%;
+  float: center;
+  width: 100%;
+}
 
     /*
 /* Created by Filipe Pina
@@ -337,11 +374,47 @@ input::-webkit-input-placeholder {
     margin-left: auto;
     width: 100%;
   }
+
+
+/* esta para iphone6 */
+
+  @media (max-width: 375px) {
+    .modal-fullscreen .modal-dialog {
+      width: 360px;
+    }
+    .textoOferta1{
+      font-size:1em; 
+     } 
+    .textoOferta2{
+      font-size:1em; 
+     }
+     .textoOfertaDolar{
+      font-size:1em; 
+     }
+     .textoOfertaPesos{
+      font-size:1em; 
+     }
+
+    .moneDiv2 {
+      margin-right: 0%;
+      float: left;
+      width: 50%;
+    }
+    
+    .ingresos2{
+      background-color:white;
+      height: 3em;
+    }
+
+  }
+
+
   @media (min-width: 768px) {
     .modal-fullscreen .modal-dialog {
       width: 750px;
     }
   }
+
   @media (min-width: 992px) {
     .modal-fullscreen .modal-dialog {
       width: 970px;
@@ -354,6 +427,9 @@ input::-webkit-input-placeholder {
  }
 
  /* mostrar estrellas */
+
+/* modifique la clase por el tema del error de imagen antes estaba 100%*/
+/* revvisar en un bkp como estaba orginalmente */
 
  div.stars {
   width: 100%;
@@ -372,5 +448,26 @@ label.star:hover { transform: rotate(-15deg) scale(1.3); }
 
 label.star:before {
   content: '\f005';
+  font-family: FontAwesome;
+}
+
+/* mostrar transacciones */
+div.trans {
+  width: 100%;
+  display: inline-block;
+  float:left;
+}
+
+label.trans {
+  padding-left:0.3em;
+  float: left;
+  font-size: 0.8em;
+}
+
+
+label.trans:hover { transform: rotate(-15deg) scale(1.3); }
+
+label.trans:before {
+  content: '\f0d6';
   font-family: FontAwesome;
 }

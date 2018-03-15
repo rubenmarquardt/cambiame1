@@ -132,7 +132,7 @@
 										}
 									?>
 											<h3>Comprador: <?php echo $nombreC['name'];?> 
-											<img class="img-circle foto-perfil img-responsive" src="<?php echo $nombreC['pictureUrl']; ?>" title="<?php echo $nombreC->name;?>" alt="<?php echo $nombreC['name'];?>">								
+											<img class="img-circle foto-perfil tamanioImg" src="<?php echo $nombreC['pictureUrl']; ?>" title="<?php echo $nombreC->name;?>" alt="<?php echo $nombreC['name'];?>">								
 											</h3>
 
 										<label for="dejarComment2">
@@ -170,7 +170,12 @@
 											</h3>
 
 											<h3>Vendedor: <?php echo $usr['name'];?> 
-											<img class="img-circle foto-perfil img-responsive" src="<?php echo $usr['pictureUrl']; ?>" title="<?php echo $usr->name;?>" alt="<?php echo $usr['name'];?>">								
+											<!--
+											<img class="tamanioImg" src="<?php echo $usr['pictureUrl']; ?>" title="<?php echo $usr->name;?>" alt="<?php echo $usr['name'];?>">								
+											Ver si esta ok aunque no queda centrado como si queda el "Comprador"
+											-->												
+											<img class="img-circle foto-perfil tamanioImg" src="<?php echo $usr['pictureUrl']; ?>" title="<?php echo $usr->name;?>" alt="<?php echo $usr['name'];?>">								
+											
 											</h3>
 									<?php
 									}
